@@ -210,3 +210,4 @@ export {
 } from './WixStyleReactProvider';
 export { default as AnalyticsSummaryCard } from './AnalyticsSummaryCard';
 export { default as BounceAnimation } from './BounceAnimation';
+export { default as SkeletonGroup } from './SkeletonGroup';
