@@ -139,6 +139,7 @@ require('../src/SidebarSectionItem/docs/index.story');
 require('../src/SidebarSectionTitle/docs/index.story');
 require('../src/SidePanel/docs/index.story');
 require('../src/Skeleton/docs/index.story');
+require('../src/SkeletonGroup/docs/index.story');
 require('../src/Slider/docs/index.story');
 require('../src/SocialButton/docs/index.story');
 require('../src/SocialPreview/docs/index.story.js');
@@ -226,6 +227,3 @@ require('../src/Themes/editorX/docs');
 
 // BusinessDashboard
 require('../src/Themes/businessDashboard/docs');
-
-// TODO: move to correct position
-require('../src/SkeletonGroup/docs/index.story');
