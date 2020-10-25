@@ -425,6 +425,9 @@
   "SkeletonGroup": {
     "path": "src/SkeletonGroup"
   },
+  "SkeletonRectangle": {
+    "path": "src/SkeletonRectangle"
+  },
   "Slider": {
     "path": "src/Slider"
   },

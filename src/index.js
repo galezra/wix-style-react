@@ -211,3 +211,4 @@ export {
 export { default as AnalyticsSummaryCard } from './AnalyticsSummaryCard';
 export { default as BounceAnimation } from './BounceAnimation';
 export { default as SkeletonGroup } from './SkeletonGroup';
+export { default as SkeletonRectangle } from './SkeletonRectangle';

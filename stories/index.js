@@ -140,6 +140,7 @@ require('../src/SidebarSectionTitle/docs/index.story');
 require('../src/SidePanel/docs/index.story');
 require('../src/Skeleton/docs/index.story');
 require('../src/SkeletonGroup/docs/index.story');
+require('../src/SkeletonRectangle/docs/index.story');
 require('../src/Slider/docs/index.story');
 require('../src/SocialButton/docs/index.story');
 require('../src/SocialPreview/docs/index.story.js');

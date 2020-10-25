@@ -496,6 +496,10 @@ export * from './CardFolderTabs';
 export { default as StackedBarChart } from './StackedBarChart';
 
 export { default as SkeletonGroup } from './SkeletonGroup';
+
+export { default as SkeletonRectangle } from './SkeletonRectangle';
+export * from './SkeletonRectangle';
+
 export * from './SkeletonGroup';
 
 export * from './StackedBarChart';
