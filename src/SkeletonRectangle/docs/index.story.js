@@ -27,9 +27,7 @@ export default {
   component: SkeletonRectangle,
   componentPath: '..',
 
-  componentProps: {
-    buttonText: 'Hello World!',
-  },
+  componentProps: {},
 
   exampleProps: {
     // Put here presets of props, for more info:
@@ -60,7 +58,7 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
-            source: '<SkeletonRectangle buttonText="Hello World!"/>',
+            source: '<SkeletonRectangle height="150px" width="100%"/>',
           }),
         ],
       }),

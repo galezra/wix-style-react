@@ -17,6 +17,7 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import SkeletonGroup from '..';
+import Card from '../../Card';
 
 const example = config => baseExample({ components: allComponents, ...config });
 
@@ -60,7 +61,10 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
-            source: '<SkeletonGroup buttonText="Hello World!"/>',
+            source:
+              // '<SkeletonGroup><Card><Card.Content><SkeletonRectangle height="150px" width="100%" /><SkeletonLine marginTop="SP3" margin="auto" width="30%" /><SkeletonLine marginTop="SP2" margin="auto" width="50%" /><SkeletonLine marginTop="SP1" margin="auto" width="50%" /></Card.Content></Card></SkeletonGroup>',
+              '<SkeletonGroup ><Card><Card.Content><SkeletonRectangle height="150px" width="100%" /><SkeletonRectangle height="150px" width="70%" /></Card.Content></Card></SkeletonGroup>',
+            // '<SkeletonGroup skin="light"><SkeletonRectangle height="150px" width="100%" /></SkeletonGroup>',
           }),
         ],
       }),
