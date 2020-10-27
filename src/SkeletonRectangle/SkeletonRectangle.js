@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { st, classes } from './SkeletonRectangle.st.css';
-import { dataHooks, SKIN_COLOR } from './constants';
+import {
+  dataHooks,
+  SKIN_COLOR,
+  DEFAULT_HEIGHT,
+  DEFAULT_WIDTH,
+} from './constants';
+
+import { DEFAULT_SKIN } from '../SkeletonGroup/constants';
 import Box from '../Box';
 import { SkeletonGroupContext } from '../SkeletonGroup';
 
@@ -25,21 +32,30 @@ class SkeletonRectangle extends React.PureComponent {
 
     return (
       <SkeletonGroupContext.Consumer>
-        {({ skin }) => (
-          <div data-hook={dataHook} className={className}>
-            <Box
-              height={height}
-              width={width}
-              margin={margin}
-              marginLeft={marginLeft}
-              marginRight={marginRight}
-              marginTop={marginTop}
-              marginBottom={marginBottom}
-              backgroundColor={SKIN_COLOR[skin]}
-              className={st(classes.skeletonRectangleBox, { skin })}
-            />
-          </div>
-        )}
+        {context => {
+          const skin = (context && context.skin) || DEFAULT_SKIN;
+          return (
+            <div
+              data-hook={dataHook}
+              className={className}
+              data-height={height}
+              data-width={width}
+              data-skin={skin}
+            >
+              <Box
+                height={height}
+                width={width}
+                margin={margin}
+                marginLeft={marginLeft}
+                marginRight={marginRight}
+                marginTop={marginTop}
+                marginBottom={marginBottom}
+                backgroundColor={SKIN_COLOR[skin]}
+                className={st(classes.skeletonRectangleBox, { skin })}
+              />
+            </div>
+          );
+        }}
       </SkeletonGroupContext.Consumer>
     );
   }
@@ -86,6 +102,9 @@ SkeletonRectangle.propTypes = {
   marginLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-SkeletonRectangle.defaultProps = { height: '100%', width: '100%' };
+SkeletonRectangle.defaultProps = {
+  height: DEFAULT_HEIGHT,
+  width: DEFAULT_WIDTH,
+};
 
 export default SkeletonRectangle;

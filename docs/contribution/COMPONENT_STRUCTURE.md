@@ -45,7 +45,7 @@ src/ComponentName
 
 ### `ComponentName.visual.js`
 1. Component styles and variations are tested with visual in mind. This file contains visual simulations as storybook stories.
-1. Read [Visual Testing](./VISUAL_TESTING.md.md) for more information.
+1. Read [Visual Testing](./VISUAL_TESTING.md) for more information.
 
 ### `docs/index.story.js`
 1. Entry file for documentation. It uses `.story` convention in order to apply automated documentation tool.

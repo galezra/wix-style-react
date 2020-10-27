@@ -12,11 +12,7 @@ function skeletonGroupWithMandatoryProps() {
 
 function skeletonGroupWithAllProps() {
   return (
-    <SkeletonGroup
-      dataHook="dataHook"
-      className="className"
-      buttonText="buttonText"
-    />
+    <SkeletonGroup dataHook="dataHook" className="className" skin="light" />
   );
 }
 

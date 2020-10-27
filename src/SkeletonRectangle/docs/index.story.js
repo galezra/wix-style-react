@@ -46,7 +46,7 @@ export default {
           description({
             title: 'Description',
             text:
-              'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+              'Customze placeholder for filling up screen, usually for when some async operation is ongoing.',
           }),
 
           importExample(),
@@ -56,7 +56,7 @@ export default {
           title('Examples'),
 
           example({
-            title: 'Simple Usage',
+            title: 'Sizes',
             text: 'A simple example with compact preview',
             source: '<SkeletonRectangle height="150px" width="100%"/>',
           }),

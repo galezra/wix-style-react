@@ -49,7 +49,7 @@ export default {
           description({
             title: 'Description',
             text:
-              'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+              'Placeholder for filling up screen using skeleton items, usually for when some async operation is ongoing.',
           }),
 
           importExample(),
@@ -62,9 +62,7 @@ export default {
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
             source:
-              // '<SkeletonGroup><Card><Card.Content><SkeletonRectangle height="150px" width="100%" /><SkeletonLine marginTop="SP3" margin="auto" width="30%" /><SkeletonLine marginTop="SP2" margin="auto" width="50%" /><SkeletonLine marginTop="SP1" margin="auto" width="50%" /></Card.Content></Card></SkeletonGroup>',
-              '<SkeletonGroup ><Card><Card.Content><SkeletonRectangle height="150px" width="100%" /><SkeletonRectangle height="150px" width="70%" /></Card.Content></Card></SkeletonGroup>',
-            // '<SkeletonGroup skin="light"><SkeletonRectangle height="150px" width="100%" /></SkeletonGroup>',
+              '<SkeletonGroup ><Card><Card.Content><SkeletonRectangle height="150px" width="100%" /><SkeletonRectangle height="10px" marginTop="SP3" margin="auto" width="30%" /><SkeletonRectangle height="10px" marginTop="SP1" margin="auto" width="50%" /></Card.Content></Card></SkeletonGroup>',
           }),
         ],
       }),

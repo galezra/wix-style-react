@@ -11,13 +11,7 @@ function skeletonRectangleWithMandatoryProps() {
 }
 
 function skeletonRectangleWithAllProps() {
-  return (
-    <SkeletonRectangle
-      dataHook="dataHook"
-      className="className"
-      buttonText="buttonText"
-    />
-  );
+  return <SkeletonRectangle dataHook="dataHook" className="className" />;
 }
 
 async function testkits() {

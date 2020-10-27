@@ -5,28 +5,13 @@ export const skeletonGroupDriverFactory = (base, body) => {
   return {
     ...baseUniDriverFactory(base, body),
 
-    /**
-     * Gets the current count
-     * @returns {Promise<string>}
-     */
-    getCountText: () => findByHook(base, dataHooks.skeletonGroupCount).text(),
+    /** return array of all children's skin */
+    hasChildernSkin: async skin => {
+      const allSkins = await base
+        .$$(`[data-skin]`)
+        .map(async chunkElement => await chunkElement.attr('data-skin'));
 
-    /**
-     * Clicks the button
-     * @param {number} times Times to click
-     * @returns {Promise<void>}
-     */
-    clickButtonTimes: async times => {
-      const buttonElement = findByHook(base, dataHooks.skeletonGroupButton);
-      for (let i = 0; i < times; i++) {
-        await buttonElement.click();
-      }
+      return allSkins.every(s => s === skin);
     },
-
-    /**
-     * Gets the button text
-     * @returns {Promise<string>}
-     */
-    getButtonText: () => findByHook(base, dataHooks.skeletonGroupButton).text(),
   };
 };
