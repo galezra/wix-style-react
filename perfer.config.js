@@ -171,6 +171,7 @@ const javascriptFiles = [
   ['WixStyleReactProvider.bundle.min.js', 10],
   ['SkeletonGroup.bundle.min.js', 10],
   ['SkeletonRectangle.bundle.min.js', 10],
+  ['SkeletonCircle.bundle.min.js', 10],
 ];
 
 const cssFiles = [
