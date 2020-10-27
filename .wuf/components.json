@@ -428,6 +428,9 @@
   "SkeletonGroup": {
     "path": "src/SkeletonGroup"
   },
+  "SkeletonLine": {
+    "path": "src/SkeletonLine"
+  },
   "SkeletonRectangle": {
     "path": "src/SkeletonRectangle"
   },

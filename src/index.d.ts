@@ -500,6 +500,10 @@ export { default as SkeletonGroup } from './SkeletonGroup';
 export { default as SkeletonRectangle } from './SkeletonRectangle';
 
 export { default as SkeletonCircle } from './SkeletonCircle';
+
+export { default as SkeletonLine } from './SkeletonLine';
+export * from './SkeletonLine';
+
 export * from './SkeletonCircle';
 
 export * from './SkeletonRectangle';

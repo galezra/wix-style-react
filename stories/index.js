@@ -141,6 +141,7 @@ require('../src/SidePanel/docs/index.story');
 require('../src/Skeleton/docs/index.story');
 require('../src/SkeletonCircle/docs/index.story');
 require('../src/SkeletonGroup/docs/index.story');
+require('../src/SkeletonLine/docs/index.story');
 require('../src/SkeletonRectangle/docs/index.story');
 require('../src/Slider/docs/index.story');
 require('../src/SocialButton/docs/index.story');

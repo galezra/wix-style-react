@@ -213,3 +213,4 @@ export { default as BounceAnimation } from './BounceAnimation';
 export { default as SkeletonGroup } from './SkeletonGroup';
 export { default as SkeletonRectangle } from './SkeletonRectangle';
 export { default as SkeletonCircle } from './SkeletonCircle';
+export { default as SkeletonLine } from './SkeletonLine';
