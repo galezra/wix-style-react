@@ -44,7 +44,7 @@ class SkeletonCircle extends React.PureComponent {
                 marginTop={marginTop}
                 marginBottom={marginBottom}
                 backgroundColor={SKIN_COLOR[skin]}
-                className={st(classes.skeletonCircleBox, { skin })}
+                className={classes.skeletonCircleBox}
               />
             </div>
           );

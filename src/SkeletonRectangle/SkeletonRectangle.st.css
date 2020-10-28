@@ -9,15 +9,10 @@
 }
 
 .skeletonRectangleBox {
-  -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
 }
 
-.skeletonRectangleBox:skin(dark)::after {
-  -st-mixin: skeletonAnimation;
-}
-
-.skeletonRectangleBox:skin(light)::after {
+.skeletonRectangleBox::after {
   -st-mixin: skeletonAnimation;
 }

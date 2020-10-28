@@ -46,7 +46,7 @@ class SkeletonRectangle extends React.PureComponent {
                 marginTop={marginTop}
                 marginBottom={marginBottom}
                 backgroundColor={SKIN_COLOR[skin]}
-                className={st(classes.skeletonRectangleBox, { skin })}
+                className={classes.skeletonRectangleBox}
               />
             </div>
           );

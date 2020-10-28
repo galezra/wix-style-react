@@ -42,7 +42,7 @@ class SkeletonLine extends React.PureComponent {
                 marginTop={marginTop}
                 marginBottom={marginBottom}
                 backgroundColor={SKIN_COLOR[skin]}
-                className={st(classes.skeletonLineBox, { skin })}
+                className={classes.skeletonLineBox}
               />
             </div>
           );

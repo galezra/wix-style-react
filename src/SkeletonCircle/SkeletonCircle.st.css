@@ -9,16 +9,11 @@
 }
 
 .skeletonCircleBox {
-  -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
   border-radius: 100%;
 }
 
-.skeletonCircleBox:skin(dark)::after {
-  -st-mixin: skeletonAnimation;
-}
-
-.skeletonCircleBox:skin(light)::after {
+.skeletonCircleBox::after {
   -st-mixin: skeletonAnimation;
 }

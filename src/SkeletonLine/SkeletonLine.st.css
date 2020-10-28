@@ -9,15 +9,10 @@
 }
 
 .skeletonLineBox {
-  -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
 }
 
-.skeletonLineBox:skin(dark)::after {
-  -st-mixin: skeletonAnimation;
-}
-
-.skeletonLineBox:skin(light)::after {
+.skeletonLineBox::after {
   -st-mixin: skeletonAnimation;
 }
