@@ -108,6 +108,60 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'Complex',
+    its: [
+      {
+        it: 'Complex Example',
+        props: {
+          ...commonProps,
+          children: (
+            <Card>
+              <Card.Content>
+                <SkeletonGroup>
+                  <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <SkeletonCircle diameter="30px" />
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <SkeletonLine
+                        width="90px"
+                        marginLeft="10px"
+                        marginBottom="5px"
+                      />
+                      <SkeletonRectangle
+                        width="60px"
+                        height="7px"
+                        marginLeft="10px"
+                      />
+                    </div>
+                  </div>
+                  <SkeletonLine
+                    width="180px"
+                    marginBottom="5px"
+                    marginTop="10px"
+                  />
+                  <SkeletonLine
+                    width="200px"
+                    marginBottom="5px"
+                    marginTop="10px"
+                  />
+                  <SkeletonLine
+                    width="150px"
+                    marginBottom="5px"
+                    marginTop="10px"
+                  />
+                  <SkeletonRectangle
+                    width="250px"
+                    height="150px"
+                    marginTop="20px"
+                  />
+                </SkeletonGroup>
+              </Card.Content>
+            </Card>
+          ),
+        },
+      },
+    ],
+  },
 ];
 
 tests.forEach(({ describe, its }) => {

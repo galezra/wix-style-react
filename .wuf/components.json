@@ -423,16 +423,25 @@
     "path": "src/Skeleton"
   },
   "SkeletonCircle": {
-    "path": "src/SkeletonCircle"
+    "path": "src/SkeletonCircle",
+    "missingFiles": [
+      "docs"
+    ]
   },
   "SkeletonGroup": {
     "path": "src/SkeletonGroup"
   },
   "SkeletonLine": {
-    "path": "src/SkeletonLine"
+    "path": "src/SkeletonLine",
+    "missingFiles": [
+      "docs"
+    ]
   },
   "SkeletonRectangle": {
-    "path": "src/SkeletonRectangle"
+    "path": "src/SkeletonRectangle",
+    "missingFiles": [
+      "docs"
+    ]
   },
   "Slider": {
     "path": "src/Slider"

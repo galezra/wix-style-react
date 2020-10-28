@@ -29,7 +29,7 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    buttonText: 'Hello World!',
+    skin: 'light',
   },
 
   exampleProps: {
@@ -61,8 +61,25 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
-            source:
-              '<SkeletonGroup ><Card><Card.Content><SkeletonRectangle height="120px" width="80%" margin="auto" /><SkeletonCircle diameter="50px" marginTop="SP3" margin="auto" /><SkeletonLine marginTop="SP1" margin="auto" width="50%" /></Card.Content></Card></SkeletonGroup>',
+            source: `<div style={{width: "fit-content"}}>
+            <Card>
+                <Card.Content>
+                  <SkeletonGroup>
+                    <div style={{display:'flex', flexDirection:'row'}}>
+                      <SkeletonCircle diameter="30px" />
+                      <div style={{display:'flex', flexDirection:'column'}}>
+                      <SkeletonLine width="90px" marginLeft="10px" marginBottom="5px" />
+                      <SkeletonRectangle width="60px" height="7px" marginLeft="10px" />
+                      </div>
+                      </div>
+                      <SkeletonLine width="180px" marginBottom="5px" marginTop="10px" />
+                      <SkeletonLine width="200px" marginBottom="5px" marginTop="10px" />
+                      <SkeletonLine width="150px" marginBottom="5px" marginTop="10px" />
+                      <SkeletonRectangle width="250px" height="150px" marginTop="20px" />
+                  </SkeletonGroup>
+                </Card.Content>
+              </Card>
+            </div>`,
           }),
         ],
       }),
