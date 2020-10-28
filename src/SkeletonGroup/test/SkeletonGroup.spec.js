@@ -5,13 +5,15 @@ import SkeletonGroup from '../SkeletonGroup';
 import { skeletonGroupPrivateDriverFactory } from './SkeletonGroup.private.uni.driver';
 
 import SkeletonRectangle from '../../SkeletonRectangle';
+import SkeletonLine from '../../SkeletonLine';
+import SkeletonCircle from '../../SkeletonCircle';
 import { DEFAULT_SKIN } from '../constants';
 
 const TestSkeleton = ({ skin }) => (
   <SkeletonGroup skin={skin}>
     <SkeletonRectangle />
-    <SkeletonRectangle />
-    <SkeletonRectangle />
+    <SkeletonLine />
+    <SkeletonCircle />
   </SkeletonGroup>
 );
 
@@ -34,9 +36,9 @@ describe(SkeletonGroup.displayName, () => {
   });
 
   it('should render group with custom skin', async () => {
-    const { driver } = render(<TestSkeleton skin="light" />);
+    const { driver } = render(<TestSkeleton skin="dark" />);
 
     expect(await driver.exists()).toBe(true);
-    expect(await driver.hasChildernSkin('light')).toBe(true);
+    expect(await driver.hasChildernSkin('dark')).toBe(true);
   });
 });

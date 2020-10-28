@@ -1,5 +1,4 @@
 import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
-import { dataHooks } from './constants';
 
 export const skeletonRectangleDriverFactory = (base, body) => {
   return {

@@ -1,7 +1,7 @@
 import { BaseUniDriver } from 'wix-ui-test-utils/unidriver';
+import { SkeletonGroupSkin } from '../SkeletonGroup';
 
 export interface SkeletonCircleUniDriver extends BaseUniDriver {
-  getCountText(): Promise<string>;
-  clickButtonTimes(times: number): Promise<void>;
-  getButtonText(): Promise<string>;
+  getDiameter(): Promise<string>;
+  getSkin(): Promise<SkeletonGroupSkin>;
 }

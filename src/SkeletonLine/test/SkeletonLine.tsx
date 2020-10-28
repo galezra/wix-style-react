@@ -15,7 +15,12 @@ function skeletonLineWithAllProps() {
     <SkeletonLine
       dataHook="dataHook"
       className="className"
-      buttonText="buttonText"
+      width="100%"
+      margin="auto"
+      marginRight="3px"
+      marginLeft="3px"
+      marginTop="4px"
+      marginBottom="4px"
     />
   );
 }

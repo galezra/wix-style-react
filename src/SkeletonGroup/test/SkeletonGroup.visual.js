@@ -2,6 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import SkeletonGroup from '../SkeletonGroup';
 import SkeletonRectangle from '../../SkeletonRectangle';
+import SkeletonCircle from '../../SkeletonCircle';
+import SkeletonLine from '../../SkeletonLine';
 import Card from '../../Card';
 
 const commonProps = {};
@@ -11,10 +13,17 @@ const tests = [
     describe: 'Skin',
     its: [
       {
-        it: 'Should be rendered with skin',
+        it: 'Should be rendered with light skin',
         props: {
           ...commonProps,
           skin: 'light',
+        },
+      },
+      {
+        it: 'Should be rendered with dark skin',
+        props: {
+          ...commonProps,
+          skin: 'dark',
         },
       },
     ],
@@ -31,9 +40,8 @@ tests.forEach(({ describe, its }) => {
         <Card>
           <Card.Content>
             <SkeletonRectangle height="150px" width="100%" />
-            <SkeletonRectangle marginTop="SP3" margin="auto" width="30%" />
-            <SkeletonRectangle marginTop="SP2" margin="auto" width="50%" />
-            <SkeletonRectangle marginTop="SP1" margin="auto" width="50%" />
+            <SkeletonCircle marginTop="SP3" margin="auto" diameter="30%" />
+            <SkeletonLine marginTop="SP2" margin="auto" width="50%" />
           </Card.Content>
         </Card>
       </SkeletonGroup>

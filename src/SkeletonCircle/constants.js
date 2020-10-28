@@ -1,4 +1,1 @@
-export const dataHooks = {
-  skeletonCircleCount: 'skeletonCircle-count',
-  skeletonCircleButton: 'skeletonCircle-button',
-};
+export const DEFAULT_DIAMETER = '100%';

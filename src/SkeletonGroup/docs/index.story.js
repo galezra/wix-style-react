@@ -62,7 +62,7 @@ export default {
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
             source:
-              '<SkeletonGroup ><Card><Card.Content><SkeletonRectangle height="150px" width="100%" /><SkeletonRectangle height="10px" marginTop="SP3" margin="auto" width="30%" /><SkeletonRectangle height="10px" marginTop="SP1" margin="auto" width="50%" /></Card.Content></Card></SkeletonGroup>',
+              '<SkeletonGroup ><Card><Card.Content><SkeletonRectangle height="120px" width="80%" margin="auto" /><SkeletonCircle diameter="50px" marginTop="SP3" margin="auto" /><SkeletonLine marginTop="SP1" margin="auto" width="50%" /></Card.Content></Card></SkeletonGroup>',
           }),
         ],
       }),

@@ -7,3 +7,28 @@
   display: flex;
   flex-direction: column;
 }
+
+.skeletonAnimation {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent 50%
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  animation: moveRight 1.6s linear 0.5s infinite;
+  transform: translateX(-100%);
+  content: ' ';
+}
+
+@keyframes moveRight {
+  to {
+    transform: translateX(100%);
+  }
+}

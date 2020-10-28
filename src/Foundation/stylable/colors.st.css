@@ -107,6 +107,8 @@
   D20-54: calc_rgba(value(D20), 0.54); /* hovered */
   D20-60: calc_rgba(value(D20), 0.6); /*  clicked */
 
+  D40-20: calc_rgba(value(D40), 0.2);
+
   D80-10: calc_rgba(value(D80), 0.1);
   D80-20: calc_rgba(value(D80), 0.2);
   D80-30: calc_rgba(value(D80), 0.3);

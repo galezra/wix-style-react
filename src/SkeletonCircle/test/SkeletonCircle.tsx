@@ -15,7 +15,12 @@ function skeletonCircleWithAllProps() {
     <SkeletonCircle
       dataHook="dataHook"
       className="className"
-      buttonText="buttonText"
+      diameter="100%"
+      margin="auto"
+      marginBottom="3px"
+      marginTop="3px"
+      marginLeft="4px"
+      marginRight="4px"
     />
   );
 }

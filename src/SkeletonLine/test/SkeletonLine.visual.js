@@ -2,18 +2,57 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import SkeletonLine from '../SkeletonLine';
 
-const commonProps = {
-  // use for repeated props across the tests (e.g. {buttonText: 'example'})
-};
+const commonProps = {};
 
 const tests = [
   {
-    describe: 'sanity', // prop name (e.g. size)
+    describe: 'Sizing',
     its: [
       {
-        it: 'default', // prop variation (e.g. small)
+        it: 'Should be rendered with width',
         props: {
-          // the simulation (e.g. {size: "small"})
+          ...commonProps,
+          width: '100px',
+        },
+      },
+    ],
+  },
+  {
+    describe: 'Spacing',
+    its: [
+      {
+        it: 'Should be rendered with margin',
+        props: {
+          ...commonProps,
+          margin: '2px',
+        },
+      },
+      {
+        it: 'Should be rendered with margin left',
+        props: {
+          ...commonProps,
+          marginLeft: '3px',
+        },
+      },
+      {
+        it: 'Should be rendered with margin right',
+        props: {
+          ...commonProps,
+          marginRight: '3px',
+        },
+      },
+      {
+        it: 'Should be rendered with margin top',
+        props: {
+          ...commonProps,
+          marginTop: '3px',
+        },
+      },
+      {
+        it: 'Should be rendered with margin bottom',
+        props: {
+          ...commonProps,
+          marginBottom: '3px',
         },
       },
     ],

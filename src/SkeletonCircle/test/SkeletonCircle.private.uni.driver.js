@@ -3,7 +3,5 @@ import { skeletonCircleDriverFactory as publicDriverFactory } from '../SkeletonC
 export const skeletonCirclePrivateDriverFactory = (base, body) => {
   return {
     ...publicDriverFactory(base, body),
-
-    // Add here driver methods that considered "private"
   };
 };

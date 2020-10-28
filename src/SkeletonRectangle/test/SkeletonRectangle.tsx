@@ -11,7 +11,19 @@ function skeletonRectangleWithMandatoryProps() {
 }
 
 function skeletonRectangleWithAllProps() {
-  return <SkeletonRectangle dataHook="dataHook" className="className" />;
+  return (
+    <SkeletonRectangle
+      dataHook="dataHook"
+      className="className"
+      width="100%"
+      height="100%"
+      margin="auto"
+      marginRight="3px"
+      marginLeft="3px"
+      marginTop="4px"
+      marginBottom="4px"
+    />
+  );
 }
 
 async function testkits() {

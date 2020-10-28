@@ -4,30 +4,30 @@ import { createRendererWithUniDriver, cleanup } from '../../../test/utils/unit';
 import SkeletonLine from '../SkeletonLine';
 import { skeletonLinePrivateDriverFactory } from './SkeletonLine.private.uni.driver';
 
+import { SkeletonGroupContext } from '../../SkeletonGroup';
+
+import { DEFAULT_WIDTH } from '../constants';
+
 describe(SkeletonLine.displayName, () => {
   const render = createRendererWithUniDriver(skeletonLinePrivateDriverFactory);
 
   afterEach(cleanup);
 
-  it('should render', async () => {
+  it('should have default size', async () => {
     const { driver } = render(<SkeletonLine />);
 
-    expect(await driver.exists()).toBe(true);
+    expect(await driver.getWidth()).toBe(DEFAULT_WIDTH);
   });
 
-  it('should increment', async () => {
+  it('should have custom size', async () => {
+    const { driver } = render(<SkeletonLine width={'80px'} />);
+
+    expect(await driver.getWidth()).toBe('80px');
+  });
+
+  it('should have default light skin', async () => {
     const { driver } = render(<SkeletonLine />);
 
-    await driver.clickButtonTimes(2);
-
-    expect(await driver.getCountText()).toEqual(
-      'You clicked this button even number (2) of times',
-    );
-  });
-
-  it('should allow changing the button text', async () => {
-    const { driver } = render(<SkeletonLine buttonText="Press me" />);
-
-    expect(await driver.getButtonText()).toEqual('Press me');
+    expect(await driver.getSkin()).toBe('light');
   });
 });

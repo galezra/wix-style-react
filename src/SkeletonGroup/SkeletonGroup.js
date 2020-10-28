@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import Button from '../Button';
 import { st, classes } from './SkeletonGroup.st.css';
-import { dataHooks } from './constants';
 import { SkeletonGroupContext } from './SkeletonGroupAPI';
 
 /** SkeletonGroup */
@@ -12,9 +11,11 @@ class SkeletonGroup extends React.PureComponent {
   render() {
     const { dataHook, className, skin, children } = this.props;
     return (
-      <SkeletonGroupContext.Provider value={{ skin }}>
-        {children}
-      </SkeletonGroupContext.Provider>
+      <div data-hook={dataHook}>
+        <SkeletonGroupContext.Provider value={{ skin }}>
+          {children}
+        </SkeletonGroupContext.Provider>
+      </div>
     );
   }
 }
@@ -32,6 +33,6 @@ SkeletonGroup.propTypes = {
   skin: PropTypes.oneOf(['dark', 'light']),
 };
 
-SkeletonGroup.defaultProps = { skin: 'dark' };
+SkeletonGroup.defaultProps = { skin: 'light' };
 
 export default SkeletonGroup;

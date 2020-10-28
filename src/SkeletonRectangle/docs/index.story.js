@@ -46,7 +46,7 @@ export default {
           description({
             title: 'Description',
             text:
-              'Customze placeholder for filling up screen, usually for when some async operation is ongoing.',
+              'Customze placeholder for filling up screen on rectangle shape, usually for when some async operation is ongoing.',
           }),
 
           importExample(),
@@ -58,7 +58,8 @@ export default {
           example({
             title: 'Sizes',
             text: 'A simple example with compact preview',
-            source: '<SkeletonRectangle height="150px" width="100%"/>',
+            source:
+              '<SkeletonRectangle height="120px" width="80%" margin="auto"/>',
           }),
         ],
       }),

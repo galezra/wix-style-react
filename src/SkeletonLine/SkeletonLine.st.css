@@ -1,22 +1,23 @@
 :import {
-  -st-from: "../Foundation/stylable/colors.st.css";
-  -st-named: G30,R30;
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G30, R30;
 }
 
-.root {
-  -st-states: odd, even;
-  text-align: center;
+:import {
+  -st-from: '../SkeletonGroup/SkeletonGroup.st.css';
+  -st-named: skeletonAnimation;
 }
 
-.root:even .number {
-  background: value(G30);
+.skeletonLineBox {
+  -st-states: skin(enum(dark, light));
+  position: relative;
+  overflow: hidden;
 }
 
-.root:odd .number {
-  background: value(R30);
+.skeletonLineBox:skin(dark)::after {
+  -st-mixin: skeletonAnimation;
 }
 
-.button {
-  display: flex;
-  justify-content: space-evenly;
+.skeletonLineBox:skin(light)::after {
+  -st-mixin: skeletonAnimation;
 }

@@ -31,9 +31,9 @@ describe(SkeletonRectangle.displayName, () => {
     expect(await driver.getHeight()).toBe('60px');
   });
 
-  it('should have default dark skin', async () => {
+  it('should have default light skin', async () => {
     const { driver } = render(<SkeletonRectangle />);
 
-    expect(await driver.getSkin()).toBe('dark');
+    expect(await driver.getSkin()).toBe('light');
   });
 });
