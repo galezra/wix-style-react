@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Text from '../Text';
-import Button from '../Button';
-import { st, classes } from './SkeletonCircle.st.css';
+import { classes } from './SkeletonCircle.st.css';
 import { DEFAULT_DIAMETER } from './constants';
 
 import { DEFAULT_SKIN, SKIN_COLOR } from '../SkeletonGroup/constants';

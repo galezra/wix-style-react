@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { st, classes } from './SkeletonLine.st.css';
+import { classes } from './SkeletonLine.st.css';
 import { DEFAULT_WIDTH, HEIGHT } from './constants';
 
 import { DEFAULT_SKIN, SKIN_COLOR } from '../SkeletonGroup/constants';

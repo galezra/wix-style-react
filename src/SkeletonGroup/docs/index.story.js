@@ -64,7 +64,7 @@ export default {
             source: `<div style={{width: "fit-content"}}>
             <Card>
                 <Card.Content>
-                  <SkeletonGroup>
+                  <SkeletonGroup skin="dark">
                     <div style={{display:'flex', flexDirection:'row'}}>
                       <SkeletonCircle diameter="30px" />
                       <div style={{display:'flex', flexDirection:'column'}}>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SidebarBackButton from '../SidebarBackButton';
+import SidebarBackButton from "../SidebarBackButton";
 
 export interface SidebarProps {
   classNames?: SidebarClassNames;

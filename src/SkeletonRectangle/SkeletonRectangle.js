@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { st, classes } from './SkeletonRectangle.st.css';
+import { classes } from './SkeletonRectangle.st.css';
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './constants';
 
 import { DEFAULT_SKIN, SKIN_COLOR } from '../SkeletonGroup/constants';

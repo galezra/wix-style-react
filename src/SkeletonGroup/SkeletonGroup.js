@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Text from '../Text';
-import Button from '../Button';
-import { st, classes } from './SkeletonGroup.st.css';
+import { classes } from './SkeletonGroup.st.css';
 import { SkeletonGroupContext } from './SkeletonGroupAPI';
 
 /** SkeletonGroup */
