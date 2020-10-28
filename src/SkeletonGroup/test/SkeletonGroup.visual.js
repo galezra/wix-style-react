@@ -17,6 +17,13 @@ const tests = [
         props: {
           ...commonProps,
           skin: 'light',
+          children: (
+            <>
+              <SkeletonRectangle width="150px" height="70px" margin="auto" />
+              <SkeletonCircle diameter="45px" margin="auto" />
+              <SkeletonLine width="90px" margin="auto" />
+            </>
+          ),
         },
       },
       {
@@ -24,6 +31,79 @@ const tests = [
         props: {
           ...commonProps,
           skin: 'dark',
+          children: (
+            <>
+              <SkeletonRectangle width="150px" height="70px" margin="auto" />
+              <SkeletonCircle diameter="45px" margin="auto" />
+              <SkeletonLine width="90px" margin="auto" />
+            </>
+          ),
+        },
+      },
+    ],
+  },
+  {
+    describe: 'Sizing',
+    its: [
+      {
+        it: 'Should be rendered with sizes',
+        props: {
+          ...commonProps,
+          children: (
+            <>
+              <SkeletonRectangle width="150px" height="80px" />
+              <SkeletonCircle diameter="80px" />
+              <SkeletonLine width="50%" />
+            </>
+          ),
+        },
+      },
+    ],
+  },
+  {
+    describe: 'Spacing',
+    its: [
+      {
+        it: 'Should be rendered with margin',
+        props: {
+          ...commonProps,
+          children: (
+            <>
+              <SkeletonRectangle width="150px" height="80px" margin="auto" />
+              <SkeletonCircle diameter="80px" margin="40px" />
+              <SkeletonLine width="50%" margin="60px 30px" />
+            </>
+          ),
+        },
+      },
+      {
+        it: 'Should be rendered with margin parts in percentage',
+        props: {
+          ...commonProps,
+          children: (
+            <>
+              <SkeletonRectangle width="150px" height="80px" marginLeft="10%" />
+              <SkeletonCircle diameter="80px" marginRight="2%" />
+              <SkeletonLine width="50%" marginTop="30%" marginBottom="20%" />
+            </>
+          ),
+        },
+      },
+      {
+        it: 'Should be rendered with margin parts in pixels',
+        props: {
+          ...commonProps,
+          children: (
+            <>
+              <SkeletonRectangle
+                width="150px"
+                height="80px"
+                marginLeft="10px"
+              />
+              <SkeletonCircle diameter="80px" marginRight="2px" />
+              <SkeletonLine width="50%" marginTop="30px" marginBottom="20px" />
+            </>
+          ),
         },
       },
     ],
@@ -37,13 +117,15 @@ tests.forEach(({ describe, its }) => {
       module,
     ).add(it, () => (
       <SkeletonGroup {...commonProps} {...props}>
-        <Card>
-          <Card.Content>
-            <SkeletonRectangle height="150px" width="100%" />
-            <SkeletonCircle marginTop="SP3" margin="auto" diameter="30%" />
-            <SkeletonLine marginTop="SP2" margin="auto" width="50%" />
-          </Card.Content>
-        </Card>
+        <div
+          style={{
+            height: '700px',
+            width: '900px',
+            ...(props.skin === 'dark' ? { backgroundColor: 'black' } : {}),
+          }}
+        >
+          {props.children}
+        </div>
       </SkeletonGroup>
     ));
   });

@@ -130,14 +130,18 @@ const javascriptFiles = [
   ['SidebarSectionTitle.bundle.min.js', 37],
   ['SidePanel.bundle.min.js', 48],
   ['Skeleton.bundle.min.js', 5],
+  ['SkeletonCircle.bundle.min.js', 8],
+  ['SkeletonGroup.bundle.min.js', 4],
+  ['SkeletonLine.bundle.min.js', 8],
+  ['SkeletonRectangle.bundle.min.js', 8],
   ['Slider.bundle.min.js', 68],
   ['SocialButton.bundle.min.js', 42],
   ['SocialPreview.bundle.min.js', 39],
   ['SortableGrid.bundle.min.js', 32],
   ['SortableList.bundle.min.js', 30],
   ['SparklineChart.bundle.min.js', 62],
-  ['StarsRatingBar.bundle.min.js', 40],
   ['StackedBarChart.bundle.min.js', 48],
+  ['StarsRatingBar.bundle.min.js', 40],
   ['StatisticsWidget.bundle.min.js', 47],
   ['StatisticsWidget.bundle.min.js', 47],
   ['StatusIndicator.bundle.min.js', 38],
@@ -168,11 +172,14 @@ const javascriptFiles = [
   ['VerticalTabs.bundle.min.js', 40],
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
+<<<<<<< HEAD
   ['WixStyleReactProvider.bundle.min.js', 10],
   ['SkeletonGroup.bundle.min.js', 10],
   ['SkeletonRectangle.bundle.min.js', 10],
   ['SkeletonCircle.bundle.min.js', 10],
   ['SkeletonLine.bundle.min.js', 10],
+=======
+>>>>>>> visual tests
 ];
 
 const cssFiles = [
