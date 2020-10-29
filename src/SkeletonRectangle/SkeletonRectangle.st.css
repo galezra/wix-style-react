@@ -1,18 +1,18 @@
 :import {
-  -st-from: '../Foundation/stylable/colors.st.css';
-  -st-named: G30, R30;
-}
-
-:import {
   -st-from: '../SkeletonGroup/SkeletonGroup.st.css';
-  -st-named: skeletonAnimation;
+  -st-named: skeletonAnimation, skeletonAnimationDark;
 }
 
 .skeletonRectangleBox {
+  -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
 }
 
 .skeletonRectangleBox::after {
   -st-mixin: skeletonAnimation;
+}
+
+.skeletonRectangleBox:skin(dark)::after {
+  -st-mixin: skeletonAnimationDark;
 }

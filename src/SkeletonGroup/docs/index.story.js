@@ -18,8 +18,17 @@ import allComponents from '../../../stories/utils/allComponents';
 
 import SkeletonGroup from '..';
 import Card from '../../Card';
+import SkeletonCircle from '../../SkeletonCircle';
+import SkeletonLine from '../../SkeletonLine';
+import SkeletonRectangle from '../../SkeletonRectangle';
 
 const example = config => baseExample({ components: allComponents, ...config });
+
+const childrenProps = [
+  <SkeletonCircle diameter="40px" />,
+  <SkeletonLine width="50px" />,
+  <SkeletonRectangle width="100px" height="60px" />,
+];
 
 export default {
   category: storySettings.category,
@@ -30,11 +39,12 @@ export default {
 
   componentProps: {
     skin: 'light',
+    children: childrenProps,
   },
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    skin: ['light', 'dark'],
+    children: childrenProps,
   },
 
   sections: [
@@ -52,19 +62,21 @@ export default {
               'Placeholder for filling up screen using skeleton items, usually for when some async operation is ongoing.',
           }),
 
-          importExample(),
+          importExample(
+            `import { SkeletonGroup, SkeletonLine, SkeletonRectangle, SkeletonCircle } from 'wix-style-react'`,
+          ),
 
           divider(),
 
           title('Examples'),
 
           example({
-            title: 'Simple Usage',
-            text: 'A simple example with compact preview',
+            title: 'Light skin',
+            text: 'A simple example with light skin',
             source: `<div style={{width: "fit-content"}}>
             <Card>
                 <Card.Content>
-                  <SkeletonGroup skin="dark">
+                  <SkeletonGroup skin="light">
                     <div style={{display:'flex', flexDirection:'row'}}>
                       <SkeletonCircle diameter="30px" />
                       <div style={{display:'flex', flexDirection:'column'}}>
@@ -79,6 +91,25 @@ export default {
                   </SkeletonGroup>
                 </Card.Content>
               </Card>
+            </div>`,
+          }),
+          example({
+            title: 'Dark skin',
+            text: 'A simple example with dark skin',
+            source: `<div style={{width: "fit-content", backgroundColor: "black", padding: "30px", borderRadius: "8px"}}>
+            <SkeletonGroup skin="dark">
+                <div style={{display:'flex', flexDirection:'row'}}>
+                  <SkeletonCircle diameter="30px" />
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                  <SkeletonLine width="90px" marginLeft="10px" marginBottom="5px" />
+                  <SkeletonRectangle width="60px" height="7px" marginLeft="10px" />
+                  </div>
+                  </div>
+                  <SkeletonLine width="180px" marginBottom="5px" marginTop="10px" />
+                  <SkeletonLine width="200px" marginBottom="5px" marginTop="10px" />
+                  <SkeletonLine width="150px" marginBottom="5px" marginTop="10px" />
+                  <SkeletonRectangle width="250px" height="150px" marginTop="20px" />
+              </SkeletonGroup>
             </div>`,
           }),
         ],

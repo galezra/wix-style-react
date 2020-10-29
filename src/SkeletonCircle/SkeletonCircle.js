@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { classes } from './SkeletonCircle.st.css';
+import { st, classes } from './SkeletonCircle.st.css';
 import { DEFAULT_DIAMETER } from './constants';
 
 import { DEFAULT_SKIN, SKIN_COLOR } from '../SkeletonGroup/constants';
@@ -42,7 +42,7 @@ class SkeletonCircle extends React.PureComponent {
                 marginTop={marginTop}
                 marginBottom={marginBottom}
                 backgroundColor={SKIN_COLOR[skin]}
-                className={classes.skeletonCircleBox}
+                className={st(classes.skeletonCircleBox, { skin })}
               />
             </div>
           );

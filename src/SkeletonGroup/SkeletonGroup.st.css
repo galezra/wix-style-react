@@ -1,6 +1,6 @@
 :import {
   -st-from: '../Foundation/stylable/colors.st.css';
-  -st-named: G30, R30;
+  -st-named: D80-20, D80-60;
 }
 
 .root {
@@ -12,7 +12,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 255, 255, 0.6),
+    value(D80-60),
     transparent 50%
   );
   height: 100%;
@@ -25,6 +25,15 @@
   animation: moveRight 1.6s linear 0.5s infinite;
   transform: translateX(-100%);
   content: ' ';
+}
+
+.skeletonAnimationDark {
+  background: linear-gradient(
+    to right,
+    transparent,
+    value(D80-60),
+    transparent 50%
+  );
 }
 
 @keyframes moveRight {
