@@ -31,7 +31,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    value(D80-60),
+    value(D80-20),
     transparent 50%
   );
 }
