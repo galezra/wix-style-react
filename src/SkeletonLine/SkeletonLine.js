@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { st, classes } from './SkeletonLine.st.css';
 import { DEFAULT_WIDTH, HEIGHT } from './constants';
-
 import { DEFAULT_SKIN, SKIN_COLOR } from '../SkeletonGroup/constants';
 import Box from '../Box';
 import { SkeletonGroupContext } from '../SkeletonGroup';
@@ -42,7 +40,7 @@ class SkeletonLine extends React.PureComponent {
                 marginTop={marginTop}
                 marginBottom={marginBottom}
                 backgroundColor={SKIN_COLOR[skin]}
-                className={st(classes.skeletonLineBox, { skin })}
+                className={st(classes.root, { skin })}
               />
             </div>
           );

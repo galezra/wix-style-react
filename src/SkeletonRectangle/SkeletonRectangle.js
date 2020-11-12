@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { classes, st } from './SkeletonRectangle.st.css';
+import { st, classes } from './SkeletonRectangle.st.css';
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './constants';
-
 import { DEFAULT_SKIN, SKIN_COLOR } from '../SkeletonGroup/constants';
 import Box from '../Box';
 import { SkeletonGroupContext } from '../SkeletonGroup';
@@ -46,7 +44,7 @@ class SkeletonRectangle extends React.PureComponent {
                 marginTop={marginTop}
                 marginBottom={marginBottom}
                 backgroundColor={SKIN_COLOR[skin]}
-                className={st(classes.skeletonRectangleBox, { skin })}
+                className={st(classes.root, { skin })}
               />
             </div>
           );

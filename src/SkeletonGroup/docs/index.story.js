@@ -73,44 +73,84 @@ export default {
           example({
             title: 'Light skin',
             text: 'A simple example with light skin',
-            source: `<div style={{width: "fit-content"}}>
-            <Card>
-                <Card.Content>
-                  <SkeletonGroup skin="light">
-                    <div style={{display:'flex', flexDirection:'row'}}>
-                      <SkeletonCircle diameter="30px" />
-                      <div style={{display:'flex', flexDirection:'column'}}>
-                      <SkeletonLine width="90px" marginLeft="10px" marginBottom="5px" />
-                      <SkeletonRectangle width="60px" height="7px" marginLeft="10px" />
-                      </div>
-                      </div>
-                      <SkeletonLine width="180px" marginBottom="5px" marginTop="10px" />
-                      <SkeletonLine width="200px" marginBottom="5px" marginTop="10px" />
-                      <SkeletonLine width="150px" marginBottom="5px" marginTop="10px" />
-                      <SkeletonRectangle width="250px" height="150px" marginTop="20px" />
-                  </SkeletonGroup>
-                </Card.Content>
-              </Card>
-            </div>`,
+            source: `
+<Card>
+  <Card.Content>
+    <SkeletonGroup skin="light">
+      <Layout>
+        <Cell>
+          <Layout>
+            <Cell span="1">
+              <SkeletonCircle diameter="32px" />
+            </Cell>
+            <Cell span="3">
+              <Box direction="vertical">
+                <SkeletonLine marginBottom="5px" />
+                <SkeletonLine marginBottom="5px" />
+              </Box>
+            </Cell>
+            <Cell span="3">
+              <Box direction="vertical">
+                <SkeletonLine marginBottom="5px" />
+                <SkeletonLine marginBottom="5px" />
+              </Box>
+            </Cell>
+            <Cell span="5">
+              <Box direction="vertical">
+                <SkeletonLine marginBottom="5px" />
+                <SkeletonLine marginBottom="5px" />
+              </Box>
+            </Cell>
+          </Layout>
+        </Cell>
+        <Cell>
+          <SkeletonRectangle height="150px" />
+        </Cell>
+      </Layout>
+    </SkeletonGroup>
+  </Card.Content>
+</Card>
+`,
           }),
           example({
             title: 'Dark skin',
             text: 'A simple example with dark skin',
-            source: `<div style={{width: "fit-content", backgroundColor: "black", padding: "30px", borderRadius: "8px"}}>
-            <SkeletonGroup skin="dark">
-                <div style={{display:'flex', flexDirection:'row'}}>
-                  <SkeletonCircle diameter="30px" />
-                  <div style={{display:'flex', flexDirection:'column'}}>
-                  <SkeletonLine width="90px" marginLeft="10px" marginBottom="5px" />
-                  <SkeletonRectangle width="60px" height="7px" marginLeft="10px" />
-                  </div>
-                  </div>
-                  <SkeletonLine width="180px" marginBottom="5px" marginTop="10px" />
-                  <SkeletonLine width="200px" marginBottom="5px" marginTop="10px" />
-                  <SkeletonLine width="150px" marginBottom="5px" marginTop="10px" />
-                  <SkeletonRectangle width="250px" height="150px" marginTop="20px" />
-              </SkeletonGroup>
-            </div>`,
+            source: `
+<SectionHelper appearance="experimentalDark">
+    <SkeletonGroup skin="dark" backgroundColor="#162D3D">
+      <Layout>
+        <Cell>
+          <Layout>
+            <Cell span="1">
+              <SkeletonCircle diameter="32px" />
+            </Cell>
+            <Cell span="3">
+              <Box direction="vertical">
+                <SkeletonLine marginBottom="5px" />
+                <SkeletonLine marginBottom="5px" />
+              </Box>
+            </Cell>
+            <Cell span="3">
+              <Box direction="vertical">
+                <SkeletonLine marginBottom="5px" />
+                <SkeletonLine marginBottom="5px" />
+              </Box>
+            </Cell>
+            <Cell span="5">
+              <Box direction="vertical">
+                <SkeletonLine marginBottom="5px" />
+                <SkeletonLine marginBottom="5px" />
+              </Box>
+            </Cell>
+          </Layout>
+        </Cell>
+        <Cell>
+          <SkeletonRectangle height="150px" />
+        </Cell>
+      </Layout>
+    </SkeletonGroup>
+</SectionHelper>
+`,
           }),
         ],
       }),

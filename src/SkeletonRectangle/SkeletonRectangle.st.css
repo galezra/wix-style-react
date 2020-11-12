@@ -3,16 +3,16 @@
   -st-named: skeletonAnimation, skeletonAnimationDark;
 }
 
-.skeletonRectangleBox {
+.root {
   -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
 }
 
-.skeletonRectangleBox::after {
+.root::after {
   -st-mixin: skeletonAnimation;
 }
 
-.skeletonRectangleBox:skin(dark)::after {
+.root:skin(dark)::after {
   -st-mixin: skeletonAnimationDark;
 }

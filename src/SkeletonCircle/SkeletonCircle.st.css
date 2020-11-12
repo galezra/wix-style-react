@@ -3,17 +3,17 @@
   -st-named: skeletonAnimation, skeletonAnimationDark;
 }
 
-.skeletonCircleBox {
+.root {
   -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
   border-radius: 100%;
 }
 
-.skeletonCircleBox::after {
+.root::after {
   -st-mixin: skeletonAnimation;
 }
 
-.skeletonCircleBox:skin(dark)::after {
+.root:skin(dark)::after {
   -st-mixin: skeletonAnimationDark;
 }

@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { classes } from './SkeletonGroup.st.css';
+import { st, classes, vars } from './SkeletonGroup.st.css';
 import { SkeletonGroupContext } from './SkeletonGroupAPI';
 
 /** SkeletonGroup */
 class SkeletonGroup extends React.PureComponent {
   render() {
-    const { dataHook, className, skin, children } = this.props;
+    const { dataHook, className, skin, children, backgroundColor } = this.props;
     return (
-      <div data-hook={dataHook}>
+      <div
+        data-hook={dataHook}
+        className={st(classes.root, className)}
+        style={{
+          [vars['color']]: backgroundColor,
+        }}
+      >
         <SkeletonGroupContext.Provider value={{ skin }}>
           {children}
         </SkeletonGroupContext.Provider>
+        <div className={classes.animator} />
       </div>
     );
   }
@@ -29,6 +35,9 @@ SkeletonGroup.propTypes = {
 
   /** Effects the color of the Skeleton */
   skin: PropTypes.oneOf(['dark', 'light']),
+
+  /** The background on which the skeleton is rendered */
+  backgroundColor: PropTypes.string,
 };
 
 SkeletonGroup.defaultProps = { skin: 'light' };

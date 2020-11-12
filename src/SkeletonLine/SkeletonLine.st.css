@@ -3,16 +3,16 @@
   -st-named: skeletonAnimation, skeletonAnimationDark;
 }
 
-.skeletonLineBox {
+.root {
   -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
 }
 
-.skeletonLineBox::after {
+.root::after {
   -st-mixin: skeletonAnimation;
 }
 
-.skeletonLineBox:skin(dark)::after {
+.root:skin(dark)::after {
   -st-mixin: skeletonAnimationDark;
 }
