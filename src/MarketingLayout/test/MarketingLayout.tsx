@@ -22,6 +22,7 @@ function marketingLayoutWithAllProps() {
       actions={<div />}
       title="title"
       description="description"
+      direction="horizontal"
       badge={<Badge size="small">badge</Badge>}
       hiddenBadge
       alignItems="center"

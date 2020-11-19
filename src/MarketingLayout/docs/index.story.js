@@ -20,6 +20,7 @@ import {
   sizeSmall,
   sizeMedium,
   sizeLarge,
+  directionVertical,
   badge,
   hiddenBadge,
   inverted,
@@ -90,6 +91,16 @@ export default {
           code({
             compact: true,
             source: sizeLarge,
+          }),
+
+          description({
+            title: 'Direction',
+            text:
+              'The direction of the layout can be horizontal (default) or vertical.',
+          }),
+          code({
+            compact: true,
+            source: directionVertical,
           }),
 
           description({

@@ -51,6 +51,17 @@ export const sizeLarge = `
   />
 `;
 
+export const directionVertical = `
+  <MarketingLayout
+    title="Vertical Layout"
+    description="In this layout example, the direction of the content is aligned vertically, from top to bottom."
+    actions={<Button size="medium">Get Started</Button>}
+    size="medium"
+    image={<Image/>}
+    direction="vertical"
+  />
+`;
+
 export const inverted = `
   <MarketingLayout
     inverted

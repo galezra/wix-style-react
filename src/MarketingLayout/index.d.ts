@@ -5,6 +5,7 @@ export interface MarketingLayoutProps {
   image?: React.ReactNode;
   imageBackgroundColor?: string;
   size?: 'tiny' | 'small' | 'medium' | 'large';
+  direction?: 'horizontal' | 'vertical';
   inverted?: boolean;
   actions?: React.ReactNode;
   title?: React.ReactNode;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Content from './components/Content';
 import { Layout, Cell } from '../Layout';
 import Proportion from '../Proportion';
-import { SIZES } from './constants';
+import { SIZES, DIRECTIONS } from './constants';
 import { st, classes } from './MarketingLayout.st.css';
 import { stVars as colorsStVars } from '../Foundation/stylable/colors.st.css';
 
@@ -52,6 +52,8 @@ class MarketingLayout extends React.PureComponent {
     imageBackgroundColor: PropTypes.string,
     /** Size of the marketing layout. */
     size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
+    /** Direction of the parts of the marketing layout (top to bottom or left to right). */
+    direction: PropTypes.oneOf(['horizontal', 'vertical']),
     /** Alignment of the content of the marketing layout. */
     alignItems: PropTypes.oneOf(['center', 'stretch']),
     /** Invert marketing layout (with image displayed on the left). */
@@ -70,9 +72,10 @@ class MarketingLayout extends React.PureComponent {
   };
 
   static defaultProps = {
-    size: SIZES.small,
+    size: 'small',
     alignItems: 'center',
     inverted: false,
+    direction: 'horizontal',
     hiddenBadge: false,
   };
 
@@ -136,14 +139,41 @@ class MarketingLayout extends React.PureComponent {
     );
   };
 
+  _renderSpacerRow = () => <div className={classes.spacerRow} />;
+
+  _renderVerticalLayout = (contentCell, imageCell) => {
+    const { inverted } = this.props;
+    const spacerRow = this._renderSpacerRow();
+
+    return (
+      <div className={classes.verticalLayout}>
+        {inverted ? (
+          <div>
+            {contentCell}
+            {spacerRow}
+            <Layout>{[imageCell]}</Layout>
+          </div>
+        ) : (
+          <div>
+            <Layout>{[imageCell]}</Layout>
+            {spacerRow}
+            {contentCell}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   _renderContent = () => {
-    const { inverted, size } = this.props;
+    const { inverted, size, direction } = this.props;
     const cellSpans = cellSpansBySize[size];
     const spacerCell = this._renderSpacerCell(cellSpans.spacer);
     const imageCell = this._renderImageCell(cellSpans.image);
     const contentCell = this._renderContentCell(cellSpans.content);
 
-    return (
+    return direction === DIRECTIONS.vertical ? (
+      this._renderVerticalLayout(contentCell, imageCell)
+    ) : (
       <Layout>
         {inverted
           ? [imageCell, contentCell, spacerCell]
@@ -159,6 +189,7 @@ class MarketingLayout extends React.PureComponent {
       hiddenBadge,
       alignItems,
       inverted,
+      direction,
       actions,
       dataHook,
       imageBackgroundColor,
@@ -172,6 +203,7 @@ class MarketingLayout extends React.PureComponent {
           hiddenBadge,
           alignItems,
           inverted,
+          direction,
           withActions: !!actions,
           withImageBackground: !!imageBackgroundColor,
         })}

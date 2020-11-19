@@ -1,4 +1,9 @@
 :import {
+  -st-from: '../Foundation/stylable/spacing.st.css';
+  -st-named: SP4;
+}
+
+:import {
   -st-from: "../Foundation/stylable/typography.st.css";
   -st-named: text-medium-bold;
 }
@@ -9,37 +14,40 @@
 }
 
 .root {
-  -st-states: size(enum(tiny, small, medium, large)), alignItems(enum(center, stretch)), badge, hiddenBadge, inverted, withActions, withImageBackground;
+  -st-states: withActions, withImageBackground, inverted, badge, hiddenBadge,
+    alignItems(enum(center, stretch)),
+    direction(enum(horizontal, vertical)),
+    size(enum(tiny, small, medium, large));
   padding: 30px;
 }
 
-.root:size(tiny) {
+.root:size(tiny):direction(horizontal) {
   padding: 18px 30px;
 }
 :global([dir="rtl"]) .root:size(tiny) {
   padding: 18px 30px;
 }
 
-.root:size(small) {
+.root:size(small):direction(horizontal) {
   padding-left: 48px;
 }
-:global([dir="rtl"]) .root:size(small) {
+:global([dir="rtl"]) .root:size(small):direction(horizontal) {
   padding-left: 30px;
   padding-right: 48px;
 }
 
-.root:size(medium) {
+.root:size(medium):direction(horizontal) {
   padding-left: 48px;
 }
-:global([dir="rtl"]) .root:size(medium) {
+:global([dir="rtl"]) .root:size(medium):direction(horizontal) {
   padding-left: 30px;
   padding-right: 48px;
 }
 
-.root:size(large) {
+.root:size(large):direction(horizontal) {
   padding-left: 60px;
 }
-:global([dir="rtl"]) .root:size(large) {
+:global([dir="rtl"]) .root:size(large):direction(horizontal) {
   padding-left: 30px;
   padding-right: 60px;
 }
@@ -58,6 +66,10 @@
   padding-right: 30px;
 }
 
+.verticalLayout {
+  flex-direction: column;
+}
+
 .contentContainer {
   height: 100%;
   display: flex;
@@ -68,7 +80,7 @@
 .root:inverted:withImageBackground .contentContainer {
   padding-left: 30px;
 }
-:global([dir="rtl"]) .root:inverted:withImageBackground .contentContainer {
+:global([dir="rtl"]) .root:inverted:withImageBackground:direction(horizontal) .contentContainer {
   padding-left: 0;
   padding-right: 30px;
 }
@@ -143,4 +155,8 @@
   top: -30px;
   width: calc(100% + 60px);
   height: calc(100% + 60px);
+}
+
+.spacerRow {
+  height: value(SP4);
 }

@@ -114,6 +114,23 @@ const tests = [
     ],
   },
   {
+    describe: 'Direction',
+    its: [
+      {
+        it: 'Horizontal',
+        props: {
+          direction: 'horizontal',
+        },
+      },
+      {
+        it: 'Vertical',
+        props: {
+          direction: 'vertical',
+        },
+      },
+    ],
+  },
+  {
     describe: 'Inverted Layout',
     its: [
       {
