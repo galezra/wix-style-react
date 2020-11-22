@@ -68,7 +68,7 @@ export const inverted = `
     title="Inverted Layout"
     description="This layout has an image on the left side."
     actions={<Button size="medium">Get Started</Button>}
-    size="medium"
+    size="small"
     image={<Image/>}
   />
 `;

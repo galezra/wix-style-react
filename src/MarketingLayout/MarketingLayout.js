@@ -151,11 +151,11 @@ class MarketingLayout extends React.PureComponent {
           <div>
             {contentCell}
             {spacerRow}
-            <Layout>{[imageCell]}</Layout>
+            {imageCell}
           </div>
         ) : (
           <div>
-            <Layout>{[imageCell]}</Layout>
+            {imageCell}
             {spacerRow}
             {contentCell}
           </div>
