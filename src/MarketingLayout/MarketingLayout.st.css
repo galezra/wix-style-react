@@ -24,7 +24,7 @@
 .root:size(tiny):direction(horizontal) {
   padding: 18px 30px;
 }
-:global([dir="rtl"]) .root:size(tiny) {
+:global([dir="rtl"]) .root:size(tiny):direction(horizontal) {
   padding: 18px 30px;
 }
 
