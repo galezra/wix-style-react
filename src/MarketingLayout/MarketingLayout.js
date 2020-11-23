@@ -150,13 +150,13 @@ class MarketingLayout extends React.PureComponent {
         {inverted ? (
           <div>
             {contentCell}
-            {spacerRow}
+            {image && spacerRow}
             {image && imageCell}
           </div>
         ) : (
           <div>
             {image && imageCell}
-            {spacerRow}
+            {image && spacerRow}
             {contentCell}
           </div>
         )}
