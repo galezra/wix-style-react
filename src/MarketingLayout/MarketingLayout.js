@@ -142,7 +142,7 @@ class MarketingLayout extends React.PureComponent {
   _renderSpacerRow = () => <div className={classes.spacerRow} />;
 
   _renderVerticalLayout = (contentCell, imageCell) => {
-    const { inverted } = this.props;
+    const { image, inverted } = this.props;
     const spacerRow = this._renderSpacerRow();
 
     return (
@@ -151,11 +151,11 @@ class MarketingLayout extends React.PureComponent {
           <div>
             {contentCell}
             {spacerRow}
-            {imageCell}
+            {image && imageCell}
           </div>
         ) : (
           <div>
-            {imageCell}
+            {image && imageCell}
             {spacerRow}
             {contentCell}
           </div>
