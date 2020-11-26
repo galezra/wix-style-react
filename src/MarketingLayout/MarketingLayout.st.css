@@ -31,7 +31,8 @@
 .root:size(small):direction(horizontal) {
   padding-left: 48px;
 }
-:global([dir="rtl"]) .root:size(small):direction(horizontal) {
+:global([dir="rtl"]) .root:size(small):direction(horizontal),
+.root:inverted:size(small):direction(horizontal) {
   padding-left: 30px;
   padding-right: 48px;
 }
@@ -39,7 +40,8 @@
 .root:size(medium):direction(horizontal) {
   padding-left: 48px;
 }
-:global([dir="rtl"]) .root:size(medium):direction(horizontal) {
+:global([dir="rtl"]) .root:size(medium):direction(horizontal),
+.root:inverted:size(medium):direction(horizontal) {
   padding-left: 30px;
   padding-right: 48px;
 }
@@ -47,7 +49,8 @@
 .root:size(large):direction(horizontal) {
   padding-left: 60px;
 }
-:global([dir="rtl"]) .root:size(large):direction(horizontal) {
+:global([dir="rtl"]) .root:size(large):direction(horizontal),
+.root:inverted:size(large):direction(horizontal) {
   padding-left: 30px;
   padding-right: 60px;
 }
