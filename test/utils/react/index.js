@@ -38,6 +38,7 @@ export function createRendererWithDriver(driverFactory, defaultOptions = {}) {
       wrapper: rendered.container,
       eventTrigger: Simulate,
       component,
+      muteWarning: true,
     });
   return createRendererBase(createDriver, defaultOptions);
 }
