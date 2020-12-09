@@ -1,17 +1,9 @@
 import textDriverFactory from '../Text/Text.driver';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
-const addItemDriverFactory = ({ element, eventTrigger, muteWarning }) => {
-  if (console && !muteWarning) {
-    // eslint-disable-next-line no-console
-    console.warn(`
-    Warning! addItemDriverFactory is deprecated and will be removed, please use AddItemDriver instead.
-    Note that AddItemDriver is async!
-    (Hide this warning by setting muteWarning: true)
-    `);
-  }
-
+const addItemDriverFactory = ({ element, eventTrigger }) => {
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const tooltipTestkit = tooltipTestkitFactory({
     wrapper: element,
@@ -45,4 +37,4 @@ const addItemDriverFactory = ({ element, eventTrigger, muteWarning }) => {
   };
 };
 
-export default addItemDriverFactory;
+export default WithDeprecationWarning(addItemDriverFactory);
