@@ -509,6 +509,10 @@ export { default as Radio } from './Radio';
 export * from './Radio';
 
 export { default as CopyClipboard } from './CopyClipboard';
+
+export { default as CarouselWIP } from './CarouselWIP';
+export * from './CarouselWIP';
+
 export * from './CopyClipboard';
 
 export * from './TrendIndicator';

@@ -164,6 +164,7 @@ const javascriptFiles = [
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
   ['Radio.bundle.min.js', 40],
+  ['CarouselWIP.bundle.min.js', 10],
 ];
 
 const cssFiles = [

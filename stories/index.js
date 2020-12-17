@@ -222,3 +222,6 @@ require('../src/Themes/editorX/docs');
 
 // BusinessDashboard
 require('../src/Themes/businessDashboard/docs');
+
+// TODO: move to correct position
+require('../src/CarouselWIP/docs/index.story');
