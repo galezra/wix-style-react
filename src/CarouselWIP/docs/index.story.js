@@ -1,4 +1,6 @@
 import React from 'react';
+import * as examples from './examples';
+
 import {
   header,
   tabs,
@@ -27,15 +29,6 @@ export default {
   component: CarouselWIP,
   componentPath: '..',
 
-  componentProps: {
-    buttonText: 'Hello World!',
-  },
-
-  exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
-  },
-
   sections: [
     header({
       sourceUrl: `https://github.com/wix/wix-style-react/tree/master/src/${CarouselWIP.displayName}/`,
@@ -59,8 +52,14 @@ export default {
 
           example({
             title: 'Simple Usage',
-            text: 'A simple example with compact preview',
-            source: '<CarouselWIP buttonText="Hello World!"/>',
+            text: 'Simple Usage',
+            source: examples.basicExample,
+          }),
+
+          example({
+            title: 'OLD',
+            text: 'OLD',
+            source: examples.controlsPositionExample,
           }),
         ],
       }),

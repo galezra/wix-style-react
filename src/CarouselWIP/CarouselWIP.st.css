@@ -1,22 +1,93 @@
 :import {
-  -st-from: "../Foundation/stylable/colors.st.css";
-  -st-named: G30,R30;
+  -st-from: '../Foundation/stylable/shadows.st.css';
+  -st-named: shadow30;
+}
+
+:vars {
+  horizontalSpacingSize: 50px;
+  verticalSpacingSize: 7px;
 }
 
 .root {
-  -st-states: odd, even;
-  text-align: center;
+  -st-states: controlsPosition(enum(sides, overlay, bottom, none)),
+    controlsSize(enum(tiny, small, medium, large)),
+    showControlsShadow;
+  position: relative;
 }
 
-.root:even .number {
-  background: value(G30);
+.root:controlsSize(tiny) {
+  --arrow-size: 24px
 }
 
-.root:odd .number {
-  background: value(R30);
+.root:controlsSize(small) {
+  --arrow-size: 30px
 }
 
-.button {
+.root:controlsSize(medium) {
+  --arrow-size: 36px;
+}
+
+.root:controlsSize(large) {
+  --arrow-size: 42px;
+}
+
+.carousel {
   display: flex;
-  justify-content: space-evenly;
+  flex-flow: row nowrap;
+  overflow-x: hidden;
+  position: relative;
+  transition: all .25s ease-in-quint;
+  outline: none;
+}
+
+.control {
+  position: absolute;
+  display: block;
+  height: 20px;
+  width: 20px;
+  line-height: 0;
+  font-size: 0;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding: 0;
+  border: none;
+  outline: none;
+  align-content: center;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: calc(var(--arrow-size) / 2 - 2px);
+}
+
+.root:controlsPosition(sides) .carousel {
+  width: calc(100% - (2 * var(--arrow-size)) - value(horizontalSpacingSize));
+  margin: auto;
+}
+
+.root:controlsPosition(sides) .control {
+  top: calc(50% - (var(--arrow-size) / 2 + value(verticalSpacingSize)));
+  transform: none;
+}
+
+.root:controlsPosition(overlay) .control {
+  top: calc(50% - (var(--arrow-size) / 2 + value(verticalSpacingSize)));
+  transform: none;
+  margin: 0 12px;
+  z-index: 1;
+}
+
+.root:controlsPosition(bottom) .control {
+  top: calc(100% + value(verticalSpacingSize));
+  transform: none;
+}
+
+.root:showControlsShadow .control {
+  box-shadow: value(shadow30);
 }
