@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const Slide = ({
   dataHook,
   basis = '100%',
-  gutter = '',
-  className = '',
+  gutter,
+  className,
   image,
   children,
   ...props

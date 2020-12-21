@@ -51,9 +51,9 @@ export default {
           title('Examples'),
 
           example({
-            title: 'Simple Usage',
-            text: 'Simple Usage',
-            source: examples.basicExample,
+            title: 'Suggestions Widget',
+            text: 'Suggestions Widget',
+            source: examples.suggestionsWidgetExample,
           }),
 
           example({

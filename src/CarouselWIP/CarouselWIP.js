@@ -61,6 +61,9 @@ class CarouselWIP extends React.PureComponent {
 
     /** Number of pixels for showing "peeking" cards on the edges of the carousel */
     startEndOffset: PropTypes.number,
+
+    /** Number of pixels dividing between slides */
+    gutter: PropTypes.number,
   };
 
   static defaultProps = {
@@ -74,6 +77,7 @@ class CarouselWIP extends React.PureComponent {
     controlsSize: 'medium',
     slidingType: 'align-to-start',
     startEndOffset: 0,
+    gutter: 0,
   };
 
   constructor(props) {
@@ -319,7 +323,7 @@ class CarouselWIP extends React.PureComponent {
               <Slide
                 key={`slide-${i}`}
                 basis="auto"
-                gutter={i > 0 ? gutter : ''}
+                gutter={i > 0 ? `${gutter}px` : ''}
                 role="listitem"
                 image={image}
               />
@@ -328,7 +332,7 @@ class CarouselWIP extends React.PureComponent {
               <Slide
                 key={`slide-${i}`}
                 basis="auto"
-                gutter={i > 0 ? gutter : ''}
+                gutter={i > 0 ? `${gutter}px` : ''}
                 role="listitem"
               >
                 {child}
