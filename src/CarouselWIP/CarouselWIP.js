@@ -25,6 +25,9 @@ class CarouselWIP extends React.PureComponent {
     /** Any element to render inside */
     children: PropTypes.node,
 
+    /** Array of objects where each contains the `src` of an image (in \<img src="your_src" /\>) */
+    images: PropTypes.array,
+
     /** Sets the skin of the arrow buttons */
     controlsSkin: PropTypes.oneOf(['standard', 'inverted', 'light']),
 
@@ -337,9 +340,9 @@ class CarouselWIP extends React.PureComponent {
     const slide = ({ i, image, child }) => (
       <Slide
         key={`slide-${i}`}
-        basis="auto"
-        gutter={i > 0 ? `${gutter}px` : ''}
         role="listitem"
+        width="auto"
+        gutter={i > 0 ? `${gutter}px` : ''}
         image={image}
         children={child}
       />
