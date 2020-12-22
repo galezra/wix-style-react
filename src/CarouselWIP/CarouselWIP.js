@@ -284,7 +284,12 @@ class CarouselWIP extends React.PureComponent {
 
   _renderLeftControl = () => {
     const { isLeftArrowDisabled } = this.state;
-    const { controlsPosition, controlsStartEnd, controlsSkin } = this.props;
+    const {
+      controlsPosition,
+      controlsStartEnd,
+      controlsSize,
+      controlsSkin,
+    } = this.props;
 
     return (
       controlsPosition !== 'none' &&
@@ -293,6 +298,7 @@ class CarouselWIP extends React.PureComponent {
         <Control
           onClick={this._prev}
           icon={<ChevronLeftSmall />}
+          size={controlsSize}
           skin={controlsSkin}
           disabled={isLeftArrowDisabled}
           className={`${classes.control} ${classes.prev}`}
@@ -303,7 +309,12 @@ class CarouselWIP extends React.PureComponent {
 
   _renderRightControl = () => {
     const { isRightArrowDisabled } = this.state;
-    const { controlsPosition, controlsStartEnd, controlsSkin } = this.props;
+    const {
+      controlsPosition,
+      controlsStartEnd,
+      controlsSize,
+      controlsSkin,
+    } = this.props;
 
     return (
       controlsPosition !== 'none' &&
@@ -312,6 +323,7 @@ class CarouselWIP extends React.PureComponent {
         <Control
           onClick={this._next}
           icon={<ChevronRightSmall />}
+          size={controlsSize}
           skin={controlsSkin}
           disabled={isRightArrowDisabled}
           className={`${classes.control} ${classes.next}`}
