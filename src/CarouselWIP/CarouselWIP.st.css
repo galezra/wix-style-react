@@ -89,6 +89,9 @@
   z-index: 3;
 }
 
+.root:controlsPosition(bottom) {
+  margin-bottom: var(--arrow-size);
+}
 .root:controlsPosition(bottom) .control {
   top: calc(100% + value(verticalSpacingSize));
   transform: none;
