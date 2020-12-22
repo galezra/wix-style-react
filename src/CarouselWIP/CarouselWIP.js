@@ -193,7 +193,7 @@ class CarouselWIP extends React.PureComponent {
       delta = children[slideIndex].offsetLeft - scrollLeft - startEndOffset;
     }
     if (startingIndex !== slideIndex && beforeChange) {
-      beforeChange(index);
+      beforeChange(startingIndex, index);
     }
     this.setState({ isAnimating: true, activeIndex: slideIndex });
     return new Promise((res, _) => {
