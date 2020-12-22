@@ -9,7 +9,7 @@ import {
   importExample,
   title,
   divider,
-  example as baseExample,
+  code as baseCode,
   playground,
   api,
   testkit,
@@ -20,7 +20,7 @@ import allComponents from '../../../stories/utils/allComponents';
 
 import CarouselWIP from '..';
 
-const example = config => baseExample({ components: allComponents, ...config });
+const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -50,16 +50,20 @@ export default {
 
           title('Examples'),
 
-          example({
+          description({
             title: 'Suggestions Widget',
-            text: 'Suggestions Widget',
+          }),
+          code({
+            compact: true,
             source: examples.suggestionsWidgetExample,
           }),
 
-          example({
-            title: 'OLD',
-            text: 'OLD',
-            source: examples.controlsPositionExample,
+          description({
+            title: 'OLD Carousel',
+          }),
+          code({
+            compact: true,
+            source: examples.suggestionsWidgetOldExample,
           }),
         ],
       }),
