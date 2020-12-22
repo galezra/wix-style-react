@@ -130,12 +130,25 @@ class CarouselWIP extends React.PureComponent {
       this.carousel && this.carousel.children
         ? this.carousel.children.length
         : images.length;
-    this._setImgOnLoadHandlers();
+    this._setImagesOnLoadHandlers();
     if (!this.loadingImagesCount) {
       this._slideTo({ index: initialSlideIndex, immediate: true }).catch(nop);
       this._setVisibleSlides();
     }
   }
+
+  // Need to wait for images to load so we know which images are visible
+  // Adding onLoad and onError callbacks to all images under the component
+  _setImagesOnLoadHandlers = () => {
+    [...this.carousel.children].forEach(child => {
+      const childImages = [...child.getElementsByTagName('img')];
+      childImages.forEach(img => {
+        this.loadingImagesCount++;
+        img.onload = this._onImageLoad;
+        img.onerror = this._onImageLoad;
+      });
+    });
+  };
 
   _onImageLoad = () => {
     this.loadingImagesCount--;
@@ -145,17 +158,6 @@ class CarouselWIP extends React.PureComponent {
         immediate: true,
       }).catch(nop);
     }
-  };
-
-  _setImgOnLoadHandlers = () => {
-    [...this.carousel.children].forEach(child => {
-      const childImages = [...child.getElementsByTagName('img')];
-      childImages.forEach(img => {
-        this.loadingImagesCount++;
-        img.onload = this._onImageLoad;
-        img.onerror = this._onImageLoad;
-      });
-    });
   };
 
   _setVisibleSlides = () => {
