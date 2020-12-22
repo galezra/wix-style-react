@@ -345,6 +345,14 @@ class CarouselWIP extends React.PureComponent {
     );
   };
 
+  renderLeftGradient = () =>
+    this.visibleSlides.includes(0) || <div className={classes.start} />;
+
+  renderRightGradient = () =>
+    this.visibleSlides.includes(this.childCount - 1) || (
+      <div className={classes.end} />
+    );
+
   render() {
     const {
       dataHook,
@@ -371,16 +379,11 @@ class CarouselWIP extends React.PureComponent {
         )}
         style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
-        {!showSidesGradients || this.visibleSlides.includes(0) || (
-          <div className={classes.start} />
-        )}
+        {showSidesGradients && this.renderLeftGradient()}
         {this.renderLeftControl()}
         {this.renderSlides()}
         {this.renderRightControl()}
-        {!showSidesGradients ||
-          this.visibleSlides.includes(this.childCount - 1) || (
-            <div className={classes.end} />
-          )}
+        {showSidesGradients && this.renderRightGradient()}
       </div>
     );
   }
