@@ -97,36 +97,39 @@ class CarouselWIP extends React.PureComponent {
 
   componentDidMount() {
     const { initialSlideIndex, images } = this.props;
-    this.childCount = this.carousel?.children?.length || images.length || 0;
-    this.setImgOnLoadHandlers();
+    this.childCount =
+      this.carousel && this.carousel.children
+        ? this.carousel.children.length
+        : images.length;
+    this._setImgOnLoadHandlers();
     if (!this.loadingImagesCount) {
-      this.slideTo({ index: initialSlideIndex, immediate: true }).catch(nop);
-      this.setVisibleSlides();
+      this._slideTo({ index: initialSlideIndex, immediate: true }).catch(nop);
+      this._setVisibleSlides();
     }
   }
 
-  onImageLoad = () => {
+  _onImageLoad = () => {
     this.loadingImagesCount--;
     if (!this.loadingImagesCount) {
-      this.slideTo({
+      this._slideTo({
         index: this.props.initialSlideIndex,
         immediate: true,
       }).catch(nop);
     }
   };
 
-  setImgOnLoadHandlers = () => {
+  _setImgOnLoadHandlers = () => {
     [...this.carousel.children].forEach(child => {
       const childImages = [...child.getElementsByTagName('img')];
       childImages.forEach(img => {
         this.loadingImagesCount++;
-        img.onload = this.onImageLoad;
-        img.onerror = this.onImageLoad;
+        img.onload = this._onImageLoad;
+        img.onerror = this._onImageLoad;
       });
     });
   };
 
-  setVisibleSlides = () => {
+  _setVisibleSlides = () => {
     const { props, carousel, childCount } = this;
     const { infinite } = props;
     const firstVisibleChild = Math.max(
@@ -152,7 +155,7 @@ class CarouselWIP extends React.PureComponent {
     });
   };
 
-  slideTo = (
+  _slideTo = (
     { index, alignTo, immediate } = {
       index: 0,
       alignTo: ALIGNMENT.LEFT,
@@ -210,22 +213,18 @@ class CarouselWIP extends React.PureComponent {
     })
       .then(() => {
         this.setState({ isAnimating: false });
-        this.setVisibleSlides();
+        this._setVisibleSlides();
         if (startingIndex !== slideIndex && afterChange) {
           return afterChange(slideIndex);
         }
       })
       .catch(_ => {
-        this.setVisibleSlides();
+        this._setVisibleSlides();
         this.setState({ isAnimating: false });
       });
   };
 
-  setRef = r => {
-    this.carousel = r;
-  };
-
-  next = () => {
+  _next = () => {
     const { slidingType, infinite } = this.props;
     const [firstVisibleChild, lastVisibleChild] = this.visibleSlides;
     let nextSlide, alignTo;
@@ -249,10 +248,10 @@ class CarouselWIP extends React.PureComponent {
       }
       alignTo = ALIGNMENT.LEFT;
     }
-    return this.slideTo({ index: nextSlide, alignTo });
+    return this._slideTo({ index: nextSlide, alignTo });
   };
 
-  prev = () => {
+  _prev = () => {
     const { slidingType, infinite } = this.props;
     const [firstVisibleChild, _] = this.visibleSlides;
     let prevSlide, alignTo;
@@ -276,10 +275,14 @@ class CarouselWIP extends React.PureComponent {
       }
       alignTo = ALIGNMENT.LEFT;
     }
-    return this.slideTo({ index: prevSlide, alignTo });
+    return this._slideTo({ index: prevSlide, alignTo });
   };
 
-  renderLeftControl = () => {
+  _setRef = r => {
+    this.carousel = r;
+  };
+
+  _renderLeftControl = () => {
     const { isLeftArrowDisabled } = this.state;
     const { controlsPosition, controlsStartEnd, controlsSkin } = this.props;
 
@@ -288,9 +291,9 @@ class CarouselWIP extends React.PureComponent {
       (!isLeftArrowDisabled ||
         controlsStartEnd === CONTROLS_START_END.DISABLED) && (
         <Control
+          onClick={this._prev}
           icon={<ChevronLeftSmall />}
-          onClick={this.prev}
-          controlsSkin={controlsSkin}
+          skin={controlsSkin}
           disabled={isLeftArrowDisabled}
           className={`${classes.control} ${classes.prev}`}
         />
@@ -298,7 +301,7 @@ class CarouselWIP extends React.PureComponent {
     );
   };
 
-  renderRightControl = () => {
+  _renderRightControl = () => {
     const { isRightArrowDisabled } = this.state;
     const { controlsPosition, controlsStartEnd, controlsSkin } = this.props;
 
@@ -307,9 +310,9 @@ class CarouselWIP extends React.PureComponent {
       (!isRightArrowDisabled ||
         controlsStartEnd === CONTROLS_START_END.DISABLED) && (
         <Control
+          onClick={this._next}
           icon={<ChevronRightSmall />}
-          onClick={this.next}
-          controlsSkin={controlsSkin}
+          skin={controlsSkin}
           disabled={isRightArrowDisabled}
           className={`${classes.control} ${classes.next}`}
         />
@@ -317,38 +320,32 @@ class CarouselWIP extends React.PureComponent {
     );
   };
 
-  renderSlides = () => {
+  _renderSlides = () => {
     const { images, children, gutter } = this.props;
+    const slide = ({ i, image, child }) => (
+      <Slide
+        key={`slide-${i}`}
+        basis="auto"
+        gutter={i > 0 ? `${gutter}px` : ''}
+        role="listitem"
+        image={image}
+        children={child}
+      />
+    );
+
     return (
-      <div className={classes.carousel} role="list" ref={this.setRef}>
-        {images.length
-          ? images.map((image, i) => (
-              <Slide
-                key={`slide-${i}`}
-                basis="auto"
-                gutter={i > 0 ? `${gutter}px` : ''}
-                role="listitem"
-                image={image}
-              />
-            ))
-          : React.Children.map(children, (child, i) => (
-              <Slide
-                key={`slide-${i}`}
-                basis="auto"
-                gutter={i > 0 ? `${gutter}px` : ''}
-                role="listitem"
-              >
-                {child}
-              </Slide>
-            ))}
+      <div className={classes.carousel} role="list" ref={this._setRef}>
+        {children
+          ? React.Children.map(children, (child, i) => slide({ i, child }))
+          : images.map((image, i) => slide({ i, image }))}
       </div>
     );
   };
 
-  renderLeftGradient = () =>
+  _renderLeftGradient = () =>
     this.visibleSlides.includes(0) || <div className={classes.start} />;
 
-  renderRightGradient = () =>
+  _renderRightGradient = () =>
     this.visibleSlides.includes(this.childCount - 1) || (
       <div className={classes.end} />
     );
@@ -379,11 +376,11 @@ class CarouselWIP extends React.PureComponent {
         )}
         style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
-        {showSidesGradients && this.renderLeftGradient()}
-        {this.renderLeftControl()}
-        {this.renderSlides()}
-        {this.renderRightControl()}
-        {showSidesGradients && this.renderRightGradient()}
+        {showSidesGradients && this._renderLeftGradient()}
+        {this._renderLeftControl()}
+        {this._renderSlides()}
+        {this._renderRightControl()}
+        {showSidesGradients && this._renderRightGradient()}
       </div>
     );
   }

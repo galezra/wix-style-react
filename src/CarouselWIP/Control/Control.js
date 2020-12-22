@@ -1,41 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '../../IconButton/IconButton';
-
-const skinPriorityMap = {
-  standard: 'secondary',
-  inverted: 'primary',
-  light: 'primary',
-  transparent: 'primary',
-  premium: 'primary',
-};
+import { SKIN_PRIORITY_MAP } from '../constants';
 
 const Control = ({
   dataHook,
-  arrowSize,
-  controlsSkin,
-  icon,
   className,
+  onClick,
+  icon,
+  size,
+  skin,
   disabled = false,
-  ...remainingProps
 }) => (
-  <div {...remainingProps} data-hook={dataHook} className={className}>
-    <IconButton
-      skin={controlsSkin}
-      size={arrowSize}
-      disabled={disabled}
-      priority={skinPriorityMap[controlsSkin]}
-    >
-      {icon}
-    </IconButton>
-  </div>
+  <IconButton
+    data-hook={dataHook}
+    className={className}
+    onClick={onClick}
+    size={size}
+    skin={skin}
+    disabled={disabled}
+    priority={SKIN_PRIORITY_MAP[skin]}
+  >
+    {icon}
+  </IconButton>
 );
 
 Control.propTypes = {
   /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
+
+  /** A css class to be applied to the control element */
+  className: PropTypes.string,
+
+  /** Click handler function for the control */
+  onClick: PropTypes.func.isRequired,
+
   /** Icon to be rendered within the icon button */
   icon: PropTypes.element.isRequired,
+
+  /** Size to pass to the icon button rendered */
+  size: PropTypes.string,
+
+  /** Skin to pass to the icon button rendered */
+  skin: PropTypes.string,
+
+  /** Disabled flag to pass to the icon button rendered */
+  disabled: PropTypes.bool,
 };
 
 export default Control;

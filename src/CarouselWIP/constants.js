@@ -18,3 +18,11 @@ export const ALIGNMENT = {
   LEFT: 'left',
   RIGHT: 'right',
 };
+
+export const SKIN_PRIORITY_MAP = {
+  standard: 'secondary',
+  inverted: 'primary',
+  light: 'primary',
+  transparent: 'primary',
+  premium: 'primary',
+};
