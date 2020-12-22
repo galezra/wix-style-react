@@ -6,6 +6,7 @@ export const suggestionsWidgetExample = `
   controlsSkin="inverted"
   controlsPosition="overlay"
   controlsStartEnd="hidden"
+  controlsSize="small"
   slidingType="reveal-one"
   showControlsShadow
   startEndOffset={24}
@@ -98,6 +99,7 @@ export const suggestionsWidgetOldExample = `
   controlsSkin="inverted"
   controlsPosition="overlay"
   controlsStartEnd="hidden"
+  controlsSize="small"
   slidingType="reveal-one"
   showControlsShadow
   startEndOffset={24}
