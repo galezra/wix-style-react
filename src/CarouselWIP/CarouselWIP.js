@@ -70,6 +70,32 @@ class CarouselWIP extends React.PureComponent {
 
     /** Color for the gradients on the sides of the carousel */
     sidesGradientColor: PropTypes.string,
+
+    // TODO: implement prop
+    /** Sets the images position */
+    imagesPosition: PropTypes.string,
+
+    // TODO: implement prop
+    /** Sets the images fit */
+    imagesFit: PropTypes.oneOf([
+      'fill',
+      'contain',
+      'cover',
+      'none',
+      'scale-down',
+    ]),
+
+    // TODO: implement prop
+    /** Auto-playing of images */
+    autoplay: PropTypes.bool,
+
+    // TODO: implement prop
+    /** Hide dots */
+    hideDots: PropTypes.bool,
+
+    // TODO: implement prop
+    /** Variable width of children */
+    variableWidth: PropTypes.bool,
   };
 
   static defaultProps = {
