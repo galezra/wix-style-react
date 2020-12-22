@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { st, classes } from './CarouselWIP.st.css';
+import { st, classes, vars } from './CarouselWIP.st.css';
 import { ChevronLeftSmall, ChevronRightSmall } from 'wix-ui-icons-common';
 import Control from './Control';
 import Slide from './Slide';
@@ -64,6 +64,9 @@ class CarouselWIP extends React.PureComponent {
 
     /** Number of pixels dividing between slides */
     gutter: PropTypes.number,
+
+    /** Color for the gradients on the sides of the carousel */
+    sidesGradientColor: PropTypes.string,
   };
 
   static defaultProps = {
@@ -349,6 +352,7 @@ class CarouselWIP extends React.PureComponent {
       controlsPosition,
       controlsSize,
       showControlsShadow,
+      sidesGradientColor,
     } = this.props;
 
     return (
@@ -356,13 +360,23 @@ class CarouselWIP extends React.PureComponent {
         data-hook={dataHook}
         className={st(
           classes.root,
-          { controlsPosition, controlsSize, showControlsShadow },
+          {
+            controlsPosition,
+            controlsSize,
+            showControlsShadow,
+            showSidesGradients: !!sidesGradientColor,
+          },
           className,
         )}
+        style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
+        {this.visibleSlides.includes(0) || <div className={classes.start} />}
         {this.renderLeftControl()}
         {this.renderSlides()}
         {this.renderRightControl()}
+        {this.visibleSlides.includes(this.childCount - 1) || (
+          <div className={classes.end} />
+        )}
       </div>
     );
   }

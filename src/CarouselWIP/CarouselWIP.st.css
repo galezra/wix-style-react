@@ -3,6 +3,11 @@
   -st-named: shadow30;
 }
 
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-50, D70;
+}
+
 :vars {
   horizontalSpacingSize: 50px;
   verticalSpacingSize: 7px;
@@ -11,7 +16,8 @@
 .root {
   -st-states: controlsPosition(enum(sides, overlay, bottom, none)),
     controlsSize(enum(tiny, small, medium, large)),
-    showControlsShadow;
+    showControlsShadow,
+    showSidesGradients;
   position: relative;
 }
 
@@ -80,7 +86,7 @@
   top: calc(50% - (var(--arrow-size) / 2 + value(verticalSpacingSize)));
   transform: none;
   margin: 0 12px;
-  z-index: 2;
+  z-index: 3;
 }
 
 .root:controlsPosition(bottom) .control {
@@ -90,4 +96,27 @@
 
 .root:showControlsShadow .control {
   box-shadow: value(shadow30);
+}
+
+.root:showSidesGradients .start,
+.root:showSidesGradients .end {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 100px;
+  top: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.root:showSidesGradients .start {
+  left: 0;
+  background: linear-gradient(to left, rgba(240, 244, 247, 0) 50%, value(D70));
+  background: linear-gradient(to left, rgba(240, 244, 247, 0) 50%, var(--sidesGradientColor, value(D70)));
+}
+
+.root:showSidesGradients .end {
+  right: 0;
+  background: linear-gradient(to right, rgba(240, 244, 247, 0) 50%, value(D70));
+  background: linear-gradient(to right, rgba(240, 244, 247, 0) 50%, var(--sidesGradientColor, value(D70)));
 }

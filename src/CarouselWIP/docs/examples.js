@@ -9,9 +9,11 @@ export const suggestionsWidgetExample = `
   slidingType="reveal-one"
   showControlsShadow
   startEndOffset={24}
+  gutter="6"
+  sidesGradientColor="#F0F4F7"
 >
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 1"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
@@ -21,8 +23,8 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 2"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
@@ -32,8 +34,8 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 3"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
@@ -43,8 +45,8 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 4"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
@@ -54,8 +56,8 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 5"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
@@ -65,8 +67,8 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 6"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
@@ -76,8 +78,8 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px" padding="6px">
-    <Card showShadow>
+  <Box maxWidth="600px">
+    <Card>
       <MarketingLayout
         title="Card 7"
         description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
