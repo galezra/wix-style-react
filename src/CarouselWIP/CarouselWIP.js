@@ -354,6 +354,7 @@ class CarouselWIP extends React.PureComponent {
       showControlsShadow,
       sidesGradientColor,
     } = this.props;
+    const showSidesGradients = !!sidesGradientColor;
 
     return (
       <div
@@ -364,19 +365,22 @@ class CarouselWIP extends React.PureComponent {
             controlsPosition,
             controlsSize,
             showControlsShadow,
-            showSidesGradients: !!sidesGradientColor,
+            showSidesGradients,
           },
           className,
         )}
         style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
-        {this.visibleSlides.includes(0) || <div className={classes.start} />}
+        {!showSidesGradients || this.visibleSlides.includes(0) || (
+          <div className={classes.start} />
+        )}
         {this.renderLeftControl()}
         {this.renderSlides()}
         {this.renderRightControl()}
-        {this.visibleSlides.includes(this.childCount - 1) || (
-          <div className={classes.end} />
-        )}
+        {!showSidesGradients ||
+          this.visibleSlides.includes(this.childCount - 1) || (
+            <div className={classes.end} />
+          )}
       </div>
     );
   }
