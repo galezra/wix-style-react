@@ -72,11 +72,11 @@ class CarouselWIP extends React.PureComponent {
     sidesGradientColor: PropTypes.string,
 
     // TODO: implement prop
-    /** Sets the images position */
+    /** 🚧 Sets the images position */
     imagesPosition: PropTypes.string,
 
     // TODO: implement prop
-    /** Sets the images fit */
+    /** 🚧 Sets the images fit */
     imagesFit: PropTypes.oneOf([
       'fill',
       'contain',
@@ -86,15 +86,15 @@ class CarouselWIP extends React.PureComponent {
     ]),
 
     // TODO: implement prop
-    /** Auto-playing of images */
+    /** 🚧 Auto-playing of images */
     autoplay: PropTypes.bool,
 
     // TODO: implement prop
-    /** Hide dots */
+    /** 🚧 Hide dots */
     hideDots: PropTypes.bool,
 
     // TODO: implement prop
-    /** Variable width of children */
+    /** 🚧 Variable width of children */
     variableWidth: PropTypes.bool,
   };
 
