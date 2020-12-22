@@ -9,10 +9,10 @@ export const suggestionsWidgetExample = `
   slidingType="reveal-one"
   showControlsShadow
   startEndOffset={24}
-  gutter="6"
+  gutter={6}
   sidesGradientColor="#F0F4F7"
 >
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 1"
@@ -23,7 +23,7 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 2"
@@ -34,7 +34,7 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 3"
@@ -45,7 +45,7 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 4"
@@ -56,7 +56,7 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 5"
@@ -67,7 +67,7 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 6"
@@ -78,7 +78,7 @@ export const suggestionsWidgetExample = `
       />
     </Card>
   </Box>
-  <Box maxWidth="600px">
+  <Box maxWidth="500px">
     <Card>
       <MarketingLayout
         title="Card 7"
