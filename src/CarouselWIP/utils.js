@@ -22,7 +22,8 @@ const fakeChild = { getBoundingClientRect: () => ({}) };
 export const isWhollyInView = parent => (child = fakeChild) => {
   const { left: cLeft, right: cRight } = child.getBoundingClientRect();
   const { left: pLeft, right: pRight } = parent.getBoundingClientRect();
-  return cLeft >= pLeft && cRight <= pRight;
+  // 5px threshold
+  return cLeft >= pLeft - 5 && cRight <= pRight + 5;
 };
 
 export const animate = (
