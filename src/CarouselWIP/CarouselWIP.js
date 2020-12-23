@@ -115,9 +115,8 @@ class CarouselWIP extends React.PureComponent {
   constructor(props) {
     super(props);
     this.loadingImagesCount = 0;
-    this.visibleSlides = [];
     this.state = {
-      activeIndex: this.props.initialSlideIndex,
+      visibleSlides: [],
       isAnimating: false,
       isLeftArrowDisabled: true,
       isRightArrowDisabled: true,
@@ -178,11 +177,10 @@ class CarouselWIP extends React.PureComponent {
       ),
       0,
     );
-    this.visibleSlides = [firstVisibleChild, lastVisibleChild];
     this.setState({
-      isLeftArrowDisabled: !infinite && this.visibleSlides[0] === 0,
-      isRightArrowDisabled:
-        !infinite && this.visibleSlides[1] === childCount - 1,
+      visibleSlides: [firstVisibleChild, lastVisibleChild],
+      isLeftArrowDisabled: !infinite && firstVisibleChild === 0,
+      isRightArrowDisabled: !infinite && lastVisibleChild === childCount - 1,
     });
   };
 
@@ -209,7 +207,7 @@ class CarouselWIP extends React.PureComponent {
     } = this.props;
     const { children, scrollLeft, offsetWidth } = this.carousel;
     const slideIndex = normalizeIndex(index, this.childCount, infinite);
-    const startingIndex = this.state.activeIndex;
+    const [firstVisibleSlide, _] = this.state.visibleSlides;
     let delta;
     if (alignTo === ALIGNMENT.RIGHT) {
       delta =
@@ -220,10 +218,10 @@ class CarouselWIP extends React.PureComponent {
     } else {
       delta = children[slideIndex].offsetLeft - scrollLeft - startEndOffset;
     }
-    if (startingIndex !== slideIndex && beforeChange) {
-      beforeChange(startingIndex, index);
+    if (firstVisibleSlide !== slideIndex && beforeChange) {
+      beforeChange(firstVisibleSlide, index);
     }
-    this.setState({ isAnimating: true, activeIndex: slideIndex });
+    this.setState({ isAnimating: true });
     return new Promise((res, _) => {
       if (immediate) {
         this.carousel.scrollLeft = children[slideIndex].offsetLeft;
@@ -245,7 +243,7 @@ class CarouselWIP extends React.PureComponent {
       .then(() => {
         this.setState({ isAnimating: false });
         this._setVisibleSlides();
-        if (startingIndex !== slideIndex && afterChange) {
+        if (firstVisibleSlide !== slideIndex && afterChange) {
           return afterChange(slideIndex);
         }
       })
@@ -257,7 +255,7 @@ class CarouselWIP extends React.PureComponent {
 
   _next = () => {
     const { slidingType, infinite } = this.props;
-    const [firstVisibleChild, lastVisibleChild] = this.visibleSlides;
+    const [firstVisibleChild, lastVisibleChild] = this.state.visibleSlides;
     let nextSlide, alignTo;
     if (
       [SLIDING_TYPE.REVEAL_CHUNK, SLIDING_TYPE.REVEAL_ONE].includes(slidingType)
@@ -284,7 +282,7 @@ class CarouselWIP extends React.PureComponent {
 
   _prev = () => {
     const { slidingType, infinite } = this.props;
-    const [firstVisibleChild, _] = this.visibleSlides;
+    const [firstVisibleChild, _] = this.state.visibleSlides;
     let prevSlide, alignTo;
     if (
       [SLIDING_TYPE.REVEAL_CHUNK, SLIDING_TYPE.REVEAL_ONE].includes(slidingType)
@@ -386,10 +384,10 @@ class CarouselWIP extends React.PureComponent {
   };
 
   _renderLeftGradient = () =>
-    this.visibleSlides.includes(0) || <div className={classes.start} />;
+    this.state.visibleSlides.includes(0) || <div className={classes.start} />;
 
   _renderRightGradient = () =>
-    this.visibleSlides.includes(this.childCount - 1) || (
+    this.state.visibleSlides.includes(this.childCount - 1) || (
       <div className={classes.end} />
     );
 
