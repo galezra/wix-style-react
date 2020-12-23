@@ -13,8 +13,9 @@ export interface TimeTableContentRenderFunctionData {
   draggable: boolean;
 }
 
-export type TimeTableContentRenderFunction =
-  (data: TimeTableContentRenderFunctionData) => React.ReactNode;
+export type TimeTableContentRenderFunction = (
+  data: TimeTableContentRenderFunctionData,
+) => React.ReactNode;
 
 export interface TimeTableItem {
   content: React.ReactNode | TimeTableContentRenderFunction;

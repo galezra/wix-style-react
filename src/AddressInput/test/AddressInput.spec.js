@@ -1,9 +1,19 @@
 import React from 'react';
 import Sinon from 'sinon';
 import { createRendererWithUniDriver, cleanup } from '../../../test/utils/unit';
+import { addressInputItemBuilder } from '../../AddressInputItem';
 
 import AddressInput from '../AddressInput';
 import { addressInputPrivateDriverFactory } from './AddressInput.private.uni.driver';
+
+const mockOption = addressInputItemBuilder({
+  id: '1',
+  displayLabel: 'Hello world!',
+  mainLabel: 'Hello',
+  secondaryLabel: 'world!',
+});
+
+const mockOptions = [mockOption];
 
 describe(AddressInput.displayName, () => {
   const render = createRendererWithUniDriver(addressInputPrivateDriverFactory);
@@ -26,6 +36,16 @@ describe(AddressInput.displayName, () => {
     expect(await driver.getInputValue()).toEqual(initialValue);
   });
 
+  it('should work with controlled value', async () => {
+    const value = 'test';
+    const props = {
+      value,
+    };
+    const { driver } = render(<AddressInput {...props} />);
+
+    expect(await driver.getInputValue()).toEqual(value);
+  });
+
   it('should invoke onChange', async () => {
     const text = 'test';
     const props = {
@@ -43,15 +63,49 @@ describe(AddressInput.displayName, () => {
   });
 
   it('should invoke onSelect', async () => {
-    const option = { id: 0, value: 'First' };
     const props = {
       onSelect: Sinon.spy(),
-      options: [option],
+      options: mockOptions,
     };
     const { driver } = render(<AddressInput {...props} />);
 
     await driver.clickAtOption(0);
 
-    expect(props.onSelect.calledWith(option)).toEqual(true);
+    expect(props.onSelect.calledWith(mockOption)).toEqual(true);
+    expect(await driver.getInputValue()).toEqual(mockOption.label);
+  });
+
+  describe('Dropdown', () => {
+    it('should be empty when input is empty', async () => {
+      const { driver } = render(<AddressInput />);
+      expect(await driver.options()).toEqual([]);
+    });
+
+    it('should show options when options are passed', async () => {
+      const { driver } = render(
+        <AddressInput value="test" options={mockOptions} />,
+      );
+      expect(await driver.optionContentAt(0)).toBe('Helloworld!');
+    });
+
+    it('should show loader when loading', async () => {
+      const { driver } = render(
+        <AddressInput value="test" options={mockOptions} status="loading" />,
+      );
+      await driver.clickInput();
+      expect(await driver.isDropdownLoaderShown()).toBe(true);
+    });
+  });
+
+  describe('Input loading indicator', () => {
+    it('is shown when status is `loading`', async () => {
+      const { driver } = render(<AddressInput value="test" status="loading" />);
+      expect(await driver.isLoadingIndicatorShown()).toBe(true);
+    });
+    it('is hidden when dropdown is opened', async () => {
+      const { driver } = render(<AddressInput value="test" status="loading" />);
+      await driver.clickInput();
+      expect(await driver.isLoadingIndicatorShown()).toBe(false);
+    });
   });
 });

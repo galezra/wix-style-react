@@ -13,4 +13,4 @@ export interface TimelineProps {
   items: TimelineItem[];
 }
 
-export default class Timeline extends React.PureComponent<TimelineProps>{}
+export default class Timeline extends React.PureComponent<TimelineProps> {}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SidebarBackButton from "../SidebarBackButton";
+import SidebarBackButton from '../SidebarBackButton';
 
 export interface SidebarProps {
   classNames?: SidebarClassNames;
@@ -7,15 +7,6 @@ export interface SidebarProps {
   isHidden?: boolean;
   skin?: SidebarSkin;
   selectedKey?: string;
-}
-
-export default class Sidebar extends React.Component<SidebarProps> {
-  static Item: typeof SidebarItem;
-  static PersistentHeader: typeof SidebarPersistentHeader;
-  static PersistentFooter: typeof SidebarPersistentFooter;
-  static BackButton: typeof SidebarBackButton;
-
-  setSelectedKey: (setSelectedKey: string) => void;
 }
 
 export type SidebarSkin = 'dark' | 'light';
@@ -64,4 +55,13 @@ export class SidebarItemContextConsumer extends React.Component<
 > {}
 interface SidebarItemContextConsumerProps {
   children(renderProps: { selected: () => boolean }): React.ReactNode;
+}
+
+export default class Sidebar extends React.Component<SidebarProps> {
+  static Item: typeof SidebarItem;
+  static PersistentHeader: typeof SidebarPersistentHeader;
+  static PersistentFooter: typeof SidebarPersistentFooter;
+  static BackButton: typeof SidebarBackButton;
+
+  setSelectedKey: (setSelectedKey: string) => void;
 }

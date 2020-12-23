@@ -8,8 +8,7 @@ export type SocialButtonIcons =
   | 'youtube'
   | 'linkedin';
 
-
-export interface SocialButtonProps  {
+export interface SocialButtonProps {
   text?: React.ReactNode;
   icon?: SocialButtonIcons;
   dataHook?: string;
@@ -19,7 +18,4 @@ export interface SocialButtonProps  {
 
 declare const SocialButton: React.SFC<SocialButtonProps>;
 
-
 export default SocialButton;
-
-

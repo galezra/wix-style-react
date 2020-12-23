@@ -131,6 +131,7 @@ SectionHelper.propTypes = {
 SectionHelper.defaultProps = {
   showCloseButton: true,
   appearance: 'warning',
+  fullWidth: false,
 };
 
 export default SectionHelper;

@@ -7,7 +7,9 @@ export interface TestimonialListProps {
   testimonials?: TestimonialType[];
 }
 
-export default class TestimonialList extends React.Component<TestimonialListProps>{}
+export default class TestimonialList extends React.Component<
+  TestimonialListProps
+> {}
 
 export type TestimonialType = {
   avatar: React.ReactNode;

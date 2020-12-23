@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface EndorseContentLayoutProps {
   head?: React.ReactNode;
   content?: React.ReactNode;

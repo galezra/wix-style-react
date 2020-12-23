@@ -9,16 +9,17 @@ export interface AddressInputProps {
   className?: string;
   clearButton?: boolean;
   initialValue?: string;
-  onSelect?: (value: DropdownLayoutValueOption) => void;
-  debounceDuration?: number;
+  value?: string;
+  disabled?: boolean;
+  onSelect?: (option: DropdownLayoutValueOption) => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   options?: DropdownLayoutOption[];
   onClear?: () => void;
   status?: 'loading' | 'error' | 'warning';
   roundInput?: boolean;
-  optionsLayout?: 'single-line' | 'double-line';
-  showOptionsIcons?: boolean;
   size?: 'small' | 'medium' | 'large';
+  placeholder?: string;
+  noResultsText?: React.ReactNode;
 }
 
 export default class AddressInput extends React.PureComponent<

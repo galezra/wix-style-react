@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { classes } from './Input.st.css';
+import { InputContext } from './InputContext';
+import { SIZES } from './constants';
+import { STATUS } from '../StatusIndicator/constants.js';
 
 import Ticker from './Ticker';
 import IconAffix from './IconAffix';
@@ -7,11 +11,6 @@ import Affix from './Affix';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
 import deprecationLog from '../utils/deprecationLog';
-
-import { classes } from './Input.st.css';
-import { InputContext } from './InputContext';
-import { SIZES } from './constants';
-import { STATUS } from '../StatusIndicator/constants.js';
 
 const clearButtonSizeMap = {
   [SIZES.small]: 'small',
@@ -29,10 +28,6 @@ class Input extends Component {
   static StatusWarning = STATUS.WARNING;
   static StatusLoading = STATUS.LOADING;
 
-  state = {
-    focus: false,
-  };
-
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -40,17 +35,22 @@ class Input extends Component {
     if (props.size === 'normal') {
       deprecationLog('<Input/> - change prop size="normal" to size="medium"');
     }
+
+    this.state = {
+      focus: false,
+    };
   }
 
   componentDidMount() {
     this._isMounted = true;
     const { autoFocus, value } = this.props;
 
-    if (autoFocus) {
-      this._onFocus();
-      // Multiply by 2 to ensure the cursor always ends up at the end;
-      // Opera sometimes sees a carriage return as 2 characters.
-      value && this.input.setSelectionRange(value.length * 2, value.length * 2);
+    /*
+     * autoFocus doesn't automatically selects text like focus do.
+     * Therefore we set the selection range, but in order to support prior implementation we set the start position as the end in order to place the cursor there.
+     */
+    if (autoFocus && !!value) {
+      this.input.setSelectionRange(value.length, value.length);
     }
   }
 
@@ -58,7 +58,7 @@ class Input extends Component {
     this._isMounted = false;
   }
 
-  onCompositionChange = isComposing => {
+  _onCompositionChange = isComposing => {
     if (this.props.onCompositionChange) {
       this.props.onCompositionChange(isComposing);
     }
@@ -67,19 +67,171 @@ class Input extends Component {
   };
 
   get _isClearFeatureEnabled() {
-    return !!this.props.onClear || !!this.props.clearButton;
+    const { onClear, clearButton } = this.props;
+
+    return !!onClear || !!clearButton;
   }
 
   get _isControlled() {
-    return this.props.value !== undefined;
+    const { value } = this.props;
+
+    return value !== undefined;
   }
 
-  extractRef = ref => {
+  _extractRef = ref => {
     const { inputRef } = this.props;
+
     this.input = ref;
     if (inputRef) {
       inputRef(ref);
     }
+  };
+
+  _handleSuffixOnClear = event => {
+    this.focus();
+    this.clear(event);
+  };
+
+  _onFocus = event => {
+    const { onFocus } = this.props;
+    this.setState({ focus: true });
+
+    onFocus && onFocus(event);
+
+    if (this.props.autoSelect) {
+      // Set timeout is needed here since onFocus is called before react
+      // gets the reference for the input (specifically when autoFocus
+      // is on. So setTimeout ensures we have the ref.input needed in select)
+      setTimeout(() => {
+        /**
+          here we trying to cover edge case with chrome forms autofill,
+          after user will trigger chrome form autofill, onFocus will be called for each input,
+          each input will cause this.select, select may(mostly all time) cause new onFocus,
+          which will cause new this.select, ..., we have recursion which will all time randomly cause
+          inputs to become focused.
+          To prevent this, we check, that current input node is equal to focused node.
+        */
+        if (document && document.activeElement === this.input) {
+          this.select();
+        }
+      }, 0);
+    }
+  };
+
+  _onBlur = event => {
+    this.setState({ focus: false });
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  };
+
+  _onClick = event => {
+    this.props.onInputClicked && this.props.onInputClicked(event);
+  };
+
+  _onKeyDown = event => {
+    if (this.isComposing) {
+      return;
+    }
+
+    const { onKeyDown, onEnterPressed, onEscapePressed } = this.props;
+
+    // On key event
+    onKeyDown && onKeyDown(event);
+
+    // Enter
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      onEnterPressed && onEnterPressed(event);
+    }
+
+    // Escape
+    if (event.key === 'Escape' || event.keyCode === 27) {
+      onEscapePressed && onEscapePressed(event);
+    }
+  };
+
+  _isValidInput = value => {
+    const { type } = this.props;
+
+    if (type === 'number') {
+      /*
+       * Limit our number input to contain only:
+       * - \d - digits
+       * - .  - a dot
+       * - ,  - a comma
+       * - \- - a hyphen minus
+       * - +  - a plus sign
+       */
+      return /^[\d.,\-+]*$/.test(value);
+    }
+
+    return true;
+  };
+
+  _onChange = event => {
+    const { onChange } = this.props;
+
+    if (this._isValidInput(event.target.value)) {
+      onChange && onChange(event);
+    }
+  };
+
+  _onKeyPress = event => {
+    if (!this._isValidInput(event.target.value + event.key)) {
+      event.preventDefault();
+    }
+  };
+
+  _renderInput = props => {
+    const { customInput: CustomInputComponent, ref, ...rest } = props;
+    const inputProps = {
+      ...(CustomInputComponent
+        ? { ref: ref, ...rest, 'data-hook': 'wsr-custom-input' }
+        : { ref, ...rest }),
+    };
+
+    return React.cloneElement(
+      CustomInputComponent ? <CustomInputComponent /> : <input />,
+      inputProps,
+    );
+  };
+
+  /**
+   * Sets focus on the input element
+   * @param {FocusOptions} options
+   */
+  focus = (options = {}) => {
+    this.input && this.input.focus(options);
+  };
+
+  /**
+   * Removes focus on the input element
+   */
+  blur = () => {
+    this.input && this.input.blur();
+  };
+
+  /**
+   * Selects all text in the input element
+   */
+  select = () => {
+    this.input && this.input.select();
+  };
+
+  /**
+   * Clears the input.
+   * Fires onClear with the given event triggered on the clear button
+   *
+   * @param event delegated to the onClear call
+   */
+  clear = event => {
+    const { onClear } = this.props;
+
+    if (!this._isControlled) {
+      this.input.value = '';
+    }
+
+    onClear && onClear(event);
   };
 
   render(props = {}) {
@@ -91,8 +243,6 @@ class Input extends Component {
       menuArrow,
       defaultValue,
       tabIndex,
-      clearButton,
-      onClear,
       autoFocus,
       onKeyUp,
       onPaste,
@@ -117,11 +267,12 @@ class Input extends Component {
       pattern,
       size,
     } = this.props;
-    const onIconClicked = e => {
+
+    const onIconClicked = event => {
       if (!disabled) {
         this.input && this.input.focus();
         this._isMounted && this._onFocus();
-        this._onClick(e);
+        this._onClick(event);
       }
     };
 
@@ -131,6 +282,7 @@ class Input extends Component {
 
     const showSuffix =
       !hideStatusSuffix && Object.values(STATUS).includes(status);
+
     const visibleSuffixCount = getVisibleSuffixCount({
       status: showSuffix,
       statusMessage,
@@ -140,6 +292,7 @@ class Input extends Component {
       suffix,
     });
 
+    // Aria Attributes
     const ariaAttribute = {};
     Object.keys(this.props)
       .filter(key => key.startsWith('aria'))
@@ -159,7 +312,7 @@ class Input extends Component {
       step,
       'data-hook': 'wsr-input',
       style: { textOverflow },
-      ref: this.extractRef,
+      ref: this._extractRef,
       className: classes.input,
       id,
       name,
@@ -182,8 +335,8 @@ class Input extends Component {
       type,
       required,
       autoComplete: autocomplete,
-      onCompositionStart: () => this.onCompositionChange(true),
-      onCompositionEnd: () => this.onCompositionChange(false),
+      onCompositionStart: () => this._onCompositionChange(true),
+      onCompositionEnd: () => this._onCompositionChange(false),
       customInput,
       pattern,
       ...ariaAttribute,
@@ -192,12 +345,17 @@ class Input extends Component {
 
     return (
       <div className={classes.wrapper}>
+        {/* Prefix */}
         {prefix && (
           <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
             {prefix}
           </InputContext.Provider>
         )}
+
+        {/* Input Element */}
         {inputElement}
+
+        {/* Suffix */}
         <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
           {visibleSuffixCount > 0 && (
             <InputSuffix
@@ -206,7 +364,7 @@ class Input extends Component {
               disabled={disabled}
               onIconClicked={onIconClicked}
               isClearButtonVisible={isClearButtonVisible}
-              onClear={this.handleSuffixOnClear}
+              onClear={this._handleSuffixOnClear}
               clearButtonSize={clearButtonSizeMap[size]}
               menuArrow={menuArrow}
               suffix={suffix}
@@ -217,152 +375,6 @@ class Input extends Component {
       </div>
     );
   }
-
-  handleSuffixOnClear = e => {
-    this.focus();
-    this.clear(e);
-  };
-
-  focus = (options = {}) => {
-    this._onFocus();
-    this.input && this.input.focus(options);
-  };
-
-  blur = () => {
-    this.input && this.input.blur();
-  };
-
-  select = () => {
-    this.input && this.input.select();
-  };
-
-  _onFocus = e => {
-    this.setState({ focus: true });
-    this.props.onFocus && this.props.onFocus(e);
-
-    if (this.props.autoSelect) {
-      // Set timeout is needed here since onFocus is called before react
-      // gets the reference for the input (specifically when autoFocus
-      // is on. So setTimeout ensures we have the ref.input needed in select)
-      setTimeout(() => {
-        /**
-          here we trying to cover edge case with chrome forms autofill,
-          after user will trigger chrome form autofill, onFocus will be called for each input,
-          each input will cause this.select, select may(mostly all time) cause new onFocus,
-          which will cause new this.select, ..., we have recursion which will all time randomly cause
-          inputs to become focused.
-          To prevent this, we check, that current input node is equal to focused node.
-        */
-        if (document && document.activeElement === this.input) {
-          this.select();
-        }
-      }, 0);
-    }
-  };
-
-  _onBlur = e => {
-    this.setState({ focus: false });
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-  };
-
-  _onClick = e => {
-    this.props.onInputClicked && this.props.onInputClicked(e);
-  };
-
-  _onKeyDown = e => {
-    if (this.isComposing) {
-      return;
-    }
-
-    const { onKeyDown, onEnterPressed, onEscapePressed } = this.props;
-
-    // On key event
-    onKeyDown && onKeyDown(e);
-
-    // Enter
-    if (e.key === 'Enter' || e.keyCode === 13) {
-      onEnterPressed && onEnterPressed(e);
-    }
-
-    // Escape
-    if (e.key === 'Escape' || e.keyCode === 27) {
-      onEscapePressed && onEscapePressed(e);
-    }
-  };
-
-  _isInvalidNumber = value =>
-    this.props.type === 'number' && !/^[\d.,\-+]*$/.test(value);
-
-  _onChange = e => {
-    if (this._isInvalidNumber(e.target.value)) {
-      return;
-    }
-    this.props.onChange && this.props.onChange(e);
-  };
-
-  _onKeyPress = e => {
-    if (this._isInvalidNumber(e.key)) {
-      e.preventDefault();
-    }
-  };
-
-  /**
-   * Clears the input.
-   * Fires onClear with the given event triggered on the clear button
-   *
-   * @param event delegated to the onClear call
-   */
-  clear = event => {
-    const { onClear } = this.props;
-
-    if (!this._isControlled) {
-      this.input.value = '';
-    }
-
-    onClear && onClear(event);
-  };
-
-  _triggerOnChangeHandlerOnClearEvent = event => {
-    if (!event) {
-      /* We cannot dispatch a proper new event,
-       * using this.input.dispatchEvent(new Event('change'))),
-       * because react listens only to SyntheticEvents.
-       * There is this react-trigger-changes library which is a hack for testing only (https://github.com/vitalyq/react-trigger-change).
-       * The solution of creating a new pseudo event object, works for passing along tha target.value, but e.preventDefault() and e.stopPropagation() won't work.
-       */
-      event = new Event('change', { bubbles: true });
-      Object.defineProperty(event, 'target', {
-        writable: true,
-        value: this.input,
-      });
-    }
-    /* FIXME: The event (e) could be any event type, and even it's target may not be the input.
-     * So it would be better to do e.target = this.input.
-     * We don't use `clear` in WSR except in InputWithTags which does not pass an event, so it's ok.
-     * But if some consumer is using <Input/> directly, then this might be a breaking change.
-     */
-    Object.defineProperty(event, 'target', {
-      writable: false,
-      value: { ...event.target, value: '' },
-    });
-    this._onChange(event);
-  };
-
-  _renderInput = props => {
-    const { customInput: CustomInputComponent, ref, ...rest } = props;
-    const inputProps = {
-      ...(CustomInputComponent
-        ? { ref: ref, ...rest, 'data-hook': 'wsr-custom-input' }
-        : { ref, ...rest }),
-    };
-
-    return React.cloneElement(
-      CustomInputComponent ? <CustomInputComponent /> : <input />,
-      inputProps,
-    );
-  };
 }
 
 Input.displayName = 'Input';
@@ -392,7 +404,10 @@ const borderRadiusValidator = (props, propName) => {
 };
 
 Input.propTypes = {
+  /** used to associate a control with the regions that it controls. */
   ariaControls: PropTypes.string,
+
+  /** used to associate a region with its descriptions, similar to aria-controls but instead associating descriptions to the region and description identifiers are separated with a space. */
   ariaDescribedby: PropTypes.string,
 
   /** Used to define a string that labels the current element in case where a text label is not visible on the screen. */
@@ -425,9 +440,13 @@ Input.propTypes = {
   /** When set to true, this input won't display status suffix */
   hideStatusSuffix: PropTypes.bool,
 
+  /** USED FOR TESTING - forces focus state on the input */
   forceFocus: PropTypes.bool,
+
+  /** USED FOR TESTING - forces hover state on the input */
   forceHover: PropTypes.bool,
 
+  /** Applied as id HTML attribute. */
   id: PropTypes.string,
 
   /** Input max length */
@@ -459,6 +478,8 @@ Input.propTypes = {
 
   /** Displays clear button (X) on a non-empty input and calls callback with no arguments */
   onClear: PropTypes.func,
+
+  /** A callback function to be called on compositionstart/compositionend events */
   onCompositionChange: PropTypes.func,
 
   /** Called when user presses -enter- */

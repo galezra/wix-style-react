@@ -2,6 +2,8 @@ import SectionHelper from '..';
 import { storySettings } from './storySettings';
 import {
   api,
+  code as baseCode,
+  columns,
   example as baseExample,
   description,
   divider,
@@ -18,6 +20,7 @@ import React from 'react';
 import allComponents from '../../../stories/utils/allComponents';
 
 const example = config => baseExample({ components: allComponents, ...config });
+const code = config => baseCode({ components: allComponents, ...config });
 
 const titleExamples = [
   { label: 'short text', value: 'Look at this important message!' },
@@ -66,30 +69,106 @@ export default {
   },
 
   sections: [
-    header({
-      component: <div style={{ width: '50%' }}></div>,
-    }),
+    header({}),
 
     tabs([
       tab({
         title: 'Description',
         sections: [
-          description(
-            `Used in pages where you need to explain or mention things about the content or actions.`,
-          ),
+          columns([
+            description({
+              title: 'Description',
+              text:
+                'Section Helper displays a status message that can be shown anywhere in the page. It appears in various styles and can contain an action. Use it when the user needs to see a status message next to another component.',
+            }),
+          ]),
 
           importExample("import { SectionHelper } from 'wix-style-react';"),
 
           divider(),
 
-          title('Examples'),
+          title('Appearance'),
 
-          example({ title: 'Appearance', source: examples.appearance }),
+          example({
+            title: 'Appearance',
+            description:
+              'Section Helper supports 7 appearance types. <br> - Use `standard` for important information or to signify a change in a state. <br> - Use `warning` to help user avoid errors and potentially dangerous / destructive actions.<br> - Use `danger` to let user know about critical issues.<br> - Use `success` to let user know about successfull operation or a state.<br> - Use `premium` to inform about available premium features.<br> - Use `preview` to display content preview.<br> - Use `experimentalDark` to emphasize informational message more in the context of other content .',
+            source: examples.appearance,
+          }),
+
+          title('Structure'),
 
           example({
             title: 'Text Button',
             description: 'Text button can be added as a child item.',
             source: examples.textbutton,
+          }),
+          example({
+            description:
+              'Section Helper consists of a title, content area and an action button.',
+            source: examples.structure,
+          }),
+
+          title('Variations'),
+
+          example({
+            title: 'Child Elements',
+            description:
+              'A default child element of a SectionHelper is a paragraph. It can also contain any other component.',
+            source: examples.children,
+          }),
+
+          example({
+            title: 'Close (optional)',
+            description:
+              'Use close button when helper message is a suggestion only and can be dismissed.',
+            source: examples.close,
+          }),
+
+          example({
+            title: 'Title (optional)',
+            description: 'Use Title to highlight the purpose of the helper.',
+            source: examples.title,
+          }),
+
+          example({
+            title: 'Action (optional)',
+            description:
+              'Section Helper can have a single button that enables the user to act on the message.',
+            source: examples.action,
+          }),
+
+          title('Constraints'),
+
+          example({
+            title: 'Component Width',
+            description:
+              'Section helper inherits parent container width (100%). Height adapts to the content.',
+            source: examples.componentWidth,
+          }),
+
+          example({
+            title: 'Content Width',
+            description:
+              'By default Section Helper content has a set maximum width. Extend it to full width by setting fullWidth to true.',
+            source: examples.contentWidth,
+          }),
+
+          title('Advanced Examples'),
+
+          example({
+            title: 'Usage in a Card',
+            description:
+              'This example showcase section helper used in a card layout.',
+            source: examples.cardExample,
+          }),
+
+          code({
+            title: 'Usage in a Page',
+            compact: true,
+            description:
+              'This example showcase section helper used in a page layout.',
+            source: examples.pageExample,
           }),
         ],
       }),

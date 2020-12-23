@@ -48,6 +48,7 @@
 .root:hiddenBadge {
   position: relative;
   padding-top: 36px;
+  padding-bottom: 36px;
 }
 
 .root:inverted {

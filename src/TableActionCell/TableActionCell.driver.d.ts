@@ -9,8 +9,12 @@ export interface TableActionCellDriver<T> extends BaseDriver {
   getIsPrimaryActionButtonDisabled: () => boolean;
   getVisibleActionsCount: () => number;
   getHiddenActionsCount: () => number;
-  getVisibleActionTooltipDriver: (action: number) => ReturnType<typeof tooltipDriverFactory>;
-  getVisibleActionByDataHookTooltipDriver: (dataHook: string) => ReturnType<typeof tooltipDriverFactory>;
+  getVisibleActionTooltipDriver: (
+    action: number,
+  ) => ReturnType<typeof tooltipDriverFactory>;
+  getVisibleActionByDataHookTooltipDriver: (
+    dataHook: string,
+  ) => ReturnType<typeof tooltipDriverFactory>;
   getHiddenActionsPopoverMenuDriver: () => PopoverMenuUniDriver;
   clickVisibleAction: (actionIndex: number) => void;
   clickVisibleActionByDataHook: (actionDataHook: string) => void;

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Header from "./Header";
-import Footer from "./Footer";
-import Content from "./Content";
-import Divider from "./Divider";
+import Header from './Header';
+import Footer from './Footer';
+import Content from './Content';
+import Divider from './Divider';
 
 export interface SidePanelProps {
   dataHook?: string;

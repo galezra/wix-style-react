@@ -6,4 +6,6 @@ export interface SidebarHeaderProps {
   subtitle?: string;
 }
 
-export default class SidebarHeader extends React.PureComponent<SidebarHeaderProps> {}
+export default class SidebarHeader extends React.PureComponent<
+  SidebarHeaderProps
+> {}

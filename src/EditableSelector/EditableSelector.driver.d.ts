@@ -2,7 +2,7 @@ import { BaseDriver } from 'wix-ui-test-utils/driver-factory';
 import { SelectorDriver } from '../Selector/Selector.driver';
 
 export interface EditableSelectorDriver extends BaseDriver {
-  items: () => Array<SelectorDriver>;
+  items: () => SelectorDriver[];
   exists: () => boolean;
   isEditing: () => boolean;
   isEditingRow: () => boolean;

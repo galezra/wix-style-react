@@ -11,6 +11,7 @@ const Radio = ({
   checked,
   disabled,
   label,
+  id,
   name,
   onChange,
   alignItems,
@@ -32,6 +33,7 @@ const Radio = ({
       label={renderLabel}
       onChange={onChange}
       disabled={disabled}
+      id={id}
       name={name}
     />
   );
@@ -57,6 +59,9 @@ Radio.propTypes = {
 
   /** Unique name of radio */
   name: PropTypes.node,
+
+  /** Unique id of radio */
+  id: PropTypes.string,
 
   /** A callback when radio is selected */
   onChange: PropTypes.func,

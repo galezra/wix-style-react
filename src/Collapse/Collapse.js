@@ -27,6 +27,7 @@ const Collapse = ({ children, open, dataHook }) => {
         show={open}
         height={getElementHeight(wrapperRef.current)}
         children={children}
+        skipMountTransition
       />
     </div>
   );

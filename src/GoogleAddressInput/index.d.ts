@@ -28,9 +28,9 @@ export interface GoogleAddressInputProps
   fallbackToManual?: boolean;
   poweredByGoogle?: boolean;
   footer?: string;
-  types?: Array<any>;
-  filterTypes?: Array<any>;
-  placeDetailsFields?: Array<any>;
+  types?: any[];
+  filterTypes?: any[];
+  placeDetailsFields?: any[];
   footerOptions?: object;
   handler?: 'geocode' | 'places';
   Client?: GoogleMapsClient;

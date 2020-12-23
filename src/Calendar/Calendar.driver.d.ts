@@ -5,7 +5,7 @@ export interface CalendarDriver extends BaseDriver {
   close: () => any;
   isVisible: () => boolean;
   getCurrentMonthWithYear: () => string | null;
-  getMonthAndYear: () => Array<string | null>;
+  getMonthAndYear: () => (string | null)[];
   getNthWeekDayName: (n: number) => HTMLElement;
   clickOnNthDay: (n: number) => any;
   clickDay: (date: Date) => any;

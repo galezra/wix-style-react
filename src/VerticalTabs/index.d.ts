@@ -8,12 +8,6 @@ export interface VerticalTabsProps {
   dataHook?: string;
 }
 
-export default class VerticalTabs extends React.Component<VerticalTabsProps> {
-  static Footer: typeof Footer;
-  static TabsGroup: typeof TabsGroup;
-  static TabItem: typeof VerticalTabsItem;
-}
-
 export type VerticalTabsSize = 'small' | 'medium';
 
 declare const Footer: React.SFC;
@@ -21,4 +15,10 @@ declare const Footer: React.SFC;
 declare const TabsGroup: React.SFC<TabsGroup>;
 export interface TabsGroup {
   title?: string;
+}
+
+export default class VerticalTabs extends React.Component<VerticalTabsProps> {
+  static Footer: typeof Footer;
+  static TabsGroup: typeof TabsGroup;
+  static TabItem: typeof VerticalTabsItem;
 }

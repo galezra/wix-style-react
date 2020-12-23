@@ -14,6 +14,8 @@ export interface CheckboxProps {
   size?: CheckboxLabelSize;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   className?: string;
+  selectionAreaSkin?: CheckboxSelectionAreaSkin;
+  selectionAreaPadding?: React.CSSProperties['padding'];
 }
 
 export default class Checkbox extends React.PureComponent<CheckboxProps> {}
@@ -21,3 +23,4 @@ export default class Checkbox extends React.PureComponent<CheckboxProps> {}
 export type CheckboxLabelSize = 'medium' | 'small';
 export type CheckboxSelectionArea = 'none' | 'hover' | 'always';
 export type CheckboxVAlign = 'center' | 'top';
+export type CheckboxSelectionAreaSkin = 'filled' | 'outlined';

@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 
 import InputWithOptions from '../InputWithOptions';
 import SearchIcon from 'wix-ui-icons-common/Search';
-import debounce from 'lodash/debounce';
 import Input from '../Input';
+import Box from '../Box';
+import Loader from '../Loader';
+import Text from '../Text';
+import { dataHooks } from './constants';
 
 /** AddressInput */
 class AddressInput extends React.PureComponent {
@@ -12,31 +15,27 @@ class AddressInput extends React.PureComponent {
     super(props);
     this.state = {
       inputValue: props.initialValue || '',
+      isDropdownOpen: false,
     };
   }
 
-  _onChange = value => {
+  _onChange = event => {
     const { onChange } = this.props;
-    onChange && onChange(value);
-  };
 
-  _debouncedOnChange = debounce(this._onChange, this.props.debounceDuration, {
-    leading: true,
-  });
-
-  _onInputChange = ({ target: { value } }) => {
     this.setState({
-      inputValue: value,
+      inputValue: event.target.value,
     });
-    this._debouncedOnChange(value);
+    if (onChange) {
+      onChange(event);
+    }
   };
 
-  _onSelect = value => {
+  _onSelect = option => {
     const { onSelect } = this.props;
     this.setState({
-      inputValue: value.value, // TODO we need to extract `displayLabel` from `value` here once we will implement <AddressInput.Option/>
+      inputValue: option.label,
     });
-    onSelect && onSelect(value);
+    onSelect && onSelect(option);
   };
 
   _onClear = () => {
@@ -51,30 +50,108 @@ class AddressInput extends React.PureComponent {
     );
   };
 
-  render() {
+  _getInputValue = () => {
+    const { value: controlledValue } = this.props;
     const { inputValue } = this.state;
+
+    const value = controlledValue !== undefined ? controlledValue : inputValue;
+    return value;
+  };
+
+  _getIsLoading = () => {
+    const { status } = this.props;
+    return status === 'loading';
+  };
+
+  _setDropdownOpen = () => this.setState({ isDropdownOpen: true });
+
+  _setDropdownClosed = () => this.setState({ isDropdownOpen: false });
+
+  _renderLoadingOption = () => {
+    return {
+      id: '',
+      disabled: true,
+      value: () => (
+        <Box flex={1} align="center" padding="3px">
+          <Loader size="tiny" dataHook={dataHooks.loader} />
+        </Box>
+      ),
+    };
+  };
+
+  _renderNoResultsOption = () => {
+    const { noResultsText } = this.props;
+    const isString = typeof noResultsText === 'string';
+    const value = isString ? (
+      <Text light secondary dataHook={dataHooks.noResultsText}>
+        {noResultsText}
+      </Text>
+    ) : (
+      noResultsText
+    );
+
+    return {
+      id: '',
+      disabled: true,
+      overrideOptionStyle: !isString,
+      value,
+    };
+  };
+
+  _renderOptions = () => {
+    const { options, noResultsText } = this.props;
+    const value = this._getInputValue();
+    const isLoading = this._getIsLoading();
+    const noResultsFound = !options || options.length === 0;
+
+    if (isLoading) {
+      return [this._renderLoadingOption()];
+    }
+    /** show `noResultsText` option
+     * if the input is not empty and there are no results */
+    if (value && noResultsFound && noResultsText) {
+      return [this._renderNoResultsOption()];
+    }
+
+    return options;
+  };
+
+  render() {
     const {
       dataHook,
       className,
       size,
       roundInput,
       clearButton,
-      options,
-      status,
+      placeholder,
+      disabled,
     } = this.props;
+    const { isDropdownOpen } = this.state;
+    const value = this._getInputValue();
+
+    const isLoading = this._getIsLoading();
+
+    /** If addresses are loading:
+     * when dropdown is closed - loader is shown on input,
+     * otherwise, loader is show in dropdown loading option.
+     */
+    const showLoadingStatusIndicator = isLoading && !isDropdownOpen;
 
     return (
       <InputWithOptions
         dataHook={dataHook}
         className={className}
         clearButton={clearButton}
-        onChange={this._onInputChange}
+        onChange={this._onChange}
         size={size}
-        options={options}
+        options={this._renderOptions()}
         onSelect={this._onSelect}
-        value={inputValue}
-        onClear={this._onClear}
-        status={status}
+        value={value}
+        disabled={disabled}
+        /** <Input /> always shows clear button when `onClear` prop is passed,
+        so we only pass handler when clearButton is `true` */
+        onClear={clearButton ? this._onClear : undefined}
+        status={showLoadingStatusIndicator ? 'loading' : undefined}
         menuArrow={false}
         /* TODO: add highlight after this prop is fixed */
         prefix={
@@ -83,6 +160,9 @@ class AddressInput extends React.PureComponent {
           </Input.IconAffix>
         }
         roundInput={roundInput}
+        placeholder={placeholder}
+        onOptionsShow={this._setDropdownOpen}
+        onOptionsHide={this._setDropdownClosed}
       />
     );
   }
@@ -103,13 +183,16 @@ AddressInput.propTypes = {
   /** The initial input value */
   initialValue: PropTypes.string,
 
+  /** Controlled mode - value to display */
+  value: PropTypes.string,
+
+  /** When set to true this component is disabled */
+  disabled: PropTypes.bool,
+
   /** Handler for address selection changes */
   onSelect: PropTypes.func,
 
-  /** The debounce wait time for input changes. 0 to cancel debounce (useful when you already have a debounced api call) */
-  debounceDuration: PropTypes.number,
-
-  /** Debounced handler for input changes */
+  /** Handler for input changes */
   onChange: PropTypes.func,
 
   /** The list of options to render. When the option is an {optionProps}, the <AddressInput.Option/> component will be rendered on behalf of the user. */
@@ -124,14 +207,14 @@ AddressInput.propTypes = {
   /** The shape of the component input */
   roundInput: PropTypes.bool,
 
-  /** Determines the option layout to display */
-  optionsLayout: PropTypes.oneOf(['single-line', 'double-line']), // TODO test visually once we will implement <AddressInput.Option/>
-
-  /** Shows the default location icon <Icons.Location /> next to all options. Options with a `prefix` prop will show the provided node as an icon instead. False will hide the icons to all options. */
-  showOptionsIcons: PropTypes.bool, // TODO test visually once we will implement <AddressInput.Option/>
-
   /** Specifies the size of the input */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+
+  /** Placeholder to display */
+  placeholder: PropTypes.string,
+
+  /** Text to show in dropdown when no results found */
+  noResultsText: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
 
 AddressInput.defaultProps = {
@@ -140,6 +223,7 @@ AddressInput.defaultProps = {
   roundInput: true,
   optionsLayout: 'single-line',
   showOptionsIcons: true,
+  size: 'medium',
 };
 
 export default AddressInput;

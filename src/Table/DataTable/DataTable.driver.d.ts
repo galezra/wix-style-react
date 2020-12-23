@@ -22,26 +22,14 @@ export interface DataTableDriver extends BaseDriver {
   isDisplayingHeaderOnly: () => boolean;
   isDisplayingHeader: () => boolean;
   hasChildWithId: (id: string) => boolean;
-  clickRow: (
-    index: number,
-    eventData?: SyntheticEventData,
-  ) => void;
-  mouseEnterRow: (
-    index: number,
-    eventData?: SyntheticEventData,
-  ) => void;
-  mouseLeaveRow: (
-    index: number,
-    eventData?: SyntheticEventData,
-  ) => void;
+  clickRow: (index: number, eventData?: SyntheticEventData) => void;
+  mouseEnterRow: (index: number, eventData?: SyntheticEventData) => void;
+  mouseLeaveRow: (index: number, eventData?: SyntheticEventData) => void;
   hasRowDetails: (index: number) => number;
   getRowDetailsText: (index: number) => string;
   hasSortableTitle: (index: number) => boolean;
   hasInfoIcon: (index: number) => boolean;
   hasSortDescending: (index: number) => boolean;
-  clickSort: (
-    index: number,
-    eventData?: SyntheticEventData,
-  ) => void;
+  clickSort: (index: number, eventData?: SyntheticEventData) => void;
   getRowDetails: (index: number) => HTMLTableDataCellElement;
 }

@@ -25,7 +25,7 @@ export type SelectorListImageShape = 'rectangular' | 'circle';
 
 export type SelectorListContentProps = {
   dataHook?: string;
-  items: Array<SelectorListItem>;
+  items: SelectorListItem[];
   onToggle?: (item: SelectorListItem) => void;
   emptyState?: React.ReactNode;
   renderNoResults?: (searchValue: string) => React.ReactNode;

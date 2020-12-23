@@ -8,12 +8,6 @@ export interface ComposerHeaderProps {
   dropShadow?: boolean;
 }
 
-export default class ComposerHeader extends React.Component<ComposerHeaderProps> {
-  static SaveStatus: typeof ComposerHeaderSaveStatus;
-  static Actions: typeof ComposerHeaderActions;
-  static MainActions: typeof ComposerHeaderMainActions;
-}
-
 declare const ComposerHeaderSaveStatus: React.SFC<ComposerHeaderSaveStatusProps>;
 interface ComposerHeaderSaveStatusProps {
   saveStatusValue: string;
@@ -30,4 +24,12 @@ interface ComposerHeaderActionsProps {
 declare const ComposerHeaderMainActions: React.SFC<ComposerHeaderMainActionsProps>;
 interface ComposerHeaderMainActionsProps {
   dataHook?: string;
+}
+
+export default class ComposerHeader extends React.Component<
+  ComposerHeaderProps
+> {
+  static SaveStatus: typeof ComposerHeaderSaveStatus;
+  static Actions: typeof ComposerHeaderActions;
+  static MainActions: typeof ComposerHeaderMainActions;
 }

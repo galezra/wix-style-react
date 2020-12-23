@@ -20,9 +20,10 @@ import {
 import * as examples from './examples';
 import allComponents from '../../../stories/utils/allComponents';
 
-const example = config => baseExample({ components: allComponents, ...config });
+const example = (config) =>
+  baseExample({ components: allComponents, ...config });
 
-const code = config =>
+const code = (config) =>
   baseCode({
     components: allComponents,
     ...config,
@@ -54,7 +55,7 @@ export default {
   component: Checkbox,
   componentPath: '..',
 
-  componentProps: setState => ({
+  componentProps: (setState) => ({
     children: labelExamples[0].value,
     onChange: ({ target: { checked } }) => setState({ checked }),
     errorMessage: '',
@@ -111,7 +112,7 @@ export default {
           example({
             title: 'Selection Area',
             text:
-              'A selection area makes is easier to select the checkbox, with a background  as an indicator to the click area',
+              'A selection area makes is easier to select the checkbox, with a background or a border as an indicator to the click area',
             source: examples.selectionArea,
           }),
 

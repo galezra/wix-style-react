@@ -6,7 +6,7 @@ export interface CalendarUniDriver extends BaseUniDriver {
   close: () => Promise<any>;
   isVisible: () => Promise<boolean>;
   getCurrentMonthWithYear: () => Promise<string>;
-  getMonthAndYear: () => Promise<Array<string>>;
+  getMonthAndYear: () => Promise<string[]>;
   getNthWeekDayName: (n: number) => UniDriver;
   clickOnNthDay: (n: number) => Promise<any>;
   clickDay: (date: Date) => Promise<any>;

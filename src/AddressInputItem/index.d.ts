@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DropdownLayoutValueOption } from '../DropdownLayout';
 
 export interface AddressInputItemProps {
   dataHook?: string;
@@ -28,13 +29,8 @@ export const addressInputItemBuilder: (data: {
   optionLayout?: AddressInputItemLayout;
   displayLabel?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
-}) => {
-  id: string | number;
-  disabled: boolean | undefined;
-  overrideOptionStyle: true;
-  label?: string;
-  value: (props?: Partial<AddressInputItemProps>) => React.ReactNode;
-};
+}) => DropdownLayoutValueOption;
 
-export default class AddressInputItem extends React.PureComponent<AddressInputItemProps>{}
-
+export default class AddressInputItem extends React.PureComponent<
+  AddressInputItemProps
+> {}

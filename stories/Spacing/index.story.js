@@ -25,7 +25,7 @@ export default {
           {Object.entries(stVars)
             .filter(([key]) => key.startsWith('SP'))
             .map(([name]) => (
-              <Row>
+              <Row key={name}>
                 <Col span={5}>
                   <Text size="medium">{name}</Text>
                 </Col>

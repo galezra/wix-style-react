@@ -9,6 +9,8 @@ export interface FacesRatingBarProps {
   onChange?: (rating: number) => void;
 }
 
-export default class FacesRatingBar extends React.PureComponent<FacesRatingBarProps>{}
+export default class FacesRatingBar extends React.PureComponent<
+  FacesRatingBarProps
+> {}
 
 export type facesRatingBarValues = 0 | 1 | 2 | 3 | 4 | 5;

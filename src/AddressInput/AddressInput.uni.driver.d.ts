@@ -5,6 +5,8 @@ export interface AddressInputUniDriver extends BaseUniDriver {
   enterText: (value: string) => Promise<void>;
   clearText: () => Promise<void>;
   isDisabled: () => Promise<boolean>;
+  isLoading: () => Promise<boolean>;
   clickAtOption: (index: number) => Promise<void>;
   clickAtOptionWithValue: (value: string) => Promise<void>;
+  clickInput: () => Promise<void>;
 }

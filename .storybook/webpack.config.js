@@ -1,6 +1,7 @@
 const merge = require('lodash/merge');
 const path = require('path');
 const { decorateStorybookConfig } = require('yoshi-flow-library/storybook');
+const StylableWebpackPlugin = require('yoshi-common/build/@stylable/webpack-plugin').default;
 
 const makeTestkitTemplate = platform =>
   `import { <%= component.displayName %>Testkit } from 'wix-style-react/dist/testkit${platform}';`;
@@ -9,8 +10,14 @@ const testkitsWarning = `
 To learn how to initialize and use testkits, see <a href="/?path=/story/introduction-testing--testing" target="_blank">Testing guide</a>
 `;
 
+const patchStylablePlugin = (config) => {
+  config.plugins.pop() // Remove the yoshi built-in stylable plugin
+  config.plugins.push(new StylableWebpackPlugin({diagnosticsMode: 'strict'})); // break the build in case of stylable warnings
+}
+
 module.exports = ({ config }) => {
   const newConfig = decorateStorybookConfig(config);
+  patchStylablePlugin(newConfig);
 
   return merge(newConfig, {
     context: path.resolve(__dirname, '..', 'src'),

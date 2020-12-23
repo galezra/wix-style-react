@@ -7,7 +7,7 @@ export type TagListSize = 'small' | 'medium' | 'large';
 
 export type TagListProps = {
   dataHook?: string;
-  tags: Array<OmitPolyfill<TagProps, 'size' | 'onRemove'>>;
+  tags: OmitPolyfill<TagProps, 'size' | 'onRemove'>[];
   size?: TagListSize;
   onTagRemove?: (id: string) => void;
   initiallyExpanded?: boolean;

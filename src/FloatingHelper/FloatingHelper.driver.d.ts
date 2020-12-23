@@ -1,6 +1,5 @@
-import { ClosablePopoverDriver }  from './ClosablePopover/ClosablePopover.driver';
-import { FloatingHelperContentDriver }  from './FloatingHelperContent/FloatingHelperContent.driver';
-
+import { ClosablePopoverDriver } from './ClosablePopover/ClosablePopover.driver';
+import { FloatingHelperContentDriver } from './FloatingHelperContent/FloatingHelperContent.driver';
 
 export interface FloatingHelperDriver extends ClosablePopoverDriver {
   getHelperContentDriver: () => FloatingHelperContentDriver;

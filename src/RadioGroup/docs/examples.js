@@ -13,8 +13,29 @@ export const disabledRadios = `
   </RadioGroup>
 `;
 
-export const selectionArea = `
+export const selectionAreaAlwaysFilled = `
   <RadioGroup selectionArea='always' value={1}>
+    <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+    <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+  </RadioGroup>
+`;
+
+export const selectionAreaHoverFilled = `
+  <RadioGroup selectionArea='hover' value={1}>
+    <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+    <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+  </RadioGroup>
+`;
+
+export const selectionAreaAlwaysOutlined = `
+  <RadioGroup selectionArea='always' selectionAreaSkin='outlined' value={1}>
+    <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+    <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+  </RadioGroup>
+`;
+
+export const selectionAreaHoverOutlined = `
+  <RadioGroup selectionArea='hover' selectionAreaSkin='outlined' value={1}>
     <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
     <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
   </RadioGroup>

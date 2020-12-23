@@ -17,7 +17,7 @@ import {
 import * as examples from './examples';
 import allComponents from '../../../stories/utils/allComponents';
 
-const code = config =>
+const code = (config) =>
   baseCode({
     components: allComponents,
     ...config,
@@ -30,7 +30,7 @@ import { Box } from 'wix-style-react';
 const exampleChildren = [
   {
     label: 'One line',
-    value: [1, 2, 3, 4].map(n => (
+    value: [1, 2, 3, 4].map((n) => (
       <RadioGroup.Radio key={n} value={n} children={`Option ${n}`} />
     )),
   },
@@ -89,17 +89,17 @@ export default {
   component: createAutoExampleWrapper(RadioGroup),
   componentPath: '..',
 
-  componentProps: setState => ({
+  componentProps: (setState) => ({
     value: 1,
     hasError: false,
     children: exampleChildren[0].value,
-    onChange: value => setState({ value }),
+    onChange: (value) => setState({ value }),
   }),
 
   exampleProps: {
     disabledRadios: exampleOptions,
     children: exampleChildren,
-    onChange: value => value,
+    onChange: (value) => value,
   },
 
   sections: [
@@ -138,11 +138,23 @@ export default {
           description({
             title: 'Using selectionArea',
             text:
-              'A selection area makes is easier to select a radio option, with a background  as an indicator to the click area',
+              'A selection area makes is easier to select a radio option, with a background or a border as an indicator to the click area',
           }),
 
           code({
-            source: examples.selectionArea,
+            source: examples.selectionAreaAlwaysFilled,
+          }),
+
+          code({
+            source: examples.selectionAreaHoverFilled,
+          }),
+
+          code({
+            source: examples.selectionAreaAlwaysOutlined,
+          }),
+
+          code({
+            source: examples.selectionAreaHoverOutlined,
           }),
 
           code({

@@ -11,6 +11,8 @@ export interface MarketingPageLayoutContentProps {
   actions?: React.ReactNode;
 }
 
-export default class MarketingPageLayoutContent extends React.PureComponent<MarketingPageLayoutContentProps>{}
+export default class MarketingPageLayoutContent extends React.PureComponent<
+  MarketingPageLayoutContentProps
+> {}
 
 export type MarketingPageLayoutContentSize = 'medium' | 'large';

@@ -3,7 +3,7 @@ import * as React from 'react';
 export type ImageFit = 'contain' | 'cover' | 'tile' | 'none';
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  borderRadius? : React.CSSProperties['borderRadius'],
+  borderRadius?: React.CSSProperties['borderRadius'];
   dataHook?: string;
   className?: string;
   fit?: ImageFit;

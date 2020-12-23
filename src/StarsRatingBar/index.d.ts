@@ -10,7 +10,9 @@ export interface StarsRatingBarProps {
   onChange?: (rate: number) => void;
 }
 
-export default class StarsRatingBar extends React.PureComponent<StarsRatingBarProps>{}
+export default class StarsRatingBar extends React.PureComponent<
+  StarsRatingBarProps
+> {}
 
 export type starRatingBarSize = 'tiny' | 'small' | 'medium' | 'large';
 export type starRatingBarValue = 0 | 1 | 2 | 3 | 4 | 5;

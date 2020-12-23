@@ -4,23 +4,42 @@ import { useChannel } from '@storybook/api';
 import { ADDON_ID, ADDON_TITLE, PANEL_ID } from './shared';
 
 function MadeforToggleButton() {
-  const [active, setActive] = useState(true);
+  const [madeforActive, setMadeforActive] = useState(true);
+  const [spacingActive, setSpacingActive] = useState(false);
   const emit = useChannel({});
-  useEffect(() => emit(ADDON_ID + '/change', { active }));
+  useEffect(() => emit(ADDON_ID + '/change', { madeforActive, spacingActive }));
 
   return (
-    <div
-      style={{
-        margin: 'auto 15px',
-        cursor: 'pointer',
-        userSelect: 'none',
-        padding: '3px 8px',
-        backgroundColor: active ? '#4EB7F5' : '#eee',
-        color: active ? '#444' : '#999',
-      }}
-      onClick={() => setActive(!active)}
-    >
-      Madefor
+    <div style={{ display: 'flex' }}>
+      {/* Madefor */}
+      <div
+        style={{
+          margin: 'auto 0',
+          cursor: 'pointer',
+          userSelect: 'none',
+          padding: '3px 8px',
+          backgroundColor: madeforActive ? '#4EB7F5' : '#eee',
+          color: madeforActive ? '#444' : '#999',
+        }}
+        onClick={() => setMadeforActive(!madeforActive)}
+      >
+        Madefor
+      </div>
+
+      {/* Spacing */}
+      <div
+        style={{
+          margin: 'auto 0 auto 15px',
+          cursor: 'pointer',
+          userSelect: 'none',
+          padding: '3px 8px',
+          backgroundColor: spacingActive ? '#4EB7F5' : '#eee',
+          color: spacingActive ? '#444' : '#999',
+        }}
+        onClick={() => setSpacingActive(!spacingActive)}
+      >
+        Spacing
+      </div>
     </div>
   );
 }

@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { FloatingHelperAppearance } from '..'
+import { FloatingHelperAppearance } from '..';
 
-export type FloatingHelperContentActionTheme = 'standard' | 'white' | 'premium' | 'lightPrimary' | 'standardPrimary';
+export type FloatingHelperContentActionTheme =
+  | 'standard'
+  | 'white'
+  | 'premium'
+  | 'lightPrimary'
+  | 'standardPrimary';
 
 export interface FloatingHelperContentProps {
   title?: string;

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { BadgeSkin } from '../Badge';
 
-
 export type BadgeSelectItemSizes = 'small' | 'medium';
 
 export type BadgeSelectItemBuilderFn = (data: {
@@ -60,6 +59,6 @@ export interface BadgeSelectOption {
   size?: BadgeSelectItemSizes;
 }
 
-type BadgeSelectItem = BadgeSelectOption ;
+type BadgeSelectItem = BadgeSelectOption;
 
 export default BadgeSelectItem;

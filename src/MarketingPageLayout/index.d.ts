@@ -12,8 +12,9 @@ export interface MarketingPageLayoutProps {
   footer?: React.ReactNode;
 }
 
-export default class MarketingPageLayout extends React.PureComponent<MarketingPageLayoutProps>{}
-
+export default class MarketingPageLayout extends React.PureComponent<
+  MarketingPageLayoutProps
+> {}
 
 export type MarketingPageLayoutHorizontalSize = 'medium' | 'large';
 export type MarketingPageLayoutVerticalSize = 'medium' | 'large';

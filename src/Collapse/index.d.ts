@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface CollapseProps {
   dataHook?: string;
   children?: React.ReactNode;

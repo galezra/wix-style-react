@@ -5,7 +5,7 @@
 
 :import {
   -st-from: "../foundations/colors.st.css";
-  -st-named: A2, A4, D10, D60;
+  -st-named: G20, G40, D10, D60;
 }
 
 .root {
@@ -23,15 +23,15 @@
 }
 
 .root::progressBar::foreArc {
-    stroke: value(A2);
+    stroke: value(G20);
 }
 
 .root::progressBar:success::foreArc {
-    stroke: value(A4);
+    stroke: value(G40);
 }
 
 .root::progressBar::statusIndicator {
-  color: value(A2);
+  color: value(G20);
 }
 
 .root::progressBar::label, .root::progressBar::progressIndicator {

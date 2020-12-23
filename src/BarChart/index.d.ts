@@ -20,4 +20,7 @@ export interface BarChartState {
   width: number;
 }
 
-export default class BarChart extends React.Component<BarChartProps, BarChartState>  {}
+export default class BarChart extends React.Component<
+  BarChartProps,
+  BarChartState
+> {}

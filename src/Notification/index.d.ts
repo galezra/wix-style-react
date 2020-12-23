@@ -21,12 +21,6 @@ export type NotificationTheme =
 
 export type NotificationType = 'local' | 'global' | 'sticky';
 
-export default class Notification extends React.Component<NotificationProps> {
-  static ActionButton: typeof ActionButton;
-  static TextLabel: typeof TextLabel;
-  static CloseButton: typeof CloseButton;
-}
-
 declare const TextLabel: React.SFC<TextLabelProps>;
 declare const ActionButton: React.SFC<ActionButtonProps>;
 declare const DEFAULT_TIMEOUT: number;
@@ -48,3 +42,9 @@ type ActionButtonProps = ButtonActionButtonProps | TextLinkActionButton;
 type TextLabelProps = EllipsisCommonProps & {
   children: React.ReactNode;
 };
+
+export default class Notification extends React.Component<NotificationProps> {
+  static ActionButton: typeof ActionButton;
+  static TextLabel: typeof TextLabel;
+  static CloseButton: typeof CloseButton;
+}

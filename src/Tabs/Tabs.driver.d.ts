@@ -2,7 +2,7 @@ import { BaseDriver } from 'wix-ui-test-utils/driver-factory';
 import { UniDriver } from 'wix-ui-test-utils/unidriver';
 
 export interface TabsDriver extends BaseDriver {
-  getTitles: () => Array<string>;
+  getTitles: () => string[];
   clickTabAt: (index: number) => void;
   getActiveTabIndex: () => number;
   isDefaultType: () => boolean;
@@ -10,6 +10,6 @@ export interface TabsDriver extends BaseDriver {
   getDataHook: () => string;
   getItemsWidth: () => Set<string>;
   hasDivider: () => boolean;
-  getSideContent: Array<UniDriver | null>;
-  getItemsMaxWidths: () => Array<string>;
+  getSideContent: (UniDriver | null)[];
+  getItemsMaxWidths: () => string[];
 }

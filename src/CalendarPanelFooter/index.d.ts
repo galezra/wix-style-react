@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SelectedDaysType} from '../CalendarPanel';
+import { SelectedDaysType } from '../CalendarPanel';
 
 export interface CalendarPanelFooterProps {
   dataHook?: string;

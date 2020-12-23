@@ -201,3 +201,8 @@ export { default as TrendIndicator } from './TrendIndicator';
 export { default as Radio } from './Radio';
 export { default as CopyClipboard } from './CopyClipboard';
 export { default as CarouselWIP } from './CarouselWIP';
+export {
+  default as WixStyleReactProvider,
+  FEATURES,
+} from './WixStyleReactProvider';
+export { default as AnalyticsSummaryCard } from './AnalyticsSummaryCard';

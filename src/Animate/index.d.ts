@@ -10,4 +10,4 @@ export interface AnimateProps {
   delay?: string | number;
 }
 
-export default class Animate extends React.PureComponent<AnimateProps>{}
+export default class Animate extends React.PureComponent<AnimateProps> {}

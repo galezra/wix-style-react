@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface EditableTitleProps {
   dataHook?: string;
   initialValue?: string;
@@ -8,4 +9,6 @@ export interface EditableTitleProps {
   autoFocus?: boolean;
 }
 
-export default class EditableTitle extends React.Component<EditableTitleProps> {}
+export default class EditableTitle extends React.Component<
+  EditableTitleProps
+> {}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface EmptyStateProps {
   theme?: EmptyStateTheme;
   title?: string | React.ReactNode;

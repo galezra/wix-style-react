@@ -2,20 +2,29 @@ import * as React from 'react';
 
 export interface FunnelChartItem {
   value?: number;
-  label: string
+  label: string;
 }
 
 type percentageDifferenceCbData = {
-  currentIndex: number, difference: string
-}
+  currentIndex: number;
+  difference: string;
+};
 
 export interface FunnelChartProps {
   dataHook?: string;
   className?: string;
   data: FunnelChartItem[];
   hideDifferenceBadge?: boolean;
-  differenceBadgeTooltipContent?: ({currentIndex, difference}: percentageDifferenceCbData) => string,
-  onDifferenceBadgeTooltipShow?: ({currentIndex, difference}: percentageDifferenceCbData) => void,
+  differenceBadgeTooltipContent?: ({
+    currentIndex,
+    difference,
+  }: percentageDifferenceCbData) => string;
+  onDifferenceBadgeTooltipShow?: ({
+    currentIndex,
+    difference,
+  }: percentageDifferenceCbData) => void;
 }
 
-export default class FunnelChart extends React.PureComponent<FunnelChartProps>{}
+export default class FunnelChart extends React.PureComponent<
+  FunnelChartProps
+> {}

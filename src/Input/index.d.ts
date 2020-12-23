@@ -58,23 +58,6 @@ export interface InputProps {
   inputRef?: (input: HTMLInputElement) => void;
 }
 
-export default class Input extends React.Component<InputProps> {
-  static Ticker: typeof Ticker;
-  static Unit: typeof Unit;
-  static IconAffix: typeof IconAffix;
-  static Affix: typeof Affix;
-  static Group: typeof Group;
-  static StatusError: InputStatusError;
-  static StatusLoading: InputStatusLoading;
-  static StatusWarning: InputStatusWarning;
-
-  clear: (event: any) => void;
-  blur: () => void;
-  focus: (options: any) => void;
-  handleSuffixOnClear: (event: any) => void;
-  select: () => void;
-}
-
 export type InputStatus =
   | InputStatusError
   | InputStatusWarning
@@ -110,3 +93,19 @@ interface AffixProps {
 }
 
 declare const Group: React.SFC;
+
+export default class Input extends React.Component<InputProps> {
+  static Ticker: typeof Ticker;
+  static Unit: typeof Unit;
+  static IconAffix: typeof IconAffix;
+  static Affix: typeof Affix;
+  static Group: typeof Group;
+  static StatusError: InputStatusError;
+  static StatusLoading: InputStatusLoading;
+  static StatusWarning: InputStatusWarning;
+
+  clear: (event?: React.ChangeEvent<HTMLInputElement>) => void;
+  blur: () => void;
+  focus: HTMLElement['focus'];
+  select: () => void;
+}

@@ -2,7 +2,7 @@ import { BaseUniDriver } from 'wix-ui-test-utils/base-driver';
 import { SelectorUniDriver } from '../Selector/Selector.uni.driver';
 
 export interface EditableSelectorUniDriver extends BaseUniDriver {
-  items: () => Array<SelectorUniDriver>;
+  items: () => SelectorUniDriver[];
   exists: () => Promise<boolean>;
   isEditing: () => Promise<boolean>;
   isEditingRow: () => Promise<boolean>;

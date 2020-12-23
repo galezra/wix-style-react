@@ -836,4 +836,16 @@ export default {
       children: ({ copyToClipboard }) => <button onClick={copyToClipboard} />,
     },
   },
+
+  AnalyticsSummaryCard: {
+    props: {
+      percentage: 0,
+      chartData: [
+        {
+          label: new Date(),
+          value: 0,
+        },
+      ],
+    },
+  },
 };

@@ -11,7 +11,7 @@ export interface EditableSelectorProps {
   onOptionEdit?: (title: string, id: number) => void;
   onOptionDelete?: (id: number) => void;
   onOptionToggle?: (id: number) => void;
-  options?: Array<EditableSelectorOption>;
+  options?: EditableSelectorOption[];
 }
 
 export type EditableSelectorOption = {

@@ -11,6 +11,9 @@
   "AddressInputItem": {
     "path": "src/AddressInputItem"
   },
+  "AnalyticsSummaryCard": {
+    "path": "src/AnalyticsSummaryCard"
+  },
   "Animate": {
     "path": "src/Animate"
   },
@@ -517,5 +520,8 @@
   },
   "VerticalTabsItem": {
     "path": "src/VerticalTabsItem"
+  },
+  "WixStyleReactProvider": {
+    "path": "src/WixStyleReactProvider"
   }
 }

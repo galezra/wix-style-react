@@ -499,6 +499,10 @@ export * from './CardFolderTabs';
 export { default as StackedBarChart } from './StackedBarChart';
 
 export { default as PageFooter } from './PageFooter';
+
+export { default as AnalyticsSummaryCard } from './AnalyticsSummaryCard';
+export * from './AnalyticsSummaryCard';
+
 export * from './PageFooter';
 
 export { default as StyledNestableList } from './StyledNestableList';
@@ -514,6 +518,12 @@ export { default as CarouselWIP } from './CarouselWIP';
 export * from './CarouselWIP';
 
 export * from './CopyClipboard';
+
+export {
+  default as WixStyleReactProvider,
+  FEATURES,
+} from './WixStyleReactProvider';
+export * from './WixStyleReactProvider';
 
 export * from './TrendIndicator';
 

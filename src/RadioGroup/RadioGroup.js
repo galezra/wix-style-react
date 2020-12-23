@@ -29,6 +29,8 @@ class RadioGroup extends React.PureComponent {
       spacing,
       lineHeight,
       selectionArea,
+      selectionAreaSkin,
+      selectionAreaPadding,
     } = this.props;
     return (
       <div
@@ -36,6 +38,8 @@ class RadioGroup extends React.PureComponent {
         className={classNames(classes[display], {
           [classes.selectionAreaAlways]: selectionArea === 'always',
           [classes.selectionAreaHover]: selectionArea === 'hover',
+          [classes.selectionAreaFilled]: selectionAreaSkin === 'filled',
+          [classes.selectionAreaOutlined]: selectionAreaSkin === 'outlined',
           [classes.vertical]: display === 'vertical',
         })}
         data-display={display}
@@ -59,6 +63,8 @@ class RadioGroup extends React.PureComponent {
               }
               checked={radio.props.value === value}
               selectionArea={selectionArea}
+              selectionAreaSkin={selectionAreaSkin}
+              selectionAreaPadding={selectionAreaPadding}
               icon={radio.props.icon}
               lineHeight={lineHeight}
               content={radio.props.content}
@@ -99,6 +105,12 @@ RadioGroup.propTypes = {
   /** Selection area emphasises the clickable area, none means no emphasis, hover is when the mouse is on the component, and always will show constantly */
   selectionArea: PropTypes.oneOf(['none', 'hover', 'always']),
 
+  /** Selection area skin emphasises the style of the clickable area for selectionArea ('hover' or 'always'),  filled (default) means selectionArea has backgound, outlined means selectionArea has outline */
+  selectionAreaSkin: PropTypes.oneOf(['filled', 'outlined']),
+
+  /** Selection area padding emphasises the padding of the clickable area, empty means default padding, not empty overrides the default padding*/
+  selectionAreaPadding: PropTypes.string,
+
   children: PropTypes.arrayOf((propValue, key) => {
     if (propValue[key].type.displayName !== RadioButton.displayName) {
       return new Error(
@@ -125,6 +137,7 @@ RadioGroup.defaultProps = {
   display: 'vertical',
   lineHeight: '24px',
   selectionArea: 'none',
+  selectionAreaSkin: 'filled',
 };
 
 RadioGroup.Radio = RadioButton;

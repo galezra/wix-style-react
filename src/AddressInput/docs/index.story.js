@@ -8,19 +8,44 @@ import {
   title,
   divider,
   example as baseExample,
-  code as baseCode,
   playground,
   api,
   testkit,
 } from 'wix-storybook-utils/Sections';
+import LinkTo from '@storybook/addon-links/react';
 
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
 
 import AddressInput from '..';
+import { addressInputItemBuilder } from '../../AddressInputItem';
+import { Category } from '../../../stories/storiesHierarchy';
 
-const example = config => baseExample({ components: allComponents, ...config });
-const code = config => baseCode({ components: allComponents, ...config });
+const predictions = [
+  {
+    id: 0,
+    displayLabel: 'First option',
+    mainLabel: 'First',
+    secondaryLabel: 'option',
+  },
+  {
+    id: 1,
+    displayLabel: 'Second option',
+    mainLabel: 'Second',
+    secondaryLabel: 'option',
+  },
+];
+const options = predictions.map(addressInputItemBuilder);
+
+const example = config =>
+  baseExample({
+    components: {
+      ...allComponents,
+      options,
+    },
+    ...config,
+  });
 
 export default {
   category: storySettings.category,
@@ -49,7 +74,15 @@ export default {
         sections: [
           description({
             title: 'Description',
-            text: 'An address search component, requires an address provider.',
+            text: [
+              'An address search component, requires an address provider.',
+              <br />,
+              'You can see how to customize options using the ',
+              <LinkTo kind={Category.WIP} story="AddressInputItem">
+                {`<AddressInputItem/>`}
+              </LinkTo>,
+              ' component.',
+            ],
           }),
 
           importExample(),
@@ -61,10 +94,35 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example.',
-            source: `<AddressInput options={[
-              { id: 0, value: 'First option' },
-              { id: 1, value: 'Second option' },
-            ]} />`,
+            source: examples.simple,
+          }),
+
+          example({
+            title: 'Sizes',
+            text:
+              'You can set the size of the input to be `small`, `medium` or `large` (default: `medium`)',
+            source: examples.sizes,
+          }),
+
+          example({
+            title: 'Shape',
+            text:
+              'AddressInput can be either round or square depending on the `roundInput` prop (default: `true`).',
+            source: examples.shape,
+          }),
+
+          example({
+            title: 'Clear button',
+            text:
+              'A clear button can be displayed using the `clearButton` prop (default: `true`).',
+            source: examples.clearButton,
+          }),
+
+          example({
+            title: 'States',
+            text: `AddressInput is either disabled, loading, showing results or is empty.\n
+Click on each input to see dropdown differences.`,
+            source: examples.states,
           }),
         ],
       }),

@@ -402,11 +402,11 @@ describe('Input', () => {
         rerender(<Input autoFocus />);
         expect(await driver.isFocus()).toBe(false);
       });
-      //
-      // it('Mounting an input element with autoFocus=true, gives it the focus', async () => {
-      //   const { driver } = render(<Input autoFocus />);
-      //   expect(await driver.isFocus()).toBe(true);
-      // });
+
+      it('Mounting an input element with autoFocus=true, gives it the focus', async () => {
+        const { driver } = render(<Input autoFocus />);
+        expect(await driver.isFocus()).toBe(true);
+      });
 
       describe('with value attribute', () => {
         const value = 'this is a string';

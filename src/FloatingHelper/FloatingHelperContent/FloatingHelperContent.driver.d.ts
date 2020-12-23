@@ -1,6 +1,5 @@
 import { BaseDriver } from 'wix-ui-test-utils/driver-factory';
 
-
 export interface FloatingHelperContentDriver extends BaseDriver {
   exists(): boolean;
   hasTitle(): boolean;

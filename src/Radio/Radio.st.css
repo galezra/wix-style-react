@@ -21,6 +21,10 @@
   align-items: center;
 }
 
+.root:alignItems(top)::icon {
+  top: 4px;
+}
+
 .root:disabled {
   cursor: default;
   pointer-events: none;

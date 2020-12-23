@@ -5,4 +5,6 @@ export interface SidebarDividerProps {
   fullWidth?: boolean;
 }
 
-export default class SidebarDivider extends React.PureComponent<SidebarDividerProps> {}
+export default class SidebarDivider extends React.PureComponent<
+  SidebarDividerProps
+> {}

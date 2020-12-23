@@ -87,10 +87,9 @@ function InputWithAllProps() {
 function testInstanceMethods() {
   const instance = new Input({});
   instance.blur();
-  instance.clear(null);
-  instance.focus(null);
+  instance.clear();
+  instance.focus({ preventScroll: false });
   instance.select();
-  instance.handleSuffixOnClear(null);
 }
 
 async function testkits() {

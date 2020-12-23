@@ -5,4 +5,6 @@ export interface FunnelLabelProps {
   label: string;
 }
 
-export default class FunnelLabel extends React.PureComponent<FunnelLabelProps>{}
+export default class FunnelLabel extends React.PureComponent<
+  FunnelLabelProps
+> {}

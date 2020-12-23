@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "9.55.0",
+  "version": "9.57.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "typings": "./dist/es/src/index.d.ts",
@@ -134,6 +134,9 @@
     "@types/react-dom": "^16.9.9",
     "@ui-autotools/registry": "^5.0.0",
     "@ui-autotools/sanity": "^5.0.1",
+    "@wix/ambassador": "^4.0.0",
+    "@wix/ambassador-testkit": "^5.0.316",
+    "@wix/ambassador-wix-atlas-service-web": "^1.0.135",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
@@ -143,6 +146,7 @@
     "copy": "^0.3.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
+    "eslint-config-yoshi": "4.78.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-stylable": "^3.11.5",
     "eslint-plugin-wix-components-library": "^1.0.0",
@@ -156,6 +160,7 @@
     "jest-yoshi-preset": "4.87.0",
     "lint-staged": "^7.3.0",
     "mkdirp": "^0.5.5",
+    "node-fetch": "^2.6.1",
     "ora": "^3.4.0",
     "progress": "^2.0.3",
     "prompts": "^1.2.1",
@@ -189,7 +194,9 @@
   },
   "peerDependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "@wix/ambassador": "^4.0.0",
+    "@wix/ambassador-wix-atlas-service-web": "^1.0.135"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -213,7 +220,6 @@
     "draft-convert": "^2.1.10",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
-    "eslint-config-yoshi": "4.78.0",
     "gradient-parser": "^0.1.5",
     "hoist-non-react-methods": "^1.1.0",
     "howler": "^2.2.1",
@@ -235,9 +241,9 @@
     "react-window": "^1.8.6",
     "shallowequal": "^1.1.0",
     "slick-carousel": "^1.8.1",
-    "wix-animations": "^1.0.403",
+    "wix-animations": "^1.0.405",
     "wix-eventually": "^2.3.0",
-    "wix-ui-core": "^3.0.156",
+    "wix-ui-core": "^3.0.165",
     "wix-ui-icons-common": "^2.0.294",
     "wix-ui-test-utils": "^1.0.177",
     "yoshi-stylable-dependencies": "^4.0.0"

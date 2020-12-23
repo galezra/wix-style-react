@@ -10,7 +10,7 @@
 }
 
 /* Family mixin */
-.font-mixin {
+.family-mixin {
   font-family: value(family), value(fontsfallback); /* IE11 */
   font-family: var(--wsr-font-family, value(family)), value(fontsfallback);
 }
@@ -21,20 +21,23 @@
   font-weight: value(weight);
 }
 
+/* Size mixin */
+.size-mixin {
+  font-size: value(font-size);
+  line-height: value(line-height);
+}
+
 /* Sizes */
 .tiny {
-  font-size: 12px;
-  line-height: 15px;
+  -st-mixin: size-mixin(font-size 12px, line-height 15px );
 }
 
 .small {
-  font-size: 14px;
-  line-height: 18px;
+  -st-mixin: size-mixin(font-size 14px, line-height 18px );
 }
 
 .medium {
-  font-size: 16px;
-  line-height: 24px;
+  -st-mixin: size-mixin(font-size 16px, line-height 24px );
 }
 
 /* Weights */
@@ -52,87 +55,98 @@
 
 /* Typography API */
 .text-tiny-thin {
-  -st-mixin: tiny, thin, font-mixin(family value(helveticanueu55));
+  -st-mixin: tiny, thin, family-mixin(family value(helveticanueu55));
 }
 
 .text-tiny-normal {
-  -st-mixin: tiny, normal, font-mixin(family value(helveticanueu65));
+  -st-mixin: tiny, normal, family-mixin(family value(helveticanueu65));
 }
 
 .text-tiny-bold {
-  -st-mixin: tiny, bold, font-mixin(family value(helveticanueu75));
+  -st-mixin: tiny, bold, family-mixin(family value(helveticanueu75));
 }
 
 .text-small-thin {
-  -st-mixin: small, thin, font-mixin(family value(helveticanueu45));
+  -st-mixin: small, thin, family-mixin(family value(helveticanueu45));
 }
 
 .text-small-normal {
-  -st-mixin: small, normal, font-mixin(family value(helveticanueu55));
+  -st-mixin: small, normal, family-mixin(family value(helveticanueu55));
 }
 
 .text-small-bold {
-  -st-mixin: small, bold, font-mixin(family value(helveticanueu65));
+  -st-mixin: small, bold, family-mixin(family value(helveticanueu65));
 }
 
 .text-medium-thin {
-  -st-mixin: medium, thin, font-mixin(family value(helveticanueu45));
+  -st-mixin: medium, thin, family-mixin(family value(helveticanueu45));
 }
 
 .text-medium-normal {
-  -st-mixin: medium, normal, font-mixin(family value(helveticanueu55));
+  -st-mixin: medium, normal, family-mixin(family value(helveticanueu55));
 }
 
 .text-medium-bold {
-  -st-mixin: medium, bold, font-mixin(family value(helveticanueu65));
+  -st-mixin: medium, bold, family-mixin(family value(helveticanueu65));
 }
 
 /* Heading */
 .heading-h1 {
-  -st-mixin: font-mixin(family value(helveticanueu65)),
-    weight-mixin(weight var(--wsr-font-weight-bold, 400));
-  font-size: 36px;
-  line-height: 48px;
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(font-size 36px, line-height 48px);
 }
 
 .heading-h2 {
-  -st-mixin: font-mixin(family value(helveticanueu65)),
-    weight-mixin(weight var(--wsr-font-weight-bold, 400));
-  font-size: 28px;
-  line-height: 36px;
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(font-size 28px, line-height 36px);
 }
 
 .heading-h3 {
-  -st-mixin: font-mixin(family value(helveticanueu55)),
-    weight-mixin(weight var(--wsr-font-weight-medium, 400));
-  font-size: 20px;
-  line-height: 24px;
+  -st-mixin: family-mixin(family value(helveticanueu55)),
+    weight-mixin(weight var(--wsr-font-weight-medium, 400)),
+    size-mixin(font-size 20px, line-height 24px);
 }
 
 .heading-h4 {
-  -st-mixin: font-mixin(family value(helveticanueu55)),
-    weight-mixin(weight var(--wsr-font-weight-medium, 400));
-  font-size: 18px;
-  line-height: 24px;
+  -st-mixin: family-mixin(family value(helveticanueu55)),
+    weight-mixin(weight var(--wsr-font-weight-medium, 400)),
+    size-mixin(font-size 18px, line-height 24px);
 }
 
 .heading-h5 {
-  -st-mixin: font-mixin(family value(helveticanueu65)),
-    weight-mixin(weight var(--wsr-font-weight-bold, 400));
-  font-size: 12px;
-  line-height: 24px;
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(font-size 12px, line-height 24px);
 }
 
 .heading-h6 {
-  -st-mixin: font-mixin(family value(helveticanueu65)),
-    weight-mixin(weight var(--wsr-font-weight-bold, 400));
-  font-size: 10px;
-  line-height: 18px;
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(font-size 10px, line-height 18px);
+}
+
+/* Heading Spacing Toggle */
+.heading-h1-spacing {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+  weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+  size-mixin(font-size 32px, line-height 42px);
+}
+
+.heading-h2-spacing {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+  weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+  size-mixin(font-size 24px, line-height 30px);
+}
+
+.heading-h3-spacing {
+  -st-mixin: family-mixin(family value(helveticanueu55)),
+  weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+  size-mixin(font-size 20px, line-height 24px);
 }
 
 /* Caption */
 .caption-1 {
-  -st-mixin: bold, font-mixin(family value(helveticanueu65));
-  font-size: 10px;
-  line-height: 12px;
+  -st-mixin: bold, family-mixin(family value(helveticanueu65)), size-mixin(font-size 10px, line-height 12px);
 }

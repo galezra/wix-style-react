@@ -5,11 +5,11 @@
 
 :import {
   -st-from: '../Foundation/stylable/typography.st.css';
-  -st-named: heading-h1, heading-h2, heading-h3, heading-h4, heading-h5, heading-h6;
+  -st-named: heading-h1, heading-h2, heading-h3, heading-h4, heading-h5, heading-h6, heading-h1-spacing, heading-h2-spacing, heading-h3-spacing;
 }
 
 .root {
-  -st-states: appearance(enum(H1, H2, H3, H4, H5, H6)), light(boolean);
+  -st-states: appearance(enum(H1, H2, H3, H4, H5, H6)), light(boolean), reducedSpacingAndImprovedLayout;
   font-weight: normal;
   margin: 0;
 }
@@ -19,14 +19,26 @@
   color: value(THEME-TEXT-COLOR-PRIMARY);
 }
 
+.root:appearance(H1):reducedSpacingAndImprovedLayout {
+  -st-mixin: heading-h1-spacing ;
+}
+
 .root:appearance(H2) {
   -st-mixin: heading-h2;
   color: value(THEME-TEXT-COLOR-PRIMARY);
 }
 
+.root:appearance(H2):reducedSpacingAndImprovedLayout {
+  -st-mixin: heading-h2-spacing;
+}
+
 .root:appearance(H3) {
   -st-mixin: heading-h3;
   color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.root:appearance(H3):reducedSpacingAndImprovedLayout{
+  -st-mixin: heading-h3-spacing;
 }
 
 .root:appearance(H4) {

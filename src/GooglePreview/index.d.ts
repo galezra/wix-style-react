@@ -7,4 +7,6 @@ export interface GooglePreviewProps {
   description?: string;
 }
 
-export default class GooglePreview extends React.PureComponent<GooglePreviewProps> {}
+export default class GooglePreview extends React.PureComponent<
+  GooglePreviewProps
+> {}

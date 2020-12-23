@@ -19,7 +19,7 @@ export type SelectorListProps = SelectorListCommonProps &
 export type SelectorListRenderProp = (args: {
   renderList: () => React.ReactNode;
   renderToggleAllCheckbox: () => React.ReactNode;
-  selectedItems: Array<SelectorListItem>;
+  selectedItems: SelectorListItem[];
 }) => React.ReactNode;
 
 export type SelectorListCommonProps = {

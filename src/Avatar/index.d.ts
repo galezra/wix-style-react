@@ -26,7 +26,7 @@ export interface AvatarProps {
   showIndicationOnHover?: boolean;
   onIndicationClick?(): void;
   onClick?(): void;
-  loading?: boolean
+  loading?: boolean;
 }
 
 declare const Avatar: React.SFC<AvatarProps>;

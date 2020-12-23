@@ -7,7 +7,7 @@ export interface FeatureListProps {
   features?: FeatureType[];
 }
 
-export default class FeatureList extends React.Component<FeatureListProps>{}
+export default class FeatureList extends React.Component<FeatureListProps> {}
 
 export type FeatureType = {
   image: React.ReactNode;

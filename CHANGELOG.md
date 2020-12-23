@@ -16,8 +16,34 @@ Types of changes:
 
 ## Next
 
-## 9.55.0 - 2020-12-16
+## 9.57.0 - 2020-12-23
+### Added
+- Add Atlas autocomplete client [#6418](https://github.com/wix/wix-style-react/pull/6418)
+- `<Radio/>`- add unidriver [#6420](https://github.com/wix/wix-style-react/pull/6420)
+- `<RadioGroup/>` - add `selectionAreaSkin` and `selectionAreaPadding` props [#6408](https://github.com/wix/wix-style-react/pull/6408)
+- `<Checkbox/>` - add `selectionAreaSkin` and `selectionAreaPadding` props [#6403](https://github.com/wix/wix-style-react/pull/6403)
 
+### Changed
+- `<AddressInput/>` - update to match design spec [#6400](https://github.com/wix/wix-style-react/pull/6400)
+- `Themes | Business Dashboard` - updated circular progress bar colors [#6422](https://github.com/wix/wix-style-react/pull/6422)
+
+### Fixed
+- `<Collapse/>` - skip mount transition [#6424](https://github.com/wix/wix-style-react/pull/6424)
+
+## 9.56.0 - 2020-12-21
+### Added
+- `<AnalyticsSummaryCard/>` - new component [#6312](https://github.com/wix/wix-style-react/pull/6312)
+- `<Heading/>`- new spacing specification [#6360](https://github.com/wix/wix-style-react/pull/6360)
+- `<WixStyleReactProvider/>` - new component and update typography mixins [#6360](https://github.com/wix/wix-style-react/pull/6360)
+- `<StatisticsWidget/>` - add ellipsis to description for size tiny [#6350](https://github.com/wix/wix-style-react/pull/6350)
+
+### Changed
+- `<MarketingLayout/>` - update padding of size tiny with badge [#6390](https://github.com/wix/wix-style-react/pull/6390)
+
+### Fixed
+- `<Input/>` - Fixed onFocus called twice with autoFocus prop [#6409](https://github.com/wix/wix-style-react/pull/6409)
+
+## 9.55.0 - 2020-12-16
 ### Changed
 - `<Dropdown/>`- improve story page examples [#6387](https://github.com/wix/wix-style-react/pull/6387)
 

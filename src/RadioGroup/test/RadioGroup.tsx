@@ -20,6 +20,8 @@ function RadioGroupWithAllProps() {
       lineHeight="10px"
       onChange={_value => {}}
       selectionArea="always"
+      selectionAreaSkin="filled"
+      selectionAreaPadding= "10px"
       spacing="20px"
       type="button"
       vAlign="center"
@@ -35,6 +37,8 @@ function RadioGroupWithAllProps() {
         name="name"
         onChange={_value => {}}
         selectionArea="always"
+        selectionAreaSkin="filled"
+        selectionAreaPadding= "10px"
         style={{ paddingTop: '10px' }}
         tabIndex={1}
         type="button"
