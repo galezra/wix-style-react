@@ -136,6 +136,12 @@ class CarouselWIP extends React.PureComponent {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.children.length !== nextProps.children.length) {
+      this._setVisibleSlides();
+    }
+  }
+
   // Need to wait for images to load so we know which images are visible
   // Adding onLoad and onError callbacks to all images under the component
   _setImagesOnLoadHandlers = () => {
@@ -221,6 +227,7 @@ class CarouselWIP extends React.PureComponent {
     if (firstVisibleSlide !== slideIndex && beforeChange) {
       beforeChange(firstVisibleSlide, index);
     }
+
     this.setState({ isAnimating: true });
     return new Promise((res, _) => {
       if (immediate) {
