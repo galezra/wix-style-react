@@ -5,7 +5,7 @@
 
 :import {
   -st-from: '../Foundation/stylable/colors.st.css';
-  -st-named: THEME-COLOR-50, D70;
+  -st-named: THEME-COLOR-00, THEME-COLOR-30, THEME-COLOR-50, D70;
 }
 
 :vars {
@@ -121,4 +121,25 @@
   right: 0;
   background: linear-gradient(to right, rgba(240, 244, 247, 0) 50%, value(D70));
   background: linear-gradient(to right, rgba(240, 244, 247, 0) 50%, var(--sidesGradientColor, value(D70)));
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.dot {
+  -st-states: active;
+
+  width: 12px;
+  height: 4px;
+  margin: 0 6px 2px 0;
+  border-radius: 2px;
+  background-color: value(THEME-COLOR-30);
+  cursor: pointer;
+}
+
+.dot:active {
+  background-color: value(THEME-COLOR-00);
 }

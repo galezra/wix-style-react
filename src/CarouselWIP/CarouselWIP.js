@@ -390,6 +390,33 @@ class CarouselWIP extends React.PureComponent {
     );
   };
 
+  _renderDots = () => {
+    const { children, images } = this.props;
+    const { activeIndex } = this.state;
+    const slidesCount = children.length || images.length || 0;
+
+    return (
+      <div className={classes.dots}>
+        {Array(slidesCount)
+          .fill(0)
+          .map((_, index) => (
+            <div
+              key={index}
+              className={st(classes.dot, { active: index === activeIndex })}
+              onClick={() => {
+                if (index !== activeIndex)
+                  this._slideTo({
+                    index,
+                    alignTo:
+                      index > activeIndex ? ALIGNMENT.RIGHT : ALIGNMENT.LEFT,
+                  });
+              }}
+            />
+          ))}
+      </div>
+    );
+  };
+
   _renderLeftGradient = () =>
     this.state.visibleSlides.includes(0) || <div className={classes.start} />;
 
@@ -427,6 +454,7 @@ class CarouselWIP extends React.PureComponent {
         {showSidesGradients && this._renderLeftGradient()}
         {this._renderLeftControl()}
         {this._renderSlides()}
+        {this._renderDots()}
         {this._renderRightControl()}
         {showSidesGradients && this._renderRightGradient()}
       </div>
