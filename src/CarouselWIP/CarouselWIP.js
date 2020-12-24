@@ -89,8 +89,7 @@ class CarouselWIP extends React.PureComponent {
     /** 🚧 Auto-playing of images */
     autoplay: PropTypes.bool,
 
-    // TODO: implement prop
-    /** 🚧 Hide dots */
+    /** Hide dots */
     hideDots: PropTypes.bool,
 
     // TODO: implement prop
@@ -110,6 +109,7 @@ class CarouselWIP extends React.PureComponent {
     slidingType: 'align-to-start',
     startEndOffset: 0,
     gutter: 0,
+    hideDots: false,
   };
 
   constructor(props) {
@@ -392,7 +392,7 @@ class CarouselWIP extends React.PureComponent {
 
   _renderDots = () => {
     const { children, images } = this.props;
-    const { activeIndex } = this.state;
+    const firstVisibleSlide = this.state.visibleSlides[0];
     const slidesCount = children.length || images.length || 0;
 
     return (
@@ -402,13 +402,17 @@ class CarouselWIP extends React.PureComponent {
           .map((_, index) => (
             <div
               key={index}
-              className={st(classes.dot, { active: index === activeIndex })}
+              className={st(classes.dot, {
+                active: index === firstVisibleSlide,
+              })}
               onClick={() => {
-                if (index !== activeIndex)
+                if (index !== firstVisibleSlide)
                   this._slideTo({
                     index,
                     alignTo:
-                      index > activeIndex ? ALIGNMENT.RIGHT : ALIGNMENT.LEFT,
+                      index > firstVisibleSlide
+                        ? ALIGNMENT.RIGHT
+                        : ALIGNMENT.LEFT,
                   });
               }}
             />
@@ -433,6 +437,7 @@ class CarouselWIP extends React.PureComponent {
       controlsSize,
       showControlsShadow,
       sidesGradientColor,
+      hideDots,
     } = this.props;
     const showSidesGradients = !!sidesGradientColor;
 
@@ -454,7 +459,7 @@ class CarouselWIP extends React.PureComponent {
         {showSidesGradients && this._renderLeftGradient()}
         {this._renderLeftControl()}
         {this._renderSlides()}
-        {this._renderDots()}
+        {!hideDots && this._renderDots()}
         {this._renderRightControl()}
         {showSidesGradients && this._renderRightGradient()}
       </div>
