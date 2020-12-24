@@ -27,6 +27,7 @@ const javascriptFiles = [
   ['CardFolderTabs.bundle.min.js', 39],
   ['CardGalleryItem.bundle.min.js', 65],
   ['Carousel.bundle.min.js', 68],
+  ['CarouselWIP.bundle.min.js', 16],
   ['Checkbox.bundle.min.js', 44],
   ['CheckToggle.bundle.min.js', 37],
   ['CircularProgressBar.bundle.min.js', 43],
@@ -166,7 +167,6 @@ const javascriptFiles = [
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
   ['Radio.bundle.min.js', 40],
-  ['CarouselWIP.bundle.min.js', 10],
   ['WixStyleReactProvider.bundle.min.js', 10],
 ];
 

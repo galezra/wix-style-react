@@ -194,6 +194,12 @@ module.exports = {
     protractorLegacyTestkit: true,
   },
 
+  CarouselWIP: {
+    exportName: 'CarouselWIP',
+    protractorTestkitExportName: 'carouselWIP',
+    puppeteerTestkitExportName: 'carouselWIP',
+  },
+
   Input: {
     vanillaLegacyTestkit: true,
     enzymeLegacyTestkit: true,

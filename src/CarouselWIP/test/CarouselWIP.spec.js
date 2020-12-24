@@ -14,20 +14,4 @@ describe(CarouselWIP.displayName, () => {
 
     expect(await driver.exists()).toBe(true);
   });
-
-  it('should increment', async () => {
-    const { driver } = render(<CarouselWIP />);
-
-    await driver.clickButtonTimes(2);
-
-    expect(await driver.getCountText()).toEqual(
-      'You clicked this button even number (2) of times',
-    );
-  });
-
-  it('should allow changing the button text', async () => {
-    const { driver } = render(<CarouselWIP buttonText="Press me" />);
-
-    expect(await driver.getButtonText()).toEqual('Press me');
-  });
 });

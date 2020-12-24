@@ -8,6 +8,8 @@ import Slide from './Slide';
 import { CONTROLS_START_END, SLIDING_TYPE, ALIGNMENT } from './constants';
 import { isWhollyInView, animate, nop, normalizeIndex } from './utils';
 
+const AUTOPLAY_SPEED = 2000;
+
 /** The carousel component creates a slideshow for cycling through a series of content. */
 class CarouselWIP extends React.PureComponent {
   static displayName = 'CarouselWIP';
@@ -85,8 +87,7 @@ class CarouselWIP extends React.PureComponent {
       'scale-down',
     ]),
 
-    // TODO: implement prop
-    /** 🚧 Auto-playing of images */
+    /** Auto-playing of images */
     autoplay: PropTypes.bool,
 
     /** Hide dots */
@@ -110,6 +111,7 @@ class CarouselWIP extends React.PureComponent {
     startEndOffset: 0,
     gutter: 0,
     hideDots: false,
+    autoplay: false,
   };
 
   constructor(props) {
@@ -124,7 +126,7 @@ class CarouselWIP extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { initialSlideIndex, images } = this.props;
+    const { initialSlideIndex, images, autoplay } = this.props;
     this.childCount =
       this.carousel && this.carousel.children
         ? this.carousel.children.length
@@ -134,6 +136,20 @@ class CarouselWIP extends React.PureComponent {
       this._slideTo({ index: initialSlideIndex, immediate: true }).catch(nop);
       this._setVisibleSlides();
     }
+
+    this._setAutoplayTimer(autoplay);
+  }
+
+  _setAutoplayTimer = active => {
+    clearInterval(this.autoplayTimer);
+
+    if (active) this.autoplayTimer = setInterval(this._next, AUTOPLAY_SPEED);
+  };
+
+  componentDidUpdate(prevProps) {
+    const { autoplay } = this.props;
+
+    if (prevProps.autoplay !== autoplay) this._setAutoplayTimer(autoplay);
   }
 
   getDerivedStateFromProps(nextProps) {
@@ -466,6 +482,10 @@ class CarouselWIP extends React.PureComponent {
         {!hideDots && this._renderDots()}
       </div>
     );
+  }
+
+  componentWillUnmount() {
+    this._setAutoplayTimer(false);
   }
 }
 
