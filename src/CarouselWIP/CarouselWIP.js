@@ -456,12 +456,14 @@ class CarouselWIP extends React.PureComponent {
         )}
         style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
-        {showSidesGradients && this._renderLeftGradient()}
-        {this._renderLeftControl()}
-        {this._renderSlides()}
+        <div style={{ position: 'relative' }}>
+          {showSidesGradients && this._renderLeftGradient()}
+          {this._renderLeftControl()}
+          {this._renderSlides()}
+          {this._renderRightControl()}
+          {showSidesGradients && this._renderRightGradient()}
+        </div>
         {!hideDots && this._renderDots()}
-        {this._renderRightControl()}
-        {showSidesGradients && this._renderRightGradient()}
       </div>
     );
   }
