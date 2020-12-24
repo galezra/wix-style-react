@@ -99,6 +99,7 @@ class CarouselWIP extends React.PureComponent {
   };
 
   static defaultProps = {
+    children: [],
     infinite: true,
     controlsSkin: 'standard',
     controlsStartEnd: 'disabled',
@@ -140,22 +141,10 @@ class CarouselWIP extends React.PureComponent {
     this._setAutoplayTimer(autoplay);
   }
 
-  _setAutoplayTimer = active => {
-    clearInterval(this.autoplayTimer);
-
-    if (active) this.autoplayTimer = setInterval(this._next, AUTOPLAY_SPEED);
-  };
-
   componentDidUpdate(prevProps) {
     const { autoplay } = this.props;
 
     if (prevProps.autoplay !== autoplay) this._setAutoplayTimer(autoplay);
-  }
-
-  getDerivedStateFromProps(nextProps) {
-    if (this.props.children.length !== nextProps.children.length) {
-      this._setVisibleSlides();
-    }
   }
 
   // Need to wait for images to load so we know which images are visible
@@ -179,6 +168,12 @@ class CarouselWIP extends React.PureComponent {
         immediate: true,
       }).catch(nop);
     }
+  };
+
+  _setAutoplayTimer = active => {
+    clearInterval(this.autoplayTimer);
+
+    if (active) this.autoplayTimer = setInterval(this._next, AUTOPLAY_SPEED);
   };
 
   _setVisibleSlides = () => {
@@ -437,10 +432,10 @@ class CarouselWIP extends React.PureComponent {
     );
   };
 
-  _renderLeftGradient = () =>
+  _renderStartGradient = () =>
     this.state.visibleSlides.includes(0) || <div className={classes.start} />;
 
-  _renderRightGradient = () =>
+  _renderEndGradient = () =>
     this.state.visibleSlides.includes(this.childCount - 1) || (
       <div className={classes.end} />
     );
@@ -473,11 +468,11 @@ class CarouselWIP extends React.PureComponent {
         style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
         <div style={{ position: 'relative' }}>
-          {showSidesGradients && this._renderLeftGradient()}
+          {showSidesGradients && this._renderStartGradient()}
           {this._renderLeftControl()}
           {this._renderSlides()}
           {this._renderRightControl()}
-          {showSidesGradients && this._renderRightGradient()}
+          {showSidesGradients && this._renderEndGradient()}
         </div>
         {!hideDots && this._renderDots()}
       </div>
