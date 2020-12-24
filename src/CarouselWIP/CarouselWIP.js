@@ -136,7 +136,7 @@ class CarouselWIP extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  getDerivedStateFromProps(nextProps) {
     if (this.props.children.length !== nextProps.children.length) {
       this._setVisibleSlides();
     }
