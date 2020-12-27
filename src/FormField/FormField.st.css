@@ -17,7 +17,7 @@
 }
 
 .root {
-  -st-states: reducedSpacingAndImprovedLayout, labelPlacement(enum(top, left, right)), labelAlignment(enum(top, middle)) , stretchContent, minLabelHeight;
+  -st-states: labelPlacement(enum(top, left, right)), labelAlignment(enum(top, middle)) , stretchContent, minLabelHeight;
   display: inline-flex;
   flex-wrap: wrap;
   font-size: initial;
