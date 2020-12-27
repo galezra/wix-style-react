@@ -123,6 +123,8 @@ class CarouselWIP extends React.PureComponent {
       isAnimating: false,
       isLeftArrowDisabled: true,
       isRightArrowDisabled: true,
+      isShowStartGradient: false,
+      isShowEndGradient: false,
     };
   }
 
@@ -198,6 +200,8 @@ class CarouselWIP extends React.PureComponent {
       visibleSlides: [firstVisibleChild, lastVisibleChild],
       isLeftArrowDisabled: !infinite && firstVisibleChild === 0,
       isRightArrowDisabled: !infinite && lastVisibleChild === childCount - 1,
+      isShowStartGradient: firstVisibleChild > 0,
+      isShowEndGradient: lastVisibleChild < childCount - 1,
     });
   };
 
@@ -295,12 +299,19 @@ class CarouselWIP extends React.PureComponent {
       }
       alignTo = ALIGNMENT.LEFT;
     }
+
+    if (nextSlide === this.childCount - 1) {
+      this.setState({ isRightArrowDisabled: true, isShowEndGradient: false });
+    }
+    if (firstVisibleChild === 0) {
+      this.setState({ isLeftArrowDisabled: false, isShowStartGradient: true });
+    }
     return this._slideTo({ index: nextSlide, alignTo });
   };
 
   _prev = () => {
     const { slidingType, infinite } = this.props;
-    const [firstVisibleChild, _] = this.state.visibleSlides;
+    const [firstVisibleChild, lastVisibleChild] = this.state.visibleSlides;
     let prevSlide, alignTo;
     if (
       [SLIDING_TYPE.REVEAL_CHUNK, SLIDING_TYPE.REVEAL_ONE].includes(slidingType)
@@ -321,6 +332,13 @@ class CarouselWIP extends React.PureComponent {
         prevSlide = firstVisibleChild - 1;
       }
       alignTo = ALIGNMENT.LEFT;
+    }
+
+    if (prevSlide === 0) {
+      this.setState({ isLeftArrowDisabled: true, isShowStartGradient: false });
+    }
+    if (lastVisibleChild === this.childCount - 1) {
+      this.setState({ isRightArrowDisabled: false, isShowEndGradient: true });
     }
     return this._slideTo({ index: prevSlide, alignTo });
   };
@@ -432,13 +450,9 @@ class CarouselWIP extends React.PureComponent {
     );
   };
 
-  _renderStartGradient = () =>
-    this.state.visibleSlides.includes(0) || <div className={classes.start} />;
+  _renderStartGradient = () => <div className={classes.start} />;
 
-  _renderEndGradient = () =>
-    this.state.visibleSlides.includes(this.childCount - 1) || (
-      <div className={classes.end} />
-    );
+  _renderEndGradient = () => <div className={classes.end} />;
 
   render() {
     const {
@@ -450,6 +464,7 @@ class CarouselWIP extends React.PureComponent {
       sidesGradientColor,
       hideDots,
     } = this.props;
+    const { isShowStartGradient, isShowEndGradient } = this.state;
     const showSidesGradients = !!sidesGradientColor;
 
     return (
@@ -468,11 +483,13 @@ class CarouselWIP extends React.PureComponent {
         style={{ [vars.sidesGradientColor]: sidesGradientColor }}
       >
         <div style={{ position: 'relative' }}>
-          {showSidesGradients && this._renderStartGradient()}
+          {showSidesGradients &&
+            isShowStartGradient &&
+            this._renderStartGradient()}
           {this._renderLeftControl()}
           {this._renderSlides()}
           {this._renderRightControl()}
-          {showSidesGradients && this._renderEndGradient()}
+          {showSidesGradients && isShowEndGradient && this._renderEndGradient()}
         </div>
         {!hideDots && this._renderDots()}
       </div>
