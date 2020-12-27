@@ -21,9 +21,6 @@ class CarouselWIP extends React.PureComponent {
     /** A css class to be applied to the component's root element */
     className: PropTypes.string,
 
-    /** Text for the button */
-    buttonText: PropTypes.string,
-
     /** Any element to render inside */
     children: PropTypes.node,
 
@@ -73,12 +70,10 @@ class CarouselWIP extends React.PureComponent {
     /** Color for the gradients on the sides of the carousel */
     sidesGradientColor: PropTypes.string,
 
-    // TODO: implement prop
-    /** 🚧 Sets the images position */
+    /** Sets the images position */
     imagesPosition: PropTypes.string,
 
-    // TODO: implement prop
-    /** 🚧 Sets the images fit */
+    /** Sets the images fit */
     imagesFit: PropTypes.oneOf([
       'fill',
       'contain',
@@ -130,6 +125,7 @@ class CarouselWIP extends React.PureComponent {
 
   componentDidMount() {
     const { initialSlideIndex, images, autoplay } = this.props;
+
     this.childCount =
       this.carousel && this.carousel.children
         ? this.carousel.children.length
@@ -398,7 +394,8 @@ class CarouselWIP extends React.PureComponent {
   };
 
   _renderSlides = () => {
-    const { images, children, gutter } = this.props;
+    const { images, children, gutter, imagesPosition, imagesFit } = this.props;
+
     const slide = ({ i, image, child }) => (
       <Slide
         key={`slide-${i}`}
@@ -407,6 +404,8 @@ class CarouselWIP extends React.PureComponent {
         gutter={i > 0 ? `${gutter}px` : ''}
         image={image}
         children={child}
+        imagePosition={imagesPosition}
+        imageFit={imagesFit}
       />
     );
 

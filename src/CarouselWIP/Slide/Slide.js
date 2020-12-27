@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Slide = ({ dataHook, className, children, image, width, gutter }) => (
+const Slide = ({
+  dataHook,
+  className,
+  children,
+  image,
+  width,
+  gutter,
+  imagePosition,
+  imageFit,
+}) => (
   <div
     data-hook={dataHook}
     className={className}
@@ -9,6 +18,8 @@ const Slide = ({ dataHook, className, children, image, width, gutter }) => (
       flex: '0 0 auto',
       width,
       marginLeft: gutter,
+      objectPosition: imagePosition,
+      objectFit: imageFit,
     }}
   >
     {image ? <img src={image.src} /> : children}
@@ -33,6 +44,12 @@ Slide.propTypes = {
 
   /** Width for spacing before the slide */
   gutter: PropTypes.string,
+
+  /** Sets the image position */
+  imagePosition: PropTypes.string,
+
+  /** Sets the image fit */
+  imageFit: PropTypes.oneOf(['fill', 'contain', 'cover', 'none', 'scale-down']),
 };
 
 export default Slide;

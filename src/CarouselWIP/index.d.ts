@@ -18,7 +18,6 @@ export type CarouselWIPImage = Partial<HTMLImageElement> & { src: string };
 export interface CarouselWIPProps {
   dataHook?: string;
   className?: string;
-  buttonText?: string;
   images?: CarouselWIPImage[];
   imagesPosition?: React.CSSProperties['objectPosition'];
   imagesFit?: React.CSSProperties['objectFit'];

@@ -15,7 +15,27 @@ function carouselWIPWithAllProps() {
     <CarouselWIP
       dataHook="dataHook"
       className="className"
-      buttonText="buttonText"
+      images={[
+        {
+          src: 'xxx',
+        },
+      ]}
+      imagesPosition="50%"
+      imagesFit="cover"
+      buttonSkin="inverted"
+      infinite
+      autoplay
+      dots
+      variableWidth
+      initialSlideIndex={1}
+      afterChange={(currentSlide: number) => {}}
+      beforeChange={(currentSlide: number, nextSlide: number) => {}}
+      controlsPosition="bottom"
+      controlsSize="medium"
+      controlsStartEnd="disabled"
+      showControlsShadow
+      slidingType="align-to-start"
+      startEndOffset={8}
     />
   );
 }
