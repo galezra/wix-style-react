@@ -412,7 +412,7 @@ class CarouselWIP extends React.PureComponent {
 
     return (
       <div className={classes.carousel} role="list" ref={this._setRef}>
-        {children
+        {children.length
           ? React.Children.map(children, (child, i) => slide({ i, child }))
           : images.map((image, i) => slide({ i, image }))}
       </div>
