@@ -5,6 +5,7 @@ import Text, { SIZES, SKINS, WEIGHTS } from '../Text';
 import { dataHooks } from './constants';
 import { st, classes } from './FormField.st.css';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
+import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
 const PLACEMENT = {
   top: 'top',
@@ -142,7 +143,7 @@ class FormField extends React.Component {
     );
   };
 
-  _renderInfoIcon = () => {
+  _renderInfoIcon = ({ reducedSpacingAndImprovedLayout }) => {
     const { dataHook, infoContent, infoTooltipProps, labelSize } = this.props;
     return (
       infoContent && (
@@ -151,13 +152,13 @@ class FormField extends React.Component {
           className={classes.infoIcon}
           content={infoContent}
           tooltipProps={infoTooltipProps}
-          size={labelSize}
+          size={reducedSpacingAndImprovedLayout ? 'small' : labelSize}
         />
       )
     );
   };
 
-  _renderLabelIndicators = () => {
+  _renderLabelIndicators = ({ reducedSpacingAndImprovedLayout }) => {
     const { required, suffix } = this.props;
 
     return (
@@ -167,9 +168,12 @@ class FormField extends React.Component {
           inlineWithSuffix: Boolean(suffix || this._hasCharCounter()),
         })}
       >
-        {this._renderLabel({ trimLongText: false })}
+        {this._renderLabel({
+          trimLongText: false,
+          reducedSpacingAndImprovedLayout,
+        })}
         {required && asterisk}
-        {this._renderInfoIcon()}
+        {this._renderInfoIcon({ reducedSpacingAndImprovedLayout })}
       </div>
     );
   };
@@ -190,12 +194,12 @@ class FormField extends React.Component {
     label &&
     (labelPlacement === PLACEMENT.left || labelPlacement === PLACEMENT.right);
 
-  _renderLabel = ({ trimLongText }) => {
+  _renderLabel = ({ trimLongText, reducedSpacingAndImprovedLayout }) => {
     const { label, labelSize, id } = this.props;
 
     return (
       <Text
-        size={labelSize}
+        size={reducedSpacingAndImprovedLayout ? 'small' : labelSize}
         htmlFor={id}
         tagName={'label'}
         dataHook={dataHooks.label}
@@ -234,38 +238,47 @@ class FormField extends React.Component {
         };
 
     return (
-      <div
-        data-hook={dataHook}
-        className={st(classes.root, rootStyles, classNames)}
-      >
-        {label && labelPlacement === PLACEMENT.top && (
-          <div className={classes.label}>
-            {this._renderLabel({ trimLongText: true })}
-            {required && asterisk}
-            {this._renderInfoIcon()}
-            {this._renderSuffix()}
-          </div>
-        )}
-
-        {children && (
+      <WixStyleReactContext.Consumer>
+        {({ reducedSpacingAndImprovedLayout }) => (
           <div
-            data-hook={dataHooks.children}
-            className={st(classes.children, {
-              childrenWithInlineLabel:
-                !label || this._hasInlineLabel(label, labelPlacement),
-            })}
+            data-hook={dataHook}
+            className={st(classes.root, rootStyles, classNames)}
           >
-            {(!label || labelPlacement !== PLACEMENT.top) &&
-              this._renderSuffix()}
-            {this._renderChildren()}
+            {label && labelPlacement === PLACEMENT.top && (
+              <div className={classes.label}>
+                {this._renderLabel({
+                  trimLongText: true,
+                  reducedSpacingAndImprovedLayout,
+                })}
+                {required && asterisk}
+                {this._renderInfoIcon({ reducedSpacingAndImprovedLayout })}
+                {this._renderSuffix()}
+              </div>
+            )}
+
+            {children && (
+              <div
+                data-hook={dataHooks.children}
+                className={st(classes.children, {
+                  childrenWithInlineLabel:
+                    !label || this._hasInlineLabel(label, labelPlacement),
+                })}
+              >
+                {(!label || labelPlacement !== PLACEMENT.top) &&
+                  this._renderSuffix()}
+                {this._renderChildren()}
+              </div>
+            )}
+
+            {!label &&
+              (required || infoContent) &&
+              this._renderLabelIndicators({ reducedSpacingAndImprovedLayout })}
+
+            {this._hasInlineLabel(label, labelPlacement) &&
+              this._renderLabelIndicators({ reducedSpacingAndImprovedLayout })}
           </div>
         )}
-
-        {!label && (required || infoContent) && this._renderLabelIndicators()}
-
-        {this._hasInlineLabel(label, labelPlacement) &&
-          this._renderLabelIndicators()}
-      </div>
+      </WixStyleReactContext.Consumer>
     );
   }
 }
