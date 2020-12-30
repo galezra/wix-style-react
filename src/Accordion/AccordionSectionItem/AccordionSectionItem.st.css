@@ -1,3 +1,23 @@
+:import {
+  -st-from: "../../Foundation/stylable/colors.st.css";
+  -st-named: B70;
+}
+
 .root {
-  margin: 6px;
+  -st-states: size(enum(small, large));
+}
+
+.root {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  background-color: value(B70);
+}
+
+.root:size(small) {
+  height: 48px;
+}
+
+.root:size(large) {
+  height: 72px;
 }
