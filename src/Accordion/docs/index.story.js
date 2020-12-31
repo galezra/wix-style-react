@@ -96,9 +96,13 @@ export default {
         sections: [
           description('Accordion is a list of expandable/collapsible items.'),
 
-          importExample(
-            `import { Accordion, accordionItemBuilder } from 'wix-style-react';`,
-          ),
+          importExample(`
+import {
+  Accordion,
+  accordionItemBuilder,
+  accordionSectionItemBuilder,
+} from 'wix-style-react';
+          `),
 
           divider(),
 
