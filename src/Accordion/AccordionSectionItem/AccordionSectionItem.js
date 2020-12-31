@@ -5,7 +5,7 @@ import Text from '../../Text';
 function accordionSectionItem({ title, size }) {
   return (
     <div className={st(classes.root, { size })}>
-      <Text skin="standard" weight="bold" size="small">
+      <Text skin="standard" weight="bold" size="small" ellipsis>
         {title}
       </Text>
     </div>
