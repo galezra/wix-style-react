@@ -48,6 +48,7 @@ export default class DatePicker extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this._isMounted = false;
 
     const initialOpen = props.initialOpen && !props.disabled;
 
@@ -60,6 +61,14 @@ export default class DatePicker extends React.PureComponent {
     deprecationLog(
       'dateFormat prop is deprecated and will be removed as part of the next major version, please use dateFormatV2',
     );
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   openCalendar = () => {
@@ -93,7 +102,7 @@ export default class DatePicker extends React.PureComponent {
     setTimeout(() => this.makeInputFocusable());
   };
 
-  makeInputFocusable = () => this.setState({ isDateInputFocusable: true });
+  makeInputFocusable = () => this._isMounted && this.setState({ isDateInputFocusable: true });
 
   _saveNewValue = (value, modifiers = {}) => {
     if (modifiers.disabled) {

@@ -94,7 +94,7 @@ class Input extends Component {
 
   _onFocus = event => {
     const { onFocus } = this.props;
-    this.setState({ focus: true });
+    this._isMounted && this.setState({ focus: true });
 
     onFocus && onFocus(event);
 
