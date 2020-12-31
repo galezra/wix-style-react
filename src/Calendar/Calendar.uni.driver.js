@@ -51,7 +51,7 @@ export const calendarUniDriverFactory = base => {
 
   return {
     ...baseUniDriverFactory(base),
-    close: () => ReactBase(getFocusedDay()).pressKey('Escape'),
+    close: () => getFocusedDay().pressKey('Escape'),
     isVisible: () => getCalendar().exists(),
     getCurrentMonthWithYear: () =>
       Promise.all(getMonthAndYear().map(elm => elm.text())).then(values =>
