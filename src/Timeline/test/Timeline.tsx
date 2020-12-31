@@ -15,6 +15,7 @@ function timelineWithAllProps() {
     <Timeline
       dataHook="dataHook"
       className="className"
+      skin="light"
       items={[
         {
           label: <div>label</div>,

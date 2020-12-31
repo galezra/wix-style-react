@@ -11,6 +11,7 @@ export interface TimelineProps {
   className?: string;
   dataHook?: string;
   items: TimelineItem[];
+  skin?: string;
 }
 
 export default class Timeline extends React.PureComponent<TimelineProps> {}

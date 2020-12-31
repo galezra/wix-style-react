@@ -82,6 +82,20 @@ const tests = [
           ],
         },
       },
+      {
+        it: 'light skin',
+        props: {
+          skin: 'light',
+          items: [
+            {
+              label: 'simple text',
+            },
+            {
+              label: 'simple text',
+            },
+          ],
+        },
+      },
     ],
   },
 ];

@@ -10,7 +10,7 @@ import { isString } from '../utils/StringUtils';
 /** A timeline item is a display of a timeline event */
 class TimelineItem extends React.PureComponent {
   render() {
-    const { idx, item, dataHook } = this.props;
+    const { idx, item, dataHook, skin } = this.props;
 
     return (
       <li className={classes.event} data-hook={dataHook}>
@@ -27,10 +27,10 @@ class TimelineItem extends React.PureComponent {
                 ) : (
                   <div
                     data-hook={`${dataHooks.timelineDefaultPrefix}-${idx}`}
-                    className={classes.defaultIndicator}
+                    className={st(classes.defaultIndicator, { skin })}
                   />
                 )}
-                <div className={classes.line} />
+                <div className={st(classes.line, { skin })} />
               </div>
               <div className={st(classes.label, { withSuffix: !!item.suffix })}>
                 {isString(item.label) ? (

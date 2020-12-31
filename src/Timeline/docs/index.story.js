@@ -35,6 +35,7 @@ export default {
 
   componentProps: {
     items: oneItem,
+    skin: 'standard',
   },
 
   exampleProps: {
@@ -70,6 +71,12 @@ export default {
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
             source: examples.simple,
+          }),
+
+          example({
+            title: 'Skins',
+            text: 'A simple example with light skin',
+            source: examples.skins,
           }),
 
           example({

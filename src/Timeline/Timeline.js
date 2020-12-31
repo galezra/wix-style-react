@@ -8,7 +8,7 @@ import TimelineItem from './TimelineItem';
 /** A timeline is a display of a list of events */
 class Timeline extends React.PureComponent {
   render() {
-    const { dataHook, items, className } = this.props;
+    const { dataHook, items, className, skin } = this.props;
 
     return (
       <ol className={st(classes.root, className)} data-hook={dataHook}>
@@ -17,12 +17,17 @@ class Timeline extends React.PureComponent {
             key={idx}
             item={item}
             idx={idx}
+            skin={skin}
             dataHook={`${dataHooks.timelineListEvent}-${idx}`}
           />
         ))}
       </ol>
     );
   }
+
+  static defaultProps = {
+    skin: 'standard',
+  };
 }
 
 Timeline.displayName = 'Timeline';
@@ -33,6 +38,9 @@ Timeline.propTypes = {
 
   /** A css class to be applied to the component's root element */
   className: PropTypes.string,
+
+  /** A skin to be applied to the component */
+  skin: PropTypes.oneOf(['light', 'standard']),
 
   /** timeline events items */
   items: PropTypes.arrayOf(

@@ -1,6 +1,6 @@
 :import {
   -st-from: "../Foundation/stylable/colors.st.css";
-  -st-named: D30,D80;
+  -st-named: D30,D60,D80;
 }
 
 :vars {
@@ -19,18 +19,40 @@
   color: value(D30);
 }
 
+.line{
+  -st-states: skin(enum(standard, light));
+}
+
 .event:not(:last-child) .prefix .line{
   width: 1px;
   flex: 1;
+}
+
+.line:skin(standard){
   background-color: value(D30);
+}
+
+.line:skin(light){
+  background-color: value(D60);
 }
 
 .event .prefix .defaultIndicator{
   width: value(inidicatorSize);
   height: value(inidicatorSize);
   border-radius: 50%;
-  background: value(D30);
   margin: calc((value(listItemHeight) - value(inidicatorSize)) / 2);
+}
+
+.defaultIndicator{
+  -st-states: skin(enum(standard, light));
+}
+
+.defaultIndicator:skin(standard){
+  background: value(D30);
+}
+
+.defaultIndicator:skin(light){
+  background: value(D60);
 }
 
 .label{

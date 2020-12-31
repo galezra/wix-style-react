@@ -52,6 +52,19 @@ export const simple = `() => {
   return <Card><Card.Content><Timeline items={items} /></Card.Content></Card>;
 }`;
 
+export const skins = `() => {
+  const items = [
+    {
+      label: 'Quote #8 Accepted: Website setup, $7.00',
+    },
+    {
+      label: 'Quote #9 Accepted: Website setup, $6.00',
+    },
+  ];
+
+  return <Card><Card.Content><Timeline items={items} skin="light" /></Card.Content></Card>;
+}`;
+
 export const customExample = `() => {
   const items = [
     {
@@ -92,7 +105,7 @@ export const customExample = `() => {
   return (
     <Card>
       <Card.Content>
-        <Timeline items={items} />
+        <Timeline items={items} skin="standard" />
       </Card.Content>
     </Card>
   );
