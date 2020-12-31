@@ -8,7 +8,8 @@ export const testkit = (base, body) => {
   // to support cases of multiple inputs, e.g cases where this driver is used inside other drivers with popovers
   // which includes an input
   const input = base.$$('input').get(0);
-
+  const element = base.$('[data-size]');
+  const datePickerInputElement = base.$('[data-hook="date-picker-input"]');
   const reactBase = ReactBase(base);
   const reactBaseInput = ReactBase(input);
 
@@ -44,7 +45,7 @@ export const testkit = (base, body) => {
       await base.$(`[data-hook="${dataHooks.suffixes}"]`).exists(),
     prefixComponentExists: async style =>
       !!(await base.attr(DATA_ATTR.PREFIX)) && (await base.$(style).exists()),
-    hasPrefix: async () => !!(await base.attr(DATA_ATTR.PREFIX)),
+    hasPrefix: async () => (await datePickerInputElement.attr(DATA_ATTR.PREFIX)) === "true",
     hasClearButton: async () => await clearButtonNode.exists(),
     clickClear: async () => await clearButtonNode.click(),
     getValue: async () => await input.value(),
@@ -53,7 +54,7 @@ export const testkit = (base, body) => {
     getPlaceholder: async () => await input.attr('placeholder'),
     isOfSize: async size => (await base.attr(DATA_ATTR.SIZE)) === size,
     getSize: async () => await base.attr(DATA_ATTR.SIZE),
-    isDisabled: async () => !!(await base.attr(DATA_ATTR.DISABLED)),
+    isDisabled: async () => (await datePickerInputElement.attr(DATA_ATTR.DISABLED)) === "true",
     isHoveredStyle: async () => !!(await base.attr(DATA_ATTR.HOVER)),
     isFocusedStyle: async () => !!(await base.attr(DATA_ATTR.FOCUS)),
     getRequired: async () => await input._prop('required'),
@@ -65,6 +66,7 @@ export const testkit = (base, body) => {
       (await input.attr('data-hook')) === 'wsr-custom-input',
     getReadOnly: async () => await input._prop('readOnly'),
     getDisabled: async () => await input._prop('disabled'),
+    getDataHook: async () => await element.attr('data-hook'),
     getTextOverflow: async () => (await input._prop('style'))['text-overflow'],
     focus: async () => await reactBaseInput.focus(),
     blur: async () => await reactBaseInput.blur(),
@@ -98,6 +100,8 @@ export const testkit = (base, body) => {
     getCursorLocation: async () => await input._prop('selectionStart'),
     clearText: () => driver.enterText(''),
     clickOutside: () => ReactBase.clickDocument(),
+    hasRightBorderRadius: async () => !(await element.attr(DATA_ATTR.RIGHTBORDERRADIUS)),
+    hasLeftBorderRadius: async () => !(await element.attr(DATA_ATTR.LEFTBORDERRADIUS)),
 
     // Status
     /** Return true if there's a status */
