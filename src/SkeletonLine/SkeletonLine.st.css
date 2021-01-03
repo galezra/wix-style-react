@@ -1,18 +1,19 @@
-:import {
+/*:import {
   -st-from: '../SkeletonGroup/SkeletonGroup.st.css';
   -st-named: skeletonAnimation, skeletonAnimationDark;
-}
+}*/
 
 .root {
   -st-states: skin(enum(dark, light));
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
 }
 
-.root::after {
+/*.root::after {
   -st-mixin: skeletonAnimation;
 }
 
 .root:skin(dark)::after {
   -st-mixin: skeletonAnimationDark;
-}
+}*/

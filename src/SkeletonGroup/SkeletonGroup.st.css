@@ -7,6 +7,8 @@
   --color: value(D80);
   overflow: hidden;
   position: relative;
+  min-width: 60px;
+  max-width: 690px;
 }
 
 .animator {
