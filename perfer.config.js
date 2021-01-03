@@ -172,14 +172,7 @@ const javascriptFiles = [
   ['VerticalTabs.bundle.min.js', 40],
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
-<<<<<<< HEAD
   ['WixStyleReactProvider.bundle.min.js', 10],
-  ['SkeletonGroup.bundle.min.js', 10],
-  ['SkeletonRectangle.bundle.min.js', 10],
-  ['SkeletonCircle.bundle.min.js', 10],
-  ['SkeletonLine.bundle.min.js', 10],
-=======
->>>>>>> visual tests
 ];
 
 const cssFiles = [
