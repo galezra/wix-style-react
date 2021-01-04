@@ -9,7 +9,7 @@ export const datePickerUniDriverFactory = (base, body) => {
     body,
   );
   const inputDriver = inputUniDriverFactory(
-    findByHook(base, dataHooks.datePickerInputContainer),
+    findByHook(base, dataHooks.datePickerInput),
     body,
   );
 
