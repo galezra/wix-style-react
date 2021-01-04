@@ -8,7 +8,7 @@ import defaultTo from 'lodash/defaultTo';
 import { VariableSizeList as List } from 'react-window';
 import { ScrollSyncPane } from 'react-scroll-sync';
 import { TooltipCommonProps } from '../../common/PropTypes/TooltipCommon';
-
+import { WixStyleReactContext } from '../../WixStyleReactProvider/context';
 import styles from './DataTable.scss';
 import InfiniteScroll from '../../utils/InfiniteScroll';
 import InfoIcon from '../../InfoIcon';
@@ -343,32 +343,10 @@ class DataTable extends React.Component {
   };
 
   renderCell = (rowData, column, rowNum, colNum) => {
-    const { virtualized, stickyColumns, columns, rowDetails } = this.props;
-
-    const classes = classNames({
-      [this.style.important]: column.important,
-      [this.style.largeVerticalPadding]:
-        this.props.rowVerticalPadding === 'large',
-      [this.style.mediumVerticalPadding]:
-        this.props.rowVerticalPadding === 'medium',
-      [this.style.smallVerticalPadding]:
-        this.props.rowVerticalPadding === 'small',
-
-      [this.style.alignStart]: column.align === 'start',
-      [this.style.alignCenter]: column.align === 'center',
-      [this.style.alignEnd]: column.align === 'end',
-      [this.style.sticky]: colNum < stickyColumns,
-      [this.style.lastSticky]: colNum === stickyColumns - 1,
-      [this.style.stickyActionCell]: column.stickyActionCell,
-      [this.style.hasRowDetails]: rowDetails,
-      [this.style.rowDetailsExtended]:
-        !!this.state.selectedRows.get(rowData) && rowDetails(rowData),
-    });
+    const { virtualized, stickyColumns, columns, hideHeader } = this.props;
 
     const width =
-      (virtualized || rowNum === 0) && this.props.hideHeader
-        ? column.width
-        : undefined;
+      (virtualized || rowNum === 0) && hideHeader ? column.width : undefined;
 
     const style =
       typeof column.style === 'function'
@@ -381,24 +359,72 @@ class DataTable extends React.Component {
         : undefined;
 
     return (
-      <td
-        style={{
-          ...style,
-          ...stickyColumnStyle,
+      <WixStyleReactContext.Consumer>
+        {({ reducedSpacingAndImprovedLayout }) => {
+          const classes = this._getCellClasses({
+            column,
+            colNum,
+            rowData,
+            reducedSpacingAndImprovedLayout,
+          });
+
+          return (
+            <td
+              style={{
+                ...style,
+                ...stickyColumnStyle,
+              }}
+              width={width}
+              className={classNames(classes)}
+              onClick={
+                column.onCellClick
+                  ? event => column.onCellClick(column, rowData, rowNum, event)
+                  : undefined
+              }
+              key={colNum}
+            >
+              {column.render && column.render(rowData, rowNum)}
+            </td>
+          );
         }}
-        width={width}
-        className={classes}
-        onClick={
-          column.onCellClick
-            ? event => column.onCellClick(column, rowData, rowNum, event)
-            : undefined
-        }
-        key={colNum}
-      >
-        {column.render && column.render(rowData, rowNum)}
-      </td>
+      </WixStyleReactContext.Consumer>
     );
   };
+
+  _getCellClasses({
+    column,
+    colNum,
+    rowData,
+    reducedSpacingAndImprovedLayout,
+  }) {
+    const { rowVerticalPadding, stickyColumns, rowDetails } = this.props;
+    const { selectedRows } = this.state;
+
+    return classNames({
+      [this.style.important]: column.important,
+
+      [this.style.largeVerticalPadding]: rowVerticalPadding === 'large',
+      [this.style.mediumVerticalPadding]: rowVerticalPadding === 'medium',
+
+      [this.style.newSmallVerticalPadding]:
+        rowVerticalPadding === 'small' && reducedSpacingAndImprovedLayout,
+      [this.style.smallVerticalPadding]:
+        rowVerticalPadding === 'small' && !reducedSpacingAndImprovedLayout,
+
+      [this.style.tinyVerticalPadding]: rowVerticalPadding === 'tiny',
+
+      [this.style.alignStart]: column.align === 'start',
+      [this.style.alignCenter]: column.align === 'center',
+      [this.style.alignEnd]: column.align === 'end',
+
+      [this.style.sticky]: colNum < stickyColumns,
+      [this.style.lastSticky]: colNum === stickyColumns - 1,
+      [this.style.stickyActionCell]: column.stickyActionCell,
+      [this.style.hasRowDetails]: rowDetails,
+      [this.style.rowDetailsExtended]:
+        !!selectedRows.get(rowData) && rowDetails(rowData),
+    });
+  }
 
   calcLastPage = ({ data, itemsPerPage }) =>
     Math.ceil(data.length / itemsPerPage) - 1;

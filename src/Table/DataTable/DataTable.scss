@@ -148,7 +148,12 @@ $cellHorizontalEdgePadding: 30px;
     padding-bottom: 18px;
   }
 
-  &.smallVerticalPadding {
+  &.newSmallVerticalPadding {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  &.smallVerticalPadding, &.tinyVerticalPadding {
     padding-top: 12px;
     padding-bottom: 12px;
   }
