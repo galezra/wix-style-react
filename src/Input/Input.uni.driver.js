@@ -64,7 +64,6 @@ export const testkit = (base, body) => {
       (await input.attr('data-hook')) === 'wsr-custom-input',
     getReadOnly: async () => await input._prop('readOnly'),
     getDisabled: async () => await input._prop('disabled'),
-    getDataHook: async () => await input.attr('data-hook'),
     getTextOverflow: async () => (await input._prop('style'))['text-overflow'],
     focus: async () => await reactBaseInput.focus(),
     blur: async () => await reactBaseInput.blur(),

@@ -10,7 +10,6 @@ export interface InputUniDriver extends BaseUniDriver {
   getRootElementClasses: () => Promise<string>;
   getAriaDescribedby: () => Promise<string | null>;
   getAriaLabel: () => Promise<string | null>;
-  getDatahook: () => Promise<string | null>;
   getName: () => Promise<string | null>;
   getMaxLength: () => Promise<string | null>;
   getType: () => Promise<string | null>;
