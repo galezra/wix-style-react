@@ -23,6 +23,7 @@ export interface CalendarProps {
   locale?: string | { distanceInWords?: {}; format?: {} };
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   rtl?: boolean;
+  renderDateIndication?: (date: Date) => React.ReactNode;
 }
 
 export default class Calendar extends React.PureComponent<CalendarProps> {

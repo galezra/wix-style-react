@@ -15,6 +15,7 @@ export default class Calendar extends React.PureComponent {
     locale: 'en',
     className: '',
     filterDate: () => true,
+    renderDateIndication: () => null,
     shouldCloseOnSelect: true,
     onClose: () => {},
     autoFocus: true,
@@ -65,38 +66,29 @@ export default class Calendar extends React.PureComponent {
     return isSameDay(value1, value2);
   }
 
-  static renderDay(day, modifiers) {
-    const relevantModifiers = [
-      cssStates({ start: true }),
-      cssStates({ end: true }),
-      cssStates({ selected: true }),
-      cssStates({ outside: true }),
-    ];
-    const isOutsideDay = !!modifiers[cssStates({ outside: true })];
+  _renderDay = (day, modifiers) => {
+    const { renderDateIndication } = this.props;
 
-    for (const modifier of relevantModifiers) {
-      if (modifier in modifiers) {
-        return (
-          <div
-            className={classes.dayCircle}
-            data-date={`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`}
-            data-outsideday={isOutsideDay}
-          >
-            {day.getDate()}
-          </div>
-        );
-      }
-    }
+    const isSelectedDay = !!modifiers[cssStates({ selected: true })];
+    const isOutsideDay = !!modifiers[cssStates({ outside: true })];
+    const dateIndicationNode =
+      renderDateIndication && renderDateIndication(day);
 
     return (
       <div
+        className={classes.dayWrapper}
         data-date={`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`}
         data-outsideday={isOutsideDay}
       >
-        {day.getDate()}
+        <div className={classes.dayText}>{day.getDate()}</div>
+        {dateIndicationNode && !isOutsideDay && !isSelectedDay ? (
+          <div className={classes.dayIndicationContainer}>
+            {dateIndicationNode}
+          </div>
+        ) : null}
       </div>
     );
-  }
+  };
 
   _setMonth = month => {
     this.setState({ month });
@@ -307,7 +299,7 @@ export default class Calendar extends React.PureComponent {
         [cssStates({ lastOfMonth: true })]: lastOfMonth,
         [cssStates({ singleDay: true })]: singleDay,
       },
-      renderDay: Calendar.renderDay,
+      renderDay: this._renderDay,
       dir: rtl ? 'rtl' : 'ltr',
       classNames: {
         /* The classes: 'DayPicker', 'DayPicker-wrapper', 'DayPicker-Month', 'DayPicker-Weekday', 'DayPicker-Day', 'disabled'
@@ -491,6 +483,14 @@ Calendar.propTypes = {
 
   /** RTL mode. When true, the keyboard navigation will be changed means pressing on the right arrow will navigate to the previous day, and pressing on the left arrow will navigate to the next day. */
   rtl: PropTypes.bool,
+
+  /**
+   ##### This function allows you to add an indication under a specific date.
+   The function should return the indication node of a specific date or null if this day doesn't have an indication.
+   * `param` {Date} `date` - a date
+   * `return` {React.node} - the indication node of a specific date or null if this day doesn't have an indication.
+  */
+  renderDateIndication: PropTypes.func,
 };
 
 function nextDay(date) {
