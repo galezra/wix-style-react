@@ -51,7 +51,7 @@ export type DataTableRowDataHookFn<RowData = RowDataDefaultType> = (
   rowNum: number,
 ) => string;
 export type DataTableSkin = 'standard' | 'neutral';
-export type DataTableRowVerticalPadding = 'small' | 'medium' | 'large';
+export type DataTableRowVerticalPadding = 'tiny' | 'small' | 'medium' | 'large';
 export interface PopoverPropsWithContent extends PopoverCommonProps {
   content?: React.ReactNode;
 }
