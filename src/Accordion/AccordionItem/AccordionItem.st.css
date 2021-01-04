@@ -37,18 +37,6 @@
   cursor: pointer;
 }
 
-.root:open .header {
-  box-shadow: value(shadow30);
-}
-
-.root:open:hideShadow .header {
-  box-shadow: none;
-}
-
-.root:open:skin(light):hideShadow .header {
-  background-color: initial;
-}
-
 .root:disabled .header .arrow {
   color: value(D10);
 }
@@ -66,6 +54,20 @@
 .children {
   padding: 24px 30px 30px;
   background-color: value(B60);
+}
+
+.root:open .children {
+  box-shadow: 
+    inset 0px 18px 8px -10px rgba(22, 45, 61, 0.05), 
+    inset 0px -15px 8px -10px rgba(22, 45, 61, 0.05);
+}
+
+.root:open:hideShadow .children {
+  box-shadow: none;
+}
+
+.root:open:skin(light):hideShadow .children {
+  background-color: initial;
 }
 
 .root:skin(standard) .children{
