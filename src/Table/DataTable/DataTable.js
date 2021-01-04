@@ -361,7 +361,7 @@ class DataTable extends React.Component {
     return (
       <WixStyleReactContext.Consumer>
         {({ reducedSpacingAndImprovedLayout }) => {
-          const classes = this._getCellClasses({
+          const cellClasses = this._getCellClasses({
             column,
             colNum,
             rowData,
@@ -375,7 +375,7 @@ class DataTable extends React.Component {
                 ...stickyColumnStyle,
               }}
               width={width}
-              className={classNames(classes)}
+              className={cellClasses}
               onClick={
                 column.onCellClick
                   ? event => column.onCellClick(column, rowData, rowNum, event)
