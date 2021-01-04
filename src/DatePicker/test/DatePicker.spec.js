@@ -43,14 +43,6 @@ describe('DatePicker', () => {
         expect(await driver.exists()).toBe(true);
       });
 
-      it('should set inputDataHook from props', async () => {
-        const {driver: {inputDriver}} = render(
-          <DatePicker onChange={noop} inputDataHook={'inputDataHook'}/>,
-        );
-
-        expect(await inputDriver.getDataHook()).toBe('inputDataHook');
-      });
-
       describe('given `disabled` prop', () => {
         it('should be disabled', async () => {
           const {driver: {inputDriver}} = render(
