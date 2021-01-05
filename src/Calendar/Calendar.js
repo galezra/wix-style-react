@@ -73,15 +73,19 @@ export default class Calendar extends React.PureComponent {
     const isOutsideDay = !!modifiers[cssStates({ outside: true })];
     const dateIndicationNode =
       renderDateIndication && renderDateIndication(day);
+    const shouldHasIndication =
+      dateIndicationNode && !isOutsideDay && !isSelectedDay;
 
     return (
       <div
-        className={classes.dayWrapper}
+        className={st(classes.dayWrapper, {
+          hasIndication: shouldHasIndication,
+        })}
         data-date={`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`}
         data-outsideday={isOutsideDay}
       >
         <div className={classes.dayText}>{day.getDate()}</div>
-        {dateIndicationNode && !isOutsideDay && !isSelectedDay ? (
+        {shouldHasIndication ? (
           <div className={classes.dayIndicationContainer}>
             {dateIndicationNode}
           </div>
