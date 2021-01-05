@@ -36,6 +36,12 @@ class Input extends Component {
       deprecationLog('<Input/> - change prop size="normal" to size="medium"');
     }
 
+    if (props.roundInput) {
+      deprecationLog(
+        '<Input/> - roundInput prop is deprecated and will be removed in next major release, please use border prop instead',
+      );
+    }
+
     this.state = {
       focus: false,
     };
@@ -386,25 +392,13 @@ Input.displayName = 'Input';
 Input.defaultProps = {
   autoSelect: true,
   size: 'medium',
+  border: 'default',
   roundInput: false,
   textOverflow: 'clip',
   maxLength: 524288,
   withSelection: false,
   clearButton: false,
   hideStatusSuffix: false,
-};
-
-const borderRadiusValidator = (props, propName) => {
-  const value = props[propName];
-  if (typeof value === 'string') {
-    throw new Error(
-      'Passing a string (for className) is deprecated. Use new className prop.',
-    );
-  } else if (typeof value === 'undefined' || typeof value === 'boolean') {
-    return null;
-  } else {
-    return new Error('Invalid type. boolean expected.');
-  }
 };
 
 Input.propTypes = {
