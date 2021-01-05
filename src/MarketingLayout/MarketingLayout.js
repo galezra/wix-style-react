@@ -143,7 +143,7 @@ class MarketingLayout extends React.PureComponent {
     const contentCell = this._renderContentCell(cellSpans.content);
 
     return size === SIZES.tiny ? (
-      <Layout gap="12px">
+      <Layout gap="24px">
         {inverted ? [imageCell, contentCell] : [contentCell, imageCell]}
       </Layout>
     ) : (
