@@ -365,6 +365,9 @@
   "Proportion": {
     "path": "src/Proportion"
   },
+  "PulseAnimation": {
+    "path": "src/PulseAnimation"
+  },
   "Radio": {
     "path": "src/Radio"
   },

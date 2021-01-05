@@ -525,6 +525,10 @@ export {
 export * from './WixStyleReactProvider';
 
 export { default as BounceAnimation } from './BounceAnimation';
+
+export { default as PulseAnimation } from './PulseAnimation';
+export * from './PulseAnimation';
+
 export * from './BounceAnimation';
 
 export * from './TrendIndicator';
