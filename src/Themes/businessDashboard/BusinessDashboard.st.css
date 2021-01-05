@@ -151,6 +151,11 @@
   -st-default: TrendIndicator;
 }
 
+:import {
+  -st-from: "../../CloseButton/CloseButton.st.css";
+  -st-default: CloseButton;
+}
+
 /* Overrides */
 :import {
   -st-from: "./components/Button.st.css";
@@ -297,6 +302,11 @@
   -st-default: TrendIndicatorOverrides;
 }
 
+:import {
+  -st-from: "./components/CloseButton.st.css";
+  -st-default: CloseButtonOverrides;
+}
+
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -378,6 +388,9 @@
   }
   TrendIndicator {
     -st-mixin: TrendIndicatorOverrides();
+  }
+  CloseButton {
+    -st-mixin: CloseButtonOverrides();
   }
 }
 

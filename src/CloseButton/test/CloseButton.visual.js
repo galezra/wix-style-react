@@ -35,14 +35,20 @@ const blockOfTests = [
   },
 ];
 
-visualize('CloseButton', () => {
-  blockOfTests.forEach(({ it, render }) => {
-    snap(it, render);
-  });
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(`${themeName ? `${themeName}|` : ''}CloseButton`, () => {
+    blockOfTests.forEach(({ it, render }) => {
+      snap(it, () => testWithTheme(render()));
+    });
 
-  tests.forEach(({ describe, its }) => {
-    story(describe, () => {
-      its.map(({ it, props }) => snap(it, () => <CloseButton {...props} />));
+    tests.forEach(({ describe, its }) => {
+      story(describe, () => {
+        its.map(({ it, props }) =>
+          snap(it, () => testWithTheme(<CloseButton {...props} />)),
+        );
+      });
     });
   });
-});
+};

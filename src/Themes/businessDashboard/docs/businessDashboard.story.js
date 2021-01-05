@@ -34,6 +34,7 @@ import * as search from './components/Search';
 import * as emptyState from './components/EmptyState';
 import * as modal from './components/Modal';
 import * as trendIndicator from './components/TrendIndicator';
+import * as closeButton from './components/CloseButton';
 import { Category } from '../../../../stories/storiesHierarchy';
 import Box from '../../../Box';
 import Text from '../../../Text';
@@ -166,6 +167,10 @@ import { theme } from 'wix-style-react/themes/businessDashboard';
           example({
             text: TextComponent('TrendIndicator'),
             source: trendIndicator.playground,
+          }),
+          example({
+            text: TextComponent('CloseButton'),
+            source: closeButton.playground,
           }),
         ],
       }),

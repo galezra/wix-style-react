@@ -22,6 +22,7 @@ import { runTests as LoaderTests } from '../../../Loader/test/Loader.visual';
 import { runTests as InputTests } from '../../../Input/test/Input.visual';
 import { runTests as EmptyStateTests } from '../../../EmptyState/test/EmptyState.visual';
 import { runTests as TrendIndicator } from '../../../TrendIndicator/test/TrendIndicator.visual';
+import { runTests as CloseButtonTests } from '../../../CloseButton/test/CloseButton.visual';
 import { ThemeProvider } from '../../..';
 
 const themeName = 'Business Dashboard';
@@ -55,3 +56,4 @@ LoaderTests({ themeName, testWithTheme });
 InputTests({ themeName, testWithTheme });
 EmptyStateTests({ themeName, testWithTheme });
 TrendIndicator({ themeName, testWithTheme });
+CloseButtonTests({ themeName, testWithTheme });
