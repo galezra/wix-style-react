@@ -22,6 +22,7 @@ export interface InputProps {
   clearButton?: boolean;
   className?: string;
   name?: string;
+  border?: 'standard' | 'round' | 'bottomLine';
   noLeftBorderRadius?: boolean;
   noRightBorderRadius?: boolean;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;

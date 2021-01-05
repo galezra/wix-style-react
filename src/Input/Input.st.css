@@ -134,6 +134,14 @@
   bottom: 0;
 }
 
+.root:border(bottomLine):status(error):before {
+  background: value(R10);
+}
+
+.root:border(bottomLine):status(warning):before {
+  background: value(Y10);
+}
+
 .root:border(bottomLine):hasFocus:before {
   width: 100%;
 }
@@ -150,6 +158,14 @@
 
 .root:not(:hasFocus):border(bottomLine):not(:disabled):hover {
    border-bottom-color: value(D60);
+}
+
+.root:not(:hasFocus):border(bottomLine):not(:disabled):status(error):hover {
+   border-bottom-color: value(R30);
+}
+
+.root:not(:hasFocus):border(bottomLine):not(:disabled):status(warning):hover {
+   border-bottom-color: value(Y30);
 }
 
 .root:hover.readOnly.disabled {
@@ -232,22 +248,22 @@
   margin: auto 6px auto 3px;
 }
 
-.root:not(:disabled):status(error) {
+.root:not(:disabled):status(error):not(:border(bottomLine)) {
   border-color: value(R10);
   box-shadow: none;
 }
 
-.root:not(:disabled):status(error):hasFocus {
+.root:not(:disabled):status(error):not(:border(bottomLine)):hasFocus {
   border-color: value(R10);
   box-shadow: 0 0 0 3px value(R30);
 }
 
-.root:not(:disabled):status(warning) {
+.root:not(:disabled):status(warning):not(:border(bottomLine)) {
   border-color: value(Y10);
   box-shadow: none;
 }
 
-.root:not(:disabled):status(warning):hasFocus {
+.root:not(:disabled):status(warning):not(:border(bottomLine)):hasFocus {
   border-color: value(Y10);
   box-shadow: 0 0 0 3px value(Y30);
 }

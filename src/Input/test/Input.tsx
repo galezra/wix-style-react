@@ -35,6 +35,7 @@ function InputWithAllProps() {
       menuArrow
       min={5}
       name="name"
+      border="bottomLine"
       noLeftBorderRadius
       noRightBorderRadius
       onBlur={_ev => {}}
