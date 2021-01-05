@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import Text from '../Text';
 import TextButton from '../TextButton';
 import Button from '../Button';
 import CloseButton from '../CloseButton/CloseButton';
 import { TYPES, dataHooks } from './constants';
-import styles from './FloatingNotification.scss';
+import { st, classes } from './FloatingNotification.st.css';
 
 const buttonPropTypes = PropTypes.shape({
   label: PropTypes.node,
@@ -86,16 +85,14 @@ class FloatingNotification extends React.PureComponent {
     return (
       <div
         data-hook={dataHook}
-        className={classNames(styles.root, styles[type], className, {
-          [styles.fullWidth]: fullWidth,
-        })}
+        className={st(classes.root, { fullWidth, type }, className)}
         style={style}
       >
         {icon}
         {content}
         {textButton}
         {button}
-        <div className={styles.gap} />
+        <div className={classes.gap} />
         {close}
       </div>
     );
@@ -104,7 +101,7 @@ class FloatingNotification extends React.PureComponent {
   _getIcon() {
     const { prefixIcon, type } = this.props;
     return prefixIcon ? (
-      <div className={classNames(styles.icon, styles[type])}>{prefixIcon}</div>
+      <div className={st(classes.icon, { type })}>{prefixIcon}</div>
     ) : null;
   }
 
@@ -116,7 +113,7 @@ class FloatingNotification extends React.PureComponent {
         ellipsis
         light={type === TYPES.dark}
         dataHook={dataHooks.notificationText}
-        className={styles.text}
+        className={classes.text}
       >
         {text}
       </Text>
@@ -133,7 +130,7 @@ class FloatingNotification extends React.PureComponent {
         underline="always"
         skin={type !== TYPES.dark ? 'dark' : 'light'}
         size="small"
-        className={styles.textButton}
+        className={classes.textButton}
         dataHook={dataHooks.textButton}
       >
         {label}
@@ -148,7 +145,7 @@ class FloatingNotification extends React.PureComponent {
     return !isEmpty(buttonProps) ? (
       <Button
         {...rest}
-        className={styles.button}
+        className={classes.button}
         size="tiny"
         priority={type !== TYPES.dark ? 'secondary' : 'primary'}
         skin={type !== TYPES.dark ? 'dark' : 'standard'}
@@ -165,7 +162,7 @@ class FloatingNotification extends React.PureComponent {
       <CloseButton
         size="medium"
         skin={type !== TYPES.dark ? 'dark' : 'light'}
-        className={styles.close}
+        className={classes.close}
         dataHook={dataHooks.closeButton}
         onClick={onClose}
       />
