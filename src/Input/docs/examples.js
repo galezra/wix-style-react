@@ -225,26 +225,24 @@ export const sizes = `
 </Layout>
 `;
 
-export const rounded = `
+export const borders = `
 <Layout>
   <Cell>
     <Input
-      size="small"
       placeholder="They did not know it was impossible, so they did it!"
-      roundInput />
-  </Cell>
-  <Cell>
-    <Input
-      size="medium"
-      placeholder="They did not know it was impossible, so they did it!"
-      roundInput
+      border="default"
     />
   </Cell>
   <Cell>
     <Input
-      size="large"
       placeholder="They did not know it was impossible, so they did it!"
-      roundInput
+      border="round"
+    />
+  </Cell>
+  <Cell>
+    <Input
+      placeholder="They did not know it was impossible, so they did it!"
+      border="bottomLine"
     />
   </Cell>
 </Layout>`;

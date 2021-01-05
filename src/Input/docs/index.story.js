@@ -80,7 +80,7 @@ export default {
               source: examples.iconAffix,
             },
             { title: 'Sizes', source: examples.sizes },
-            { title: 'Rounded', source: examples.rounded },
+            { title: 'Borders', source: examples.borders },
           ].map(code),
         ],
       }),

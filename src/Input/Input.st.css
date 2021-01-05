@@ -16,6 +16,11 @@
 }
 
 :import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+:import {
   -st-from: "../CloseButton/CloseButton.st.css";
   -st-default: CloseButton;
 }
@@ -119,8 +124,18 @@
   box-shadow: 0 0 0 3px value(F00);
 }
 
-.root:hasFocus:border(bottomLine) {
-  border-bottom-color: value(THEME-COLOR-10);
+.root:border(bottomLine):before {
+  content: ' ';
+  transition: width .2s value(ease-8);
+  width: 0;
+  position: absolute;
+  height: 1px;
+  background: value(THEME-COLOR-10);
+  bottom: 0;
+}
+
+.root:border(bottomLine):hasFocus:before {
+  width: 100%;
 }
 
 /* Hover */

@@ -38,9 +38,10 @@
 }
 
 /* Focus */
-.root:hasFocus {
+.root:hasFocus:not(:border(bottomLine)) {
   outline: none;
   border-color: value(B05);
+  box-shadow: none;
 }
 
 /* Hover */
