@@ -3,10 +3,6 @@
   -st-named: D80, B50, B30, G50, G30, R50, R30, Y50, Y30, P50, P30, D70, D50, D10;
 }
 
-:vars{
-  buttonMaxWidth: 25%;
-}
-
 .root {
   -st-states: type(enum(standard, success, destructive, warning, premium, preview, dark)), fullWidth;
   border-radius: 6px;
@@ -22,20 +18,8 @@
   box-sizing: border-box;
 }
 
-/* do we need .rtl and [dir='rtl'] selectors or [dir='rtl'] is enough ? */
-:global(.rtl) .root,
-:global([dir='rtl']) .root {
-  padding-right: 12px;
-  padding-left: 6px;
-}
-
 .root > *:first-child {
   margin-left: 0;
-}
-
-:global([dir='rtl']) .root > *:first-child {
-  margin-left: unset;
-  margin-right: 0;
 }
 
 .root:fullWidth {
@@ -47,11 +31,6 @@
   height: 42px;
   padding-left: 30px;
   padding-right: 15px;
-}
-
-:global([dir='rtl']) .root:fullWidth {
-  padding-left: 15px;
-  padding-right: 30px;
 }
 
 .root:type(standard) {
@@ -89,16 +68,15 @@
     border-color: value(D10);
 }
 
+.root:type(dark) .icon {
+    color: value(D80);
+}
+
 .icon {
-  -st-states: type(enum(dark));
   height: 100%;
   display: flex;
   align-items: center;
   flex-shrink: 0;
-}
-
-.icon:type(dark) {
-  color: value(D80);
 }
 
 .text,
@@ -106,24 +84,13 @@
   margin-left: 6px;
 }
 
-:global([dir='rtl']) .text,
-:global([dir='rtl']) .textButton {
-  margin-left: unset;
-  margin-right: 6px;
-}
-
 .button {
   margin-left: 12px;
 }
 
-:global([dir='rtl']) .button {
-  margin-left: unset;
-  margin-right: 12px;
-}
-
 .button,
 .textButton {
-  max-width: value(buttonMaxWidth);
+  max-width: 25%;
 }
 
 .gap {
@@ -133,4 +100,31 @@
 
 .close {
   flex-shrink: 0;
+}
+
+:global(.rtl) .root,
+:global([dir='rtl']) .root {
+  padding-right: 12px;
+  padding-left: 6px;
+}
+
+:global([dir='rtl']) .root > *:first-child {
+  margin-left: unset;
+  margin-right: 0;
+}
+
+:global([dir='rtl']) .root:fullWidth {
+  padding-left: 15px;
+  padding-right: 30px;
+}
+
+:global([dir='rtl']) .text,
+:global([dir='rtl']) .textButton {
+  margin-left: unset;
+  margin-right: 6px;
+}
+
+:global([dir='rtl']) .button {
+  margin-left: unset;
+  margin-right: 12px;
 }
