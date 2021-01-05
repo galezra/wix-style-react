@@ -108,7 +108,7 @@ class Accordion extends React.Component {
     const { dataHook, items, skin, hideShadow, size } = this.props;
 
     return (
-      <div data-hook={dataHook}>
+      <div data-hook={dataHook} className={classes.accordion}>
         {items.map((item, index, allItems) => {
           const uncontrolledProps = {
             onToggle: this._toggle(index),

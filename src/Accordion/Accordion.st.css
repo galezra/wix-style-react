@@ -3,6 +3,10 @@
   -st-named: D60, D80;
 }
 
+.accordion {
+  background-color: value(D80);
+}
+
 .item {
   -st-states: last;
   border-bottom: 1px solid value(D60);
