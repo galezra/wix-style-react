@@ -124,7 +124,7 @@
   box-shadow: 0 0 0 3px value(F00);
 }
 
-.root:border(bottomLine):before {
+.root:border(bottomLine)::before {
   content: ' ';
   transition: width .2s value(ease-8);
   width: 0;
@@ -134,15 +134,15 @@
   bottom: 0;
 }
 
-.root:border(bottomLine):status(error):before {
+.root:border(bottomLine):status(error)::before {
   background: value(R10);
 }
 
-.root:border(bottomLine):status(warning):before {
+.root:border(bottomLine):status(warning)::before {
   background: value(Y10);
 }
 
-.root:border(bottomLine):hasFocus:before {
+.root:border(bottomLine):hasFocus::before {
   width: 100%;
 }
 
