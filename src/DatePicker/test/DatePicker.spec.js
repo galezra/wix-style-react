@@ -13,7 +13,7 @@ import {
   rangePolyfill,
   requestAnimationFramePolyfill,
 } from '../../../testkit/polyfills';
-
+import eventually from 'wix-eventually';
 import {is as isLocale} from 'date-fns/locale';
 import {convertTokens} from '@date-fns/upgrade/v2';
 
@@ -28,8 +28,8 @@ describe('DatePicker', () => {
     runTests(createRendererWithUniDriver(datePickerUniDriverFactory));
   });
 
-  async function runTests(render) {
-    afterEach(() => cleanup());
+  function runTests(render) {
+    afterEach(cleanup);
     beforeAll(() => {
       rangePolyfill.install();
       requestAnimationFramePolyfill.install();
@@ -37,10 +37,10 @@ describe('DatePicker', () => {
 
     describe('date picker input', () => {
       it('should exist', async () => {
-        const {driver} = render(
+        const {driver: {inputDriver}} = render(
           <DatePicker onChange={noop}/>,
         );
-        expect(await driver.exists()).toBe(true);
+        expect(await inputDriver.exists()).toBe(true);
       });
 
       describe('given `disabled` prop', () => {
@@ -126,10 +126,11 @@ describe('DatePicker', () => {
             <DatePicker onChange={noop}/>,
           );
 
-          await inputDriver.trigger('click');
+          await inputDriver.click();
           await calendarDriver.clickOnNthDay();
-
-          setTimeout(async () => expect(await calendarDriver.isVisible()).toBe(false), 0);
+          await eventually(async () => {
+            expect(await calendarDriver.isVisible()).toBe(false)
+          })
         });
 
         it('on press "Escape" key', async () => {
@@ -178,7 +179,7 @@ describe('DatePicker', () => {
             <DatePicker onChange={noop}/>,
           );
 
-          await inputDriver.trigger('click');
+          await inputDriver.click();
           await calendarDriver.mouseClickOutside();
 
           expect(await calendarDriver.isVisible()).toBe(false);
@@ -419,7 +420,7 @@ describe('DatePicker', () => {
       });
 
       describe('keyboard navigation', () => {
-        it('should navigate days correctly with keyboard - LTR mode', async (done) => {
+        it('should navigate days correctly with keyboard - LTR mode', async () => {
           const date = new Date(2018, 1, 5);
           const {driver: {calendarDriver, driver}} = render(
             <DatePicker onChange={noop} value={date}/>,
@@ -428,14 +429,12 @@ describe('DatePicker', () => {
           await driver.open();
           expect(await calendarDriver.getFocusedDay()).toEqual('5');
           await calendarDriver.pressLeftArrow();
-          // we need setTimeout because pressLeftArrow trigger async actions
-          setTimeout(async () => {
+          await eventually(async ()=> {
             expect(await calendarDriver.getFocusedDay()).toEqual('4');
-            done();
-          });
+          })
         });
 
-        it('should navigate days correctly with keyboard - RTL mode', async (done) => {
+        it('should navigate days correctly with keyboard - RTL mode', async () => {
           const date = new Date(2018, 1, 5);
           const {driver: {calendarDriver, driver}} = render(
             <DatePicker onChange={noop} rtl value={date}/>,
@@ -444,11 +443,9 @@ describe('DatePicker', () => {
           await driver.open();
           expect(await calendarDriver.getFocusedDay()).toEqual('5');
           await calendarDriver.pressLeftArrow();
-          // we need setTimeout because pressLeftArrow trigger async actions
-          setTimeout(async () => {
+          await eventually(async ()=> {
             expect(await calendarDriver.getFocusedDay()).toEqual('6');
-            done();
-          });
+          })
         });
 
         it('should not update input value while navigating the calendar', async () => {
@@ -464,7 +461,7 @@ describe('DatePicker', () => {
           expect(await inputDriver.getValue()).toEqual('02/05/2018');
         });
 
-        it('should keep selected day unchanged when navigating with keyboard', async (done) => {
+        it('should keep selected day unchanged when navigating with keyboard', async () => {
           const date = new Date(2018, 1, 5);
           const {driver: {calendarDriver, driver}} = render(
             <DatePicker onChange={noop} value={date}/>,
@@ -476,11 +473,10 @@ describe('DatePicker', () => {
           expect(await calendarDriver.getFocusedDay()).toEqual('5');
 
           await calendarDriver.pressLeftArrow();
-          setTimeout(async () => {
+          await eventually(async () => {
             expect(await calendarDriver.getSelectedDay()).toEqual('5');
             expect(await calendarDriver.getFocusedDay()).toEqual('4');
-            done();
-          });
+          })
         });
 
         it('should remove unfocused class from the selected day while navigating the calendar', async () => {
@@ -815,7 +811,8 @@ describe('DatePicker', () => {
     });
 
     describe('borderRadius', () => {
-      it('should have both borderRadius by default', async () => {
+      // move to visual tests
+      it.skip('should have both borderRadius by default', async () => {
         const {driver: {inputDriver}} = render(<DatePicker onChange={noop}/>);
         expect(await inputDriver.hasRightBorderRadius()).toBe(true);
         expect(await inputDriver.hasLeftBorderRadius()).toBe(true);
@@ -823,7 +820,8 @@ describe('DatePicker', () => {
     });
 
     describe('inputProps prop', () => {
-      it('should pass inputProps to input component', async () => {
+      // move to visual tests
+      it.skip('should pass inputProps to input component', async () => {
         const {driver: {inputDriver}} = render(
           <DatePicker
             inputProps={{noRightBorderRadius: true, noLeftBorderRadius: true}}
