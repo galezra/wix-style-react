@@ -36,21 +36,15 @@ const buildAtlasPlaceResponse = id => {
   return response;
 };
 
-const mockAtlasRouter = function (router, baseRoute) {
-  router.post(`${baseRoute}/v2/predict`, function (req, res) {
-    const {
-      body: { input },
-    } = req;
-    res.json(buildAtlasAutocompleteResponse(input));
-    res.end();
-  });
-  router.get(`${baseRoute}/v2/place`, function (req, res) {
-    const {
-      query: { searchId },
-    } = req;
-    res.json(buildAtlasPlaceResponse(searchId));
-    res.end();
-  });
-};
+const WixAtlasServiceWeb = () => ({
+  AutocompleteServiceV2: () => () => ({
+    predict: ({ input }) =>
+      Promise.resolve(buildAtlasAutocompleteResponse(input)),
+  }),
+  PlacesServiceV2: () => () => ({
+    getPlace: ({ searchId }) =>
+      Promise.resolve(buildAtlasPlaceResponse(searchId)),
+  }),
+});
 
-module.exports = mockAtlasRouter;
+module.exports.WixAtlasServiceWeb = WixAtlasServiceWeb;
