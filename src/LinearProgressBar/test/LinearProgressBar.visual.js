@@ -116,9 +116,6 @@ export const runTests = (
               <Cell>
                 <LinearProgressBar {...props} skin={SKINS.success} />
               </Cell>
-              <Cell>
-                <LinearProgressBar {...props} skin={SKINS.standard} />
-              </Cell>
             </Layout>
           </Box>,
         ),
