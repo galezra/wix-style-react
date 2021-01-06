@@ -20,7 +20,14 @@ import allComponents from '../../../stories/utils/allComponents';
 import AtlasAddressInput from '..';
 import { SectionHelper } from '../..';
 
-const example = config => baseExample({ components: allComponents, ...config });
+const example = config =>
+  baseExample({
+    components: {
+      ...allComponents,
+      AtlasAddressInput,
+    },
+    ...config,
+  });
 
 export default {
   category: storySettings.category,
