@@ -34,6 +34,7 @@ import * as search from './components/Search';
 import * as emptyState from './components/EmptyState';
 import * as modal from './components/Modal';
 import * as trendIndicator from './components/TrendIndicator';
+import * as checkbox from './components/Checkbox';
 import { Category } from '../../../../stories/storiesHierarchy';
 import Box from '../../../Box';
 import Text from '../../../Text';
@@ -90,6 +91,14 @@ import { theme } from 'wix-style-react/themes/businessDashboard';
           example({
             text: TextComponent('Carousel'),
             source: carousel.playground,
+          }),
+          example({
+            text: TextComponent('CircularProgressBar'),
+            source: circularProgressBar.playground,
+          }),
+          example({
+            text: TextComponent('Checkbox'),
+            source: checkbox.playground,
           }),
           example({
             text: TextComponent('CircularProgressBar'),
