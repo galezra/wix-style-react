@@ -20,20 +20,7 @@ import allComponents from '../../../stories/utils/allComponents';
 import AtlasAddressInput from '..';
 import { SectionHelper } from '../..';
 
-// We've set up a mock Atlas api in Storybook middleware file
-const BASE_URL = '/api/atlas/';
-const MockAtlasAddressInput = props => (
-  <AtlasAddressInput baseUrl={BASE_URL} {...props} />
-);
-
-const example = config =>
-  baseExample({
-    components: {
-      ...allComponents,
-      AtlasAddressInput: MockAtlasAddressInput,
-    },
-    ...config,
-  });
+const example = config => baseExample({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
