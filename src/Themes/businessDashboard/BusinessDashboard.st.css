@@ -314,6 +314,10 @@
   CircularProgressBar {
     -st-mixin: CircularProgressBarOverrides();
   }
+
+  Checkbox {
+    -st-mixin: CheckboxOverrides();
+  }
   LinearProgressBar {
     -st-mixin: LinearProgressBarOverrides();
   }
