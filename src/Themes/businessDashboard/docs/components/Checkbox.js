@@ -9,7 +9,7 @@ export const playground = `
   </Cell>
   <Cell>
     <Checkbox checked size="small" disabled>
-      Checked Disabled
+      Checked Disabled lll
     </Checkbox>
   </Cell>
   <Cell>

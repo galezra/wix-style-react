@@ -169,7 +169,7 @@
 
 :import {
   -st-from: "./components/Checkbox.st.css";
-  -st-default: Checkbox;
+  -st-default: CheckboxOverrides;
 }
 
 :import {
@@ -318,6 +318,7 @@
   Checkbox {
     -st-mixin: CheckboxOverrides();
   }
+
   LinearProgressBar {
     -st-mixin: LinearProgressBarOverrides();
   }

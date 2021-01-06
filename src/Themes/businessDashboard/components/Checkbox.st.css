@@ -13,6 +13,11 @@
   -st-named: normal, bold;
 }
 
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
 .root {
   -st-extends: Checkbox;
 }
