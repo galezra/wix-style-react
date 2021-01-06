@@ -14,6 +14,7 @@ require('../src/AddressInputItem/docs/index.story');
 require('../src/AnalyticsSummaryCard/docs/index.story');
 require('../src/AnnouncementModalLayout/docs/index.story');
 require('../src/AreaChart/docs/index.story');
+require('../src/AddressInput/docs/index.story');
 require('../src/AtlasAddressInput/docs/index.story');
 require('../src/AudioPlayer/docs/index.story');
 require('../src/AutoComplete/docs/index.story');
@@ -218,7 +219,6 @@ require('./ModalMobileLayout/index.story'); // 9.5 Mobile Modal
 require('../src/MessageBox/docs');
 
 // Internal
-require('../src/AddressInput/docs/index.story');
 require('../src/LabelledElement/docs/index.story');
 
 // Editor-X

@@ -12,10 +12,12 @@ import {
   api,
   testkit,
 } from 'wix-storybook-utils/Sections';
+import LinkTo from '@storybook/addon-links/react';
 
 import * as examples from './examples';
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
+import { Category } from '../../../stories/storiesHierarchy';
 
 import AtlasAddressInput from '..';
 import { SectionHelper } from '../..';
@@ -66,7 +68,15 @@ export default {
         sections: [
           description({
             title: 'Description',
-            text: 'An address search component, requires an address provider.',
+            text: [
+              'An address search component, powered by Atlas autocompletion service.',
+              <br />,
+              'You can see how to customize address input layout in the ',
+              <LinkTo kind={Category.COMPONENTS} story="AddressInput">
+                {`<AddressInput/>`}
+              </LinkTo>,
+              ' component story.',
+            ],
           }),
 
           description({
