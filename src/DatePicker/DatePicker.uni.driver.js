@@ -18,11 +18,24 @@ export const datePickerUniDriverFactory = (base, body) => {
     open: async () => await inputDriver.focus(),
     getWidth: () => base._prop('style').then((style) => style.width),
   };
-
+  // TODO: needs to be fixed, autodocs doesn't generate the docs below.
   return {
+    /**
+     * Input Unidriver methods
+     */
     inputDriver,
+    /**
+     * Calender Unidriver methods
+     */
     calendarDriver,
+    /**
+     * Checks whether the component found with the given data hook.
+     * @returns {Promise<boolean>}
+     */
     exists: driver.exists,
+    /**
+     * Contains 'exists', 'open' and 'getWidth' methods
+     */
     driver
   }
 };
