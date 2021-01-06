@@ -26,7 +26,7 @@
   color: value(D10);
 }
 
-.root:skin(dark):focus {
-  border-radius: 12px;
+.root:skin(dark):size(large):focus {
+  border-radius: 15px;
   border: 3px solid value(B40);
 }
