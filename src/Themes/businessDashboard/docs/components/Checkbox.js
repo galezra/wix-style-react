@@ -2,18 +2,18 @@ export const playground = `
 <ThemeProvider theme={theme()}>
 <Layout>
   <Cell>
-    <Checkbox> Unchecked</Checkbox>
+    <Checkbox size="small"> Unchecked</Checkbox>
   </Cell>
   <Cell>
-    <Checkbox checked> Checked</Checkbox>
+    <Checkbox checked size="small"> Checked</Checkbox>
   </Cell>
   <Cell>
-    <Checkbox hasError tooltipContent="Oops!">
-      Error
+    <Checkbox checked size="small" disabled>
+      Checked Disabled
     </Checkbox>
   </Cell>
   <Cell>
-    <Checkbox disabled>Disabled</Checkbox>
+    <Checkbox size="small" disabled>Disabled</Checkbox>
   </Cell>
 </Layout>
 </ThemeProvider>
