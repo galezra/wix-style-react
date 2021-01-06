@@ -41,8 +41,6 @@
 .root:disabled::checkbox {
   border-color: value(D10-40);
   background-color: value(D10-40);
-  /* border-color: yellow;
-  background-color: blueviolet; */
 }
 
 .root:disabled::inner {
