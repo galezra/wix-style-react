@@ -12,11 +12,25 @@
   -st-extends: Checkbox;
 }
 
+.root::checkbox {
+  border: 1px solid value(B10);
+}
+.root:focus-visible::checkbox {
+  box-shadow: 0 0 0 3px value(B50);
+}
+
+/* Padding */
 .root::children {
   padding-left: 8px;
 }
 
 :global([dir='rtl']) .root::children {
   padding-right: 8px;
+}
+
+/* Hover */
+.root:selection(unchecked):hover::checkbox,:focus-visible,
+.root:checkboxhover::checkbox {
+  background-color: value(B50);
 }
 
