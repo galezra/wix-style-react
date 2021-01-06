@@ -22,6 +22,7 @@ import { runTests as LoaderTests } from '../../../Loader/test/Loader.visual';
 import { runTests as InputTests } from '../../../Input/test/Input.visual';
 import { runTests as EmptyStateTests } from '../../../EmptyState/test/EmptyState.visual';
 import { runTests as TrendIndicator } from '../../../TrendIndicator/test/TrendIndicator.visual';
+import { runTests as CheckboxTests } from '../../../Checkbox/test/Checkbox.visual';
 import { ThemeProvider } from '../../..';
 
 const themeName = 'Business Dashboard';
@@ -42,6 +43,7 @@ TextButtonTests({ themeName, testWithTheme });
 IconButtonTests({ themeName, testWithTheme });
 CardTests({ themeName, testWithTheme });
 CarouselTests({ themeName, testWithTheme });
+CheckboxTests({ themeName, testWithTheme });
 SidebarTests({ themeName, testWithTheme });
 SidebarBackButtonTests({ themeName, testWithTheme });
 SidebarDividerTests({ themeName, testWithTheme });

@@ -191,60 +191,79 @@ const interactiveTests = [
     ],
   },
 ];
-
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(`Checkbox${describe ? '/' + describe : ''}`, module).add(
-      it,
-      () => (
-        <Box direction="vertical">
-          <Box margin={2}>
-            <Checkbox {...defaultProps} {...props} />
-          </Box>
-          <Box margin={2}>
-            <Checkbox checked {...defaultProps} {...props} />
-          </Box>
-          <Box margin={2}>
-            <Checkbox indeterminate {...defaultProps} {...props} />
-          </Box>
-          <Box margin={2}>
-            <Checkbox disabled {...defaultProps} {...props} />
-          </Box>
-          <Box margin={2}>
-            <Checkbox checked disabled {...defaultProps} {...props} />
-          </Box>
-          <Box margin={2}>
-            <Checkbox indeterminate disabled {...defaultProps} {...props} />
-          </Box>
-        </Box>
-      ),
-    );
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) => {
+    its.forEach(({ it, props }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}Checkbox${
+          describe ? '/' + describe : ''
+        }`,
+        module,
+      ).add(it, () =>
+        testWithTheme(
+          <Box direction="vertical">
+            <Box margin={2}>
+              <Checkbox {...defaultProps} {...props} />
+            </Box>
+            <Box margin={2}>
+              <Checkbox checked {...defaultProps} {...props} />
+            </Box>
+            <Box margin={2}>
+              <Checkbox indeterminate {...defaultProps} {...props} />
+            </Box>
+            <Box margin={2}>
+              <Checkbox disabled {...defaultProps} {...props} />
+            </Box>
+            <Box margin={2}>
+              <Checkbox checked disabled {...defaultProps} {...props} />
+            </Box>
+            <Box margin={2}>
+              <Checkbox indeterminate disabled {...defaultProps} {...props} />
+            </Box>
+          </Box>,
+        ),
+      );
+    });
   });
-});
 
-interactiveTests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props, componentDidMount }) => {
-    storiesOf(`Checkbox${describe ? '/' + describe : ''}`, module).add(
-      it,
-      () => (
-        <InteractiveCheckbox {...props} componentDidMount={componentDidMount} />
-      ),
-    );
+  interactiveTests.forEach(({ describe, its }) => {
+    its.forEach(({ it, props, componentDidMount }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}Checkbox${
+          describe ? '/' + describe : ''
+        }`,
+        module,
+      ).add(it, () =>
+        testWithTheme(
+          <InteractiveCheckbox
+            {...props}
+            componentDidMount={componentDidMount}
+          />,
+        ),
+      );
+    });
   });
-});
 
-storiesOf('Checkbox/FormField', module).add('FormField', () => (
-  <div style={{ padding: '40px' }}>
-    <FormField
-      dataHook={`${dataHook}-formfield`}
-      id={checkboxId}
-      infoContent="I help you to fill info"
-      label="Checkbox"
-      labelPlacement="right"
-      stretchContent={false}
-      required
-    >
-      <Checkbox id={checkboxId} />
-    </FormField>
-  </div>
-));
+  storiesOf(
+    `${themeName ? `${themeName}|` : ''}Checkbox/FormField`,
+    module,
+  ).add('FormField', () =>
+    testWithTheme(
+      <div style={{ padding: '40px' }}>
+        <FormField
+          dataHook={`${dataHook}-formfield`}
+          id={checkboxId}
+          infoContent="I help you to fill info"
+          label="Checkbox"
+          labelPlacement="right"
+          stretchContent={false}
+          required
+        >
+          <Checkbox id={checkboxId} />
+        </FormField>
+      </div>,
+    ),
+  );
+};
