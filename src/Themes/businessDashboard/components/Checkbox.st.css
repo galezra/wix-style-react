@@ -29,8 +29,23 @@
 }
 
 /* Hover */
+.root:selectionArea(always):selectionAreaSkin(filled):hover,
+.root:selectionArea(hover):selectionAreaSkin(filled):hover,
 .root:selection(unchecked):hover::checkbox,:focus-visible,
 .root:checkboxhover::checkbox {
   background-color: value(B50);
+}
+
+/* Disabled */
+.root::checkbox:disabled,
+.root:disabled::checkbox {
+  border-color: value(D10-40);
+  background-color: value(D10-40);
+  /* border-color: yellow;
+  background-color: blueviolet; */
+}
+
+.root:disabled::inner {
+  color: value(D80);
 }
 
