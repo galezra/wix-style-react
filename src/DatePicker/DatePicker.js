@@ -39,7 +39,7 @@ export default class DatePicker extends React.PureComponent {
     width: 150,
     zIndex: 1,
     disabled: false,
-    inputDataHook: 'date-picker-input',
+    inputDataHook: dataHooks.datePickerInput,
     popoverProps: {
       zIndex: 1,
     },
