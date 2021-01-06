@@ -1,23 +1,24 @@
 :import {
   -st-from: "../../Foundation/stylable/colors.st.css";
-  -st-named: D10-03;
+  -st-named: D10-03, D60;
 }
 
 .root {
-  -st-states: size(enum(small, large));
-}
-
-.root {
+  background-color: value(D10-03);
+  height: 48px;
   display: flex;
   align-items: center;
+}
+
+.text {
   padding: 0 30px;
-  background-color: value(D10-03);
+  position: absolute;
 }
 
-.root:size(small) {
-  height: 48px;
-}
-
-.root:size(large) {
-  height: 72px;
+.line {
+  background-color: value(D60);
+  height: 1px;
+  width: 100%;
+  align-self: flex-end;
+  position: relative;
 }
