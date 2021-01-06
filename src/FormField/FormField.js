@@ -225,11 +225,12 @@ class FormField extends React.Component {
 
     let { labelSize } = this.props;
 
-    if (labelSize) {
-      deprecationLog(
-        `<FormField/> prop "labelSize" is deprecated and will be removed in the next major version.`,
-      );
-    }
+    // TODO: should be deprecated. Currently, no deprecation log because we are not sure when is the next major release and we don't want consumers will get lots of warnings
+    // if (labelSize) {
+    //   deprecationLog(
+    //     `<FormField/> prop "labelSize" is deprecated and will be removed in the next major version.`,
+    //   );
+    // }
 
     const rootStyles = label
       ? {
