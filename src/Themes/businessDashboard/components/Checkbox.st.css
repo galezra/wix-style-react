@@ -1,0 +1,32 @@
+:import {
+  -st-from: "../../../Checkbox/Checkbox.st.css";
+  -st-default: Checkbox;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: B10, B05, B40, B50, D10-40, D55, D70, D80;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: normal, bold;
+}
+
+.root {
+  -st-extends: Checkbox;
+}
+
+.root:selectionArea(hover):selectionAreaSkin(filled):selection(checked),
+.root:selectionArea(always):selectionAreaSkin(filled):selection(checked) {
+  background-color: value(B10);
+}
+
+.root.children {
+  padding-left: 8px;
+}
+
+:global([dir='rtl']) .root.children {
+  padding-right: 8px;
+}
+
