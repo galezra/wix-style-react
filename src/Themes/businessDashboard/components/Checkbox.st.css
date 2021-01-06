@@ -28,16 +28,19 @@
   padding-right: 8px;
 }
 
+/* Selected */
+.root:selection(checked)::checkbox {
+  border: 1px solid value(B10);
+  background-color: value(B10);
+}
+
 /* Hover */
-.root:selectionArea(always):selectionAreaSkin(filled):hover,
-.root:selectionArea(hover):selectionAreaSkin(filled):hover,
-.root:selection(unchecked):hover::checkbox,:focus-visible,
-.root:checkboxhover::checkbox {
+.root:checkboxhover::checkbox,
+.root:selection(unchecked):hover::checkbox {
   background-color: value(B50);
 }
 
 /* Disabled */
-.root::checkbox:disabled,
 .root:disabled::checkbox {
   border-color: value(D10-40);
   background-color: value(D10-40);
@@ -46,4 +49,5 @@
 .root:disabled::inner {
   color: value(D80);
 }
+
 
