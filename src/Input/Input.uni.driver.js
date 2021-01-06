@@ -8,6 +8,7 @@ export const testkit = (base, body) => {
   // to support cases of multiple inputs, e.g cases where this driver is used inside other drivers with popovers
   // which includes an input
   const input = base.$$('input').get(0);
+
   const reactBase = ReactBase(base);
   const reactBaseInput = ReactBase(input);
 
@@ -25,7 +26,7 @@ export const testkit = (base, body) => {
     click: () => input.click(),
     getInputElementClasses: async () =>
       await reactBaseInput._DEPRECATED_getClassList(),
-    suffixComponentExists: async (className) =>
+    suffixComponentExists: async className =>
       await base.$(`[data-hook="${dataHooks.suffixes}"] ${className}`).exists(),
     getRootElementClasses: async () =>
       await reactBase._DEPRECATED_getClassList(),
@@ -41,7 +42,7 @@ export const testkit = (base, body) => {
       await base.$(`[data-hook="custom-affix"]`).click(),
     hasSuffix: async () =>
       await base.$(`[data-hook="${dataHooks.suffixes}"]`).exists(),
-    prefixComponentExists: async (style) =>
+    prefixComponentExists: async style =>
       !!(await base.attr(DATA_ATTR.PREFIX)) && (await base.$(style).exists()),
     hasPrefix: async () => !!(await base.attr(DATA_ATTR.PREFIX)),
     hasClearButton: async () => await clearButtonNode.exists(),
@@ -50,13 +51,13 @@ export const testkit = (base, body) => {
     getText: async () => await input.value(),
     getPattern: async () => await input.attr('pattern'),
     getPlaceholder: async () => await input.attr('placeholder'),
-    isOfSize: async (size) => (await base.attr(DATA_ATTR.SIZE)) === size,
+    isOfSize: async size => (await base.attr(DATA_ATTR.SIZE)) === size,
     getSize: async () => await base.attr(DATA_ATTR.SIZE),
     isDisabled: async () => !!(await base.attr(DATA_ATTR.DISABLED)),
     isHoveredStyle: async () => !!(await base.attr(DATA_ATTR.HOVER)),
     isFocusedStyle: async () => !!(await base.attr(DATA_ATTR.FOCUS)),
     getRequired: async () => await input._prop('required'),
-    enterText: async (value) => await input.enterValue(value),
+    enterText: async value => await input.enterValue(value),
     getAutocomplete: async () => await input.attr('autocomplete'),
     getDefaultValue: async () => await input._prop('defaultValue'),
     getTabIndex: async () => await input._prop('tabIndex'),
@@ -68,7 +69,7 @@ export const testkit = (base, body) => {
     focus: async () => await reactBaseInput.focus(),
     blur: async () => await reactBaseInput.blur(),
     keyUp: async () => await reactBaseInput.keyUp(),
-    keyDown: async (eventData) => await reactBaseInput.keyDown(eventData),
+    keyDown: async eventData => await reactBaseInput.keyDown(eventData),
     paste: async () => await reactBaseInput.paste(),
     trigger: async (eventType, event) => {
       if (eventType === 'focus') {
@@ -100,7 +101,7 @@ export const testkit = (base, body) => {
 
     // Status
     /** Return true if there's a status */
-    hasStatus: async (status) => (await base.attr(DATA_ATTR.STATUS)) === status,
+    hasStatus: async status => (await base.attr(DATA_ATTR.STATUS)) === status,
     /** If there's a status message, returns its text value */
     getStatusMessage: async () => {
       const statusIndicatorDriver = getStatusIndicatorDriver();

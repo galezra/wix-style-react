@@ -57,8 +57,6 @@ export interface InputUniDriver extends BaseUniDriver {
   clickMagnifyingGlass: () => Promise<void>;
   clickMenuArrow: () => Promise<void>;
   hasMenuArrow: () => Promise<boolean>;
-  hasRightBorderRadius: () => Promise<boolean>;
-  hasLeftBorderRadius: () => Promise<boolean>;
   isRTL: () => Promise<boolean>;
   getCursorLocation: () => Promise<any>;
   clearText: () => Promise<void>;
