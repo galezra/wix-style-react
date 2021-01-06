@@ -715,7 +715,12 @@ DataTable.propTypes = {
   useWindow: PropTypes.bool,
   /** Add scroll listeners to specified DOM Object. */
   scrollElement: PropTypes.object,
-  /** Table cell vertical padding. should be 'medium' or 'large'  */
+  /** Table cell vertical padding:
+   * - `large`: 24px
+   * - `medium`: 18px
+   * - `small`: with the feature toggle: 15px, without the feature toggle: 12px
+   * - `tiny`: 12px
+   * */
   rowVerticalPadding: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
   /** this prop is deprecated and should not be used
    * @deprecated
