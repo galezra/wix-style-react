@@ -1,20 +1,21 @@
 {
-  "name": "wix-style-react3",
+  "name": "root",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "experimentalMonorepoPublish": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "lerna bootstrap --no-ci",
+    "build": "lerna run build --scope wix-style-react",
+    "test1:unit": "lerna run --scope wix-style-react test1:unit",
+    "test2:visual": "lerna run --scope wix-style-react test2:visual",
+    "test3:e2e": "lerna run --scope wix-style-react test3:e2e",
+    "test4:e2e": "lerna run --scope wix-style-react test4:e2e",
+    "test5:types": "lerna run --scope wix-style-react test5:types",
+    "test6:sanity": "lerna run --scope wix-style-react test6:sanity",
+    "test7:performance": "lerna run --scope wix-style-react test7:performance",
+    "test8:chromatic": "#"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wix/wix-style-react.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wix/wix-style-react/issues"
-  },
-  "homepage": "https://github.com/wix/wix-style-react#readme"
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
 }
