@@ -42,7 +42,4 @@ export const skins = `<Layout>
   <Cell>
     <LinearProgressBar skin="success" value={20} />
   </Cell>
-  <Cell>
-    <LinearProgressBar skin="standard" value={20} />
-  </Cell>
 </Layout>`;
