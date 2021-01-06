@@ -191,6 +191,7 @@ const interactiveTests = [
     ],
   },
 ];
+
 export const runTests = (
   { themeName, testWithTheme } = { testWithTheme: i => i },
 ) => {
