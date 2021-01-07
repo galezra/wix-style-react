@@ -6,7 +6,7 @@ Components are designed according to [Zeplin](https://app.zeplin.io/project/5864
 
 ## Naming
 
-A component will be named with a `CamelCase` convention.
+A component will be named with a `PascalCase` convention.
 
 ## Structure
 
