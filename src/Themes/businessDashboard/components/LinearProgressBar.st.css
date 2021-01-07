@@ -22,6 +22,10 @@
   background: value(D60);
 }
 
-.root:skin(standard)::barBackground {
+.root:skin(standard)::barForeground {
   background: value(B10);
+}
+
+.root:skin(standard)::barBackground {
+  background: value(D60);
 }
